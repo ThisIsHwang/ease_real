@@ -74,6 +74,8 @@ def grade(grader_data,submission):
 
     #Try to determine confidence level
     try:
+
+        print
         results['confidence'] = get_confidence_value(grader_data['algorithm'], model, grader_feats, results['score'], grader_data['score'])
     except Exception:
         #If there is an error getting confidence, it is not a show-stopper, so just log
@@ -176,7 +178,7 @@ def get_confidence_value(algorithm,model,grader_feats,score, scores):
     max_score=max(numpy.asarray(scores))
     if algorithm == util_functions.AlgorithmTypes.classification and hasattr(model, "predict_proba"):
         #If classification, predict with probability, which gives you a matrix of confidences per score point
-        raw_confidence=model.predict_proba(grader_feats)[0,(float(score)-float(min_score))]
+        raw_confidence=model.predict_proba(grader_feats)[0, int(float(score)-float(min_score))]
         #TODO: Normalize confidence somehow here
         confidence=raw_confidence
     elif hasattr(model, "predict"):

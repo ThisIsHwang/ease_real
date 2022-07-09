@@ -9,6 +9,7 @@ import sys
 import random
 import os
 import logging
+from konlpy.tag import Okt
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -130,7 +131,9 @@ class EssaySet(object):
         dictionary is a fixed dictionary (list) of words to replace.
         max_syns defines the maximum number of additional essays to generate.  Do not set too high.
         """
-        e_toks = nltk.word_tokenize(e_text)
+        okt = Okt()
+        e_toks = okt.morphs(e_text)
+        #e_toks = nltk.word_tokenize(e_text)
         all_syns = []
         for word in e_toks:
             synonyms = util_functions.get_wordnet_syns(word)

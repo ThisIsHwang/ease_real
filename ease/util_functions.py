@@ -425,6 +425,10 @@ def histogram(ratings, min_rating=None, max_rating=None):
         hist_ratings[r - min_rating] += 1
     return hist_ratings
 
+def get_only_hangul(line):
+	parseText= re.compile('/ ^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/').sub('',line)
+
+	return parseText
 
 def get_wordnet_syns(word):
     """
@@ -432,15 +436,32 @@ def get_wordnet_syns(word):
     word is the input word
     returns a list of unique synonyms
     """
-    synonyms = []
+
+    wordnet = {}
+    with open("wordnet.pickle", "rb") as f:
+        wordnet = pickle.load(f)
+
+
     regex = r"_"
     pat = re.compile(regex)
-    synset = nltk.wordnet.wordnet.synsets(word)
-    for ss in synset:
-        for swords in ss.lemma_names():
-            synonyms.append(pat.sub(" ", swords.lower()))
-    synonyms = f7(synonyms)
-    return synonyms
+
+    synomyms = []
+
+    try:
+        for syn in wordnet[word]:
+            for s in syn:
+                synomyms.append(pat.sub(" ", syn))
+    except:
+        pass
+    synomyms = f7(synomyms)
+    return synomyms
+    #
+    # synset = nltk.corpus.wordnet.synsets(word)
+    # for ss in synset:
+    #     for swords in ss.lemma_names():
+    #         synonyms.append(pat.sub(" ", swords.lower()))
+    #synonyms = f7(synonyms)
+    # return synonyms
 
 
 def get_separator_words(toks1):
