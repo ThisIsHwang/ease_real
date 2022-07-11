@@ -14,14 +14,14 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 # training_set_rel3.xlsx 를 현재 디렉토리로 옮겨야됨
-df = pd.read_csv("training_set_rel3.tsv", delimiter='\t', encoding='ISO 8859-1')
+df = pd.read_csv("training_set_rel3_ko.tsv")
 
 df = df[df['essay_set']==5]
 df['score'] = df['domain1_score']
 #"짝수" if num % 2 == 0 else "홀수"
 df['score']
-
-df = df[['essay', 'score']]
+df
+#df = df[['essay_ko', 'score']]
 
 # df["domain1_score"] = df["domain1_score"].astype(int)
 
@@ -35,7 +35,7 @@ from ease.create import create
 #     model = create(df["essay"].tolist(), df["score"].tolist(), prompt)
 #
 
-model = create(df["essay"].tolist(), df["score"].tolist(), prompt)
+model = create(df["essay_ko"].tolist(), df["score"].tolist(), prompt)
 joblib.dump(model, 'model.pkl')
 for key, value in model.items():
   if key != "text" and key != "score" and key != "prompt":

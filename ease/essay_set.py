@@ -10,6 +10,9 @@ import random
 import os
 import logging
 from konlpy.tag import Okt
+import re
+
+
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -60,7 +63,7 @@ class EssaySet(object):
             # Verify that essay_score is an int, essay_text is a string, and essay_generated equals 0 or 1
 
         try:
-            essay_text = essay_text.encode('ascii', 'ignore')
+            essay_text = essay_text.encode('utf-8', 'ignore')
             if len(essay_text) < 5:
                 essay_text = "Invalid essay."
         except:
@@ -69,7 +72,7 @@ class EssaySet(object):
         try:
             # Try conversion of types
             essay_score = int(essay_score)
-            essay_text = str(essay_text)
+            essay_text = essay_text.decode('utf-8')
         except:
             # Nothing needed here, will return error in any case.
             log.exception("Invalid type for essay score : {0} or essay text : {1}".format(type(essay_score), type(essay_text)))
@@ -79,11 +82,10 @@ class EssaySet(object):
             self._id.append(max_id + 1)
             self._score.append(essay_score)
             # Clean text by removing non digit/work/punctuation characters
-            try:
-                essay_text = str(essay_text.encode('ascii', 'ignore'))
-            except:
-                essay_text = (essay_text.decode('utf-8', 'replace')).encode('ascii', 'ignore')
+            essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\']", ' ', essay_text)
             cleaned_essay = util_functions.sub_chars(essay_text).lower()
+            #한글을 테스트 하는 중
+            print(util_functions.sub_chars("안녕 안녕").lower())
             if(len(cleaned_essay) > MAXIMUM_ESSAY_LENGTH):
                 cleaned_essay = cleaned_essay[0:MAXIMUM_ESSAY_LENGTH]
             self._text.append(cleaned_essay)
@@ -93,14 +95,19 @@ class EssaySet(object):
             self._spelling_errors.append(spell_errors)
             self._markup_text.append(markup_text)
             # Tokenize text
-            self._tokens.append(nltk.word_tokenize(self._clean_text[len(self._clean_text) - 1]))
+            from konlpy.tag import Komoran
+
+            okt=Okt()
+            self._tokens.append(okt.morphs(self._clean_text[len(self._clean_text) - 1]))
+
+
             # Part of speech tag text
-            self._pos.append(nltk.pos_tag(self._clean_text[len(self._clean_text) - 1].split(" ")))
+
+            self._pos.append(okt.pos(self._clean_text[len(self._clean_text) - 1]))
             self._generated.append(essay_generated)
             # Stem spell corrected text
-            porter = nltk.PorterStemmer()
-            por_toks = " ".join([porter.stem(w) for w in self._tokens[len(self._tokens) - 1]])
-            self._clean_stem_text.append(por_toks)
+
+            self._clean_stem_text.append(" ".join(okt.morphs(self._clean_text[len(self._clean_text) - 1], stem=True)))
 
             ret = "text: " + self._text[len(self._text) - 1] + " score: " + str(essay_score)
         else:

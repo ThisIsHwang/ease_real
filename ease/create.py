@@ -66,7 +66,8 @@ def create(text,score,prompt_string, dump_data=False):
     try:
         #Create an essay set object that encapsulates all the essays and alternate representations (tokens, etc)
         e_set = model_creator.create_essay_set(text, score, prompt_string)
-    except:
+    except Exception as e:
+        print(e)
         msg = "essay set creation failed."
         results['errors'].append(msg)
         log.exception(msg)

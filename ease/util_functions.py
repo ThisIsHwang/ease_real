@@ -15,6 +15,7 @@ import pickle
 import logging
 import sys
 import tempfile
+from hanspell import spell_checker
 
 log=logging.getLogger(__name__)
 
@@ -56,7 +57,7 @@ def sub_chars(string):
     string - string
     """
     #Define replacement patterns
-    sub_pat = r"[^A-Za-z\.\?!,';:]"
+    sub_pat = r"[^A-Za-z가-힣\.\?!,';:]"
     char_pat = r"\."
     com_pat = r","
     ques_pat = r"\?"
@@ -107,38 +108,39 @@ def spell_correct(string):
     finally:
         f.close()
 
-    incorrect_words = list()
-    correct_spelling = list()
-    for i in range(1, len(incorrect)):
-        if(len(incorrect[i]) > 10):
-            #Reformat aspell output to make sense
-            match = re.search(":", incorrect[i])
-            if hasattr(match, "start"):
-                begstring = incorrect[i][2:match.start()]
-                begmatch = re.search(" ", begstring)
-                begword = begstring[0:begmatch.start()]
-
-                sugstring = incorrect[i][match.start() + 2:]
-                sugmatch = re.search(",", sugstring)
-                if hasattr(sugmatch, "start"):
-                    sug = sugstring[0:sugmatch.start()]
-
-                    incorrect_words.append(begword)
-                    correct_spelling.append(sug)
-
+    # incorrect_words = list()
+    # correct_spelling = list()
+    # for i in range(1, len(incorrect)):
+    #     if(len(incorrect[i]) > 10):
+    #         #Reformat aspell output to make sense
+    #         match = re.search(":", incorrect[i])
+    #         if hasattr(match, "start"):
+    #             begstring = incorrect[i][2:match.start()]
+    #             begmatch = re.search(" ", begstring)
+    #             begword = begstring[0:begmatch.start()]
+    #
+    #             sugstring = incorrect[i][match.start() + 2:]
+    #             sugmatch = re.search(",", sugstring)
+    #             if hasattr(sugmatch, "start"):
+    #                 sug = sugstring[0:sugmatch.start()]
+    #
+    #                 incorrect_words.append(begword)
+    #                 correct_spelling.append(sug)
+    result = spell_checker.check(string)
+    result = result.as_dict()
     #Create markup based on spelling errors
-    newstring = string
+    newstring = result['checked']
     markup_string = string
-    already_subbed=[]
-    for i in range(0, len(incorrect_words)):
-        sub_pat = r"\b" + incorrect_words[i] + r"\b"
-        sub_comp = re.compile(sub_pat, flags=re.ASCII)
-        newstring = re.sub(sub_comp, correct_spelling[i], newstring)
-        if incorrect_words[i] not in already_subbed:
-            markup_string=re.sub(sub_comp,'<bs>' + incorrect_words[i] + "</bs>", markup_string)
-            already_subbed.append(incorrect_words[i])
+    #already_subbed=[]
+    # for i in range(0, len(incorrect_words)):
+    #     sub_pat = r"\b" + incorrect_words[i] + r"\b"
+    #     sub_comp = re.compile(sub_pat)
+    #     newstring = re.sub(sub_comp, correct_spelling[i], newstring)
+    #     if incorrect_words[i] not in already_subbed:
+    #         markup_string=re.sub(sub_comp,'<bs>' + incorrect_words[i] + "</bs>", markup_string)
+    #         already_subbed.append(incorrect_words[i])
 
-    return newstring,len(incorrect_words),markup_string
+    return newstring,result['errors'], markup_string
 
 
 def ngrams(tokens, min_n, max_n):
