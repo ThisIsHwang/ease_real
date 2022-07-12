@@ -25,7 +25,7 @@ df
 
 # df["domain1_score"] = df["domain1_score"].astype(int)
 
-prompt = "Describe the mood created by the author in the memoir. Support your answer with relevant and specific information from the memoir."
+prompt = "회고록에서 저자가 만들어낸 분위기를 묘사하라. 회고록의 관련적이고 구체적인 정보로 답변을 뒷받침하세요."
 
 from ease.create import create
 

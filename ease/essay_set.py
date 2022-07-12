@@ -11,7 +11,8 @@ import os
 import logging
 from konlpy.tag import Okt
 import re
-
+from hanspell import spell_checker
+import KorEDA.eda
 
 
 base_path = os.path.dirname(__file__)
@@ -46,7 +47,7 @@ class EssaySet(object):
         self._prompt = ""
         self._spelling_errors = []
         self._markup_text = []
-
+        self._okt = Okt()
     def add_essay(self, essay_text, essay_score, essay_generated=0):
         """
         Add new (essay_text,essay_score) pair to the essay set.
@@ -95,19 +96,19 @@ class EssaySet(object):
             self._spelling_errors.append(spell_errors)
             self._markup_text.append(markup_text)
             # Tokenize text
-            from konlpy.tag import Komoran
 
-            okt=Okt()
-            self._tokens.append(okt.morphs(self._clean_text[len(self._clean_text) - 1]))
+
+
+            self._tokens.append(self._okt.morphs(self._clean_text[len(self._clean_text) - 1]))
 
 
             # Part of speech tag text
 
-            self._pos.append(okt.pos(self._clean_text[len(self._clean_text) - 1]))
+            self._pos.append(self._okt.pos(self._clean_text[len(self._clean_text) - 1]))
             self._generated.append(essay_generated)
             # Stem spell corrected text
 
-            self._clean_stem_text.append(" ".join(okt.morphs(self._clean_text[len(self._clean_text) - 1], stem=True)))
+            self._clean_stem_text.append(" ".join(self._okt.morphs(self._clean_text[len(self._clean_text) - 1], stem=True)))
 
             ret = "text: " + self._text[len(self._text) - 1] + " score: " + str(essay_score)
         else:
@@ -138,13 +139,13 @@ class EssaySet(object):
         dictionary is a fixed dictionary (list) of words to replace.
         max_syns defines the maximum number of additional essays to generate.  Do not set too high.
         """
-        okt = Okt()
-        e_toks = okt.morphs(e_text)
-        #e_toks = nltk.word_tokenize(e_text)
+        #okt = Okt()
+        e_toks = self._okt.morphs(e_text)
         all_syns = []
         for word in e_toks:
-            synonyms = util_functions.get_wordnet_syns(word)
-            if(len(synonyms) > max_syns):
+            synonyms = KorEDA.eda.get_synonyms(word)
+            print(synonyms)
+            if (len(synonyms) > max_syns):
                 synonyms = random.sample(synonyms, max_syns)
             all_syns.append(synonyms)
         new_essays = []
@@ -153,6 +154,8 @@ class EssaySet(object):
             for z in range(0, len(e_toks)):
                 if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
                     syn_toks[z] = all_syns[z][i]
-            new_essays.append(" ".join(syn_toks))
+            result = spell_checker.check("".join(syn_toks))
+            new_essays.append(result.as_dict()['checked'])
+
         for z in range(0, len(new_essays)):
             self.add_essay(new_essays[z], e_score, 1)
