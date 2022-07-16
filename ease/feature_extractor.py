@@ -13,6 +13,8 @@ from itertools import chain
 import copy
 import operator
 import logging
+from Korpora import Korpora
+from konlpy.tag import Okt
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -27,6 +29,7 @@ log = logging.getLogger(__name__)
 #Paths to needed data files
 NGRAM_PATH = base_path + "data/good_pos_ngrams.p"
 ESSAY_CORPUS_PATH = util_functions.ESSAY_CORPUS_PATH
+okt = Okt()
 
 class FeatureExtractor(object):
     def __init__(self):
@@ -107,7 +110,7 @@ class FeatureExtractor(object):
         max_pos_seq=4
         bad_pos_positions=[]
         for i in range(0, len(text)):
-            pos_seq = [tag[1] for tag in pos[i]]
+            pos_seq = [tag[1] for tag in pos[i] if tag[1] != 'Josa']
             pos_ngrams = util_functions.ngrams(pos_seq, min_pos_seq, max_pos_seq)
             long_pos_ngrams=[z for z in pos_ngrams if z.count(' ')==(max_pos_seq-1)]
             bad_pos_tuples=[[z,z+max_pos_seq] for z in range(0,len(long_pos_ngrams)) if long_pos_ngrams[z] not in self._good_pos_ngrams]
@@ -194,7 +197,8 @@ class FeatureExtractor(object):
         Returns an array of prompt features
         e_set - EssaySet object
         """
-        prompt_toks = nltk.word_tokenize(e_set._prompt)
+        #prompt_toks = nltk.word_tokenize(e_set._prompt)
+        prompt_toks = okt.morphs(e_set._prompt)
         expand_syns = []
         for word in prompt_toks:
             synonyms = util_functions.get_wordnet_syns(word)

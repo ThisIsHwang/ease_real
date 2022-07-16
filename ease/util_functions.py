@@ -16,16 +16,16 @@ import logging
 import sys
 import tempfile
 from hanspell import spell_checker
-
+from konlpy.tag import Okt
 log=logging.getLogger(__name__)
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
 if not base_path.endswith("/"):
     base_path=base_path+"/"
-
+okt = Okt()
 #Paths to needed data files
-ESSAY_CORPUS_PATH = base_path + "data/essaycorpus.txt"
+ESSAY_CORPUS_PATH = base_path + "data/kowikitext_20200920.txt"
 ESSAY_COR_TOKENS_PATH = base_path + "data/essay_cor_tokens.p"
 
 class AlgorithmTypes(object):
@@ -89,24 +89,24 @@ def spell_correct(string):
 
     # Create a temp file so that aspell could be used
     # By default, tempfile will delete this file when the file handle is closed.
-    f = tempfile.NamedTemporaryFile(mode='w')
-    f.write(string)
-    f.flush()
-    f_path = os.path.abspath(f.name)
-    try:
-        p = os.popen(aspell_path + " -a < " + f_path + " --sug-mode=ultra")
-
-        # Aspell returns a list of incorrect words with the above flags
-        incorrect = p.readlines()
-        p.close()
-
-    except Exception:
-        log.exception("aspell process failed; could not spell check")
-        # Return original string if aspell fails
-        return string,0, string
-
-    finally:
-        f.close()
+    # f = tempfile.NamedTemporaryFile(mode='w')
+    # f.write(string)
+    # f.flush()
+    # f_path = os.path.abspath(f.name)
+    # try:
+    #     p = os.popen(aspell_path + " -a < " + f_path + " --sug-mode=ultra")
+    #
+    #     # Aspell returns a list of incorrect words with the above flags
+    #     incorrect = p.readlines()
+    #     p.close()
+    #
+    # except Exception:
+    #     log.exception("aspell process failed; could not spell check")
+    #     # Return original string if aspell fails
+    #     return string,0, string
+    #
+    # finally:
+    #     f.close()
 
     # incorrect_words = list()
     # correct_spelling = list()
@@ -126,10 +126,62 @@ def spell_correct(string):
     #
     #                 incorrect_words.append(begword)
     #                 correct_spelling.append(sug)
-    result = spell_checker.check(string)
-    result = result.as_dict()
+    stringList = string.split(".")[:-1]
+    tempList = []
+    for s in stringList:
+        s += "."
+        tempList.append(s)
+    stringList = tempList
+    tempList = []
+    for s in stringList:
+        t = s.split("?")
+        for tt in t:
+            if tt[-1] != '.':
+                tt += "?"
+            tempList.append(tt)
+    stringList = tempList
+    tempList = []
+    for s in stringList:
+        t = s.split("!")
+        for tt in t:
+            if tt[-1] != '.' and tt[-1] != '?':
+                tt += "!"
+            tempList.append(tt)
+    stringList = tempList
+    cnt = 0
+    tempString = ""
+    resultDicts = list()
+    for s in stringList:
+        # print(s)
+        # print(len(s))
+        if len(s) + cnt < 500:
+            tempString += s
+            # print(tempString)
+            cnt += len(s)
+            if s == stringList[-1]:
+                result = spell_checker.check(tempString)
+                # print(result.as_dict())
+                resultDicts.append(result.as_dict())
+                cnt = 0
+                tempString = ""
+        else:
+            # print(tempString)
+            result = spell_checker.check(tempString)
+
+            # print(result.as_dict())
+            resultDicts.append(result.as_dict())
+            cnt = 0
+            tempString = ""
+    newstring = ""
+
+    errorCnt = 0
+    for r in resultDicts:
+        newstring += r['checked']
+        errorCnt += r["errors"]
+    if newstring == "":
+        print()
     #Create markup based on spelling errors
-    newstring = result['checked']
+    #newstring = result['checked']
     markup_string = string
     #already_subbed=[]
     # for i in range(0, len(incorrect_words)):
@@ -140,7 +192,7 @@ def spell_correct(string):
     #         markup_string=re.sub(sub_comp,'<bs>' + incorrect_words[i] + "</bs>", markup_string)
     #         already_subbed.append(incorrect_words[i])
 
-    return newstring,result['errors'], markup_string
+    return newstring, errorCnt, markup_string
 
 
 def ngrams(tokens, min_n, max_n):
@@ -185,9 +237,12 @@ def regenerate_good_tokens(string):
     Used to define grammatically correct part of speech tag sequences.
     Returns a list of part of speech tag sequences.
     """
-    toks = nltk.word_tokenize(string)
-    pos_string = nltk.pos_tag(toks)
-    pos_seq = [tag[1] for tag in pos_string]
+    string = okt.normalize(string)
+    pos_string = okt.pos(string)
+
+    # toks = nltk.word_tokenize(string)
+    # pos_string = nltk.pos_tag(toks)
+    pos_seq = [tag[1] for tag in pos_string if tag[1] != "Josa"]
     pos_ngrams = ngrams(pos_seq, 2, 4)
     sel_pos_ngrams = f7(pos_ngrams)
     return sel_pos_ngrams

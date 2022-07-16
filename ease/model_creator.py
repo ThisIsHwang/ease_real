@@ -79,7 +79,11 @@ def create_essay_set(text, score, prompt_string, generate_additional=True):
     """
     x = EssaySet()
     for i in range(0, len(text)):
+        print(i)
+
         x.add_essay(text[i], score[i])
+
+
         if score[i] == min(score) and generate_additional == True:
             x.generate_additional_essays(x._clean_text[len(x._clean_text) - 1], score[i])
 

@@ -86,7 +86,7 @@ class EssaySet(object):
             essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\']", ' ', essay_text)
             cleaned_essay = util_functions.sub_chars(essay_text).lower()
             #한글을 테스트 하는 중
-            print(util_functions.sub_chars("안녕 안녕").lower())
+            #print(util_functions.sub_chars("안녕 안녕").lower())
             if(len(cleaned_essay) > MAXIMUM_ESSAY_LENGTH):
                 cleaned_essay = cleaned_essay[0:MAXIMUM_ESSAY_LENGTH]
             self._text.append(cleaned_essay)
@@ -154,8 +154,57 @@ class EssaySet(object):
             for z in range(0, len(e_toks)):
                 if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
                     syn_toks[z] = all_syns[z][i]
-            result = spell_checker.check("".join(syn_toks))
-            new_essays.append(result.as_dict()['checked'])
+            string = " ".join(syn_toks)
+            stringList = string.split(".")[:-1]
+            tempList = []
+            for s in stringList:
+                s += "."
+                tempList.append(s)
+            stringList = tempList
+            tempList = []
+            for s in stringList:
+                t = s.split("?")
+                for tt in t:
+                    if tt[-1] != '.':
+                        tt += "?"
+                    tempList.append(tt)
+            stringList = tempList
+            tempList = []
+            for s in stringList:
+                t = s.split("!")
+                for tt in t:
+                    if tt[-1] != '.' and tt[-1] != '?':
+                        tt += "!"
+                    tempList.append(tt)
+            stringList = tempList
+            cnt = 0
+            tempString = ""
+            resultDicts = list()
+            for s in stringList:
+                # print(s)
+                # print(len(s))
+                if len(s) + cnt < 500:
+                    tempString += s
+                    # print(tempString)
+                    cnt += len(s)
+                    if s == stringList[-1]:
+                        result = spell_checker.check(tempString)
+                        # print(result.as_dict())
+                        resultDicts.append(result.as_dict())
+                        cnt = 0
+                        tempString = ""
+                else:
+                    # print(tempString)
+                    result = spell_checker.check(tempString)
+
+                    # print(result.as_dict())
+                    resultDicts.append(result.as_dict())
+                    cnt = 0
+                    tempString = ""
+            tempString = ""
+            for r in resultDicts:
+                tempString += r['checked']
+            new_essays.append(tempString)
 
         for z in range(0, len(new_essays)):
             self.add_essay(new_essays[z], e_score, 1)
