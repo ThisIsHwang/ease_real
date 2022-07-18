@@ -126,44 +126,26 @@ def spell_correct(string):
     #
     #                 incorrect_words.append(begword)
     #                 correct_spelling.append(sug)
-    stringList = string.split(".")[:-1]
-    tempList = []
-    for s in stringList:
-        s += "."
-        tempList.append(s)
-    stringList = tempList
-    tempList = []
-    for s in stringList:
-        t = s.split("?")
-        for tt in t:
-            if tt[-1] != '.':
-                tt += "?"
-            tempList.append(tt)
-    stringList = tempList
-    tempList = []
-    for s in stringList:
-        t = s.split("!")
-        for tt in t:
-            if tt[-1] != '.' and tt[-1] != '?':
-                tt += "!"
-            tempList.append(tt)
+    string = string.strip()
+    tempList = re.split('([.!?])', string)[:-1]
+
     stringList = tempList
     cnt = 0
     tempString = ""
     resultDicts = list()
-    for s in stringList:
-        # print(s)
-        # print(len(s))
-        if len(s) + cnt < 500:
-            tempString += s
+    s = 0
+    while s < len(stringList):
+        if len(stringList[s] + stringList[s+1]) + cnt < 500:
+            tempString += stringList[s] + stringList[s+1]
             # print(tempString)
-            cnt += len(s)
-            if s == stringList[-1]:
+            cnt += len(stringList[s] + stringList[s+1])
+            if s >= len(stringList) - 2:
                 result = spell_checker.check(tempString)
                 # print(result.as_dict())
                 resultDicts.append(result.as_dict())
                 cnt = 0
                 tempString = ""
+            s += 2
         else:
             # print(tempString)
             result = spell_checker.check(tempString)
@@ -172,14 +154,38 @@ def spell_correct(string):
             resultDicts.append(result.as_dict())
             cnt = 0
             tempString = ""
+
+
+
+    #for s in range(0, len(stringList), 2):
+        # print(s)
+        # print(len(s))
+        # if len(stringList[s] + stringList[s+1]) + cnt < 500:
+        #     tempString += stringList[s] + stringList[s+1]
+        #     # print(tempString)
+        #     cnt += len(stringList[s] + stringList[s+1])
+        #     if s >= len(stringList) - 2:
+        #         result = spell_checker.check(tempString)
+        #         # print(result.as_dict())
+        #         resultDicts.append(result.as_dict())
+        #         cnt = 0
+        #         tempString = ""
+        # else:
+        #     # print(tempString)
+        #     result = spell_checker.check(tempString)
+        #
+        #     # print(result.as_dict())
+        #     resultDicts.append(result.as_dict())
+        #     cnt = 0
+        #     tempString = ""
     newstring = ""
 
     errorCnt = 0
     for r in resultDicts:
         newstring += r['checked']
         errorCnt += r["errors"]
-    if newstring == "":
-        print()
+
+
     #Create markup based on spelling errors
     #newstring = result['checked']
     markup_string = string
@@ -359,6 +365,20 @@ def gen_cv_preds(clf, arr, sel_score, num_chunks=3):
     all_preds = list(chain(*preds))
     return(all_preds)
 
+def gen_preds2(clf, arr, sel_score):
+    """
+    Generates cross validated predictions using an input classifier and data.
+    clf is a classifier that implements that implements the fit and predict methods.
+    arr is the input data array (X)
+    sel_score is the target list (y).  y[n] corresponds to X[n,:]
+    num_chunks is the number of cross validation folds to use
+    Returns an array of the predictions where prediction[n] corresponds to X[n,:]
+    """
+    preds = list()
+    set_score = numpy.asarray(sel_score, dtype=numpy.int)
+    sim_fit = clf.fit(arr, set_score)
+    preds = (list(sim_fit.predict(arr)))
+    return(preds)
 
 def gen_model(clf, arr, sel_score):
     """

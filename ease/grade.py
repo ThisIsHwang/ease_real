@@ -84,9 +84,9 @@ def grade(grader_data,submission):
     if not has_error:
 
         #If the essay is just a copy of the prompt, return a 0 as the score
-        if( 'too_similar_to_prompt' in feedback and feedback['too_similar_to_prompt']):
-            results['score']=0
-            results['correct']=False
+        # if( 'too_similar_to_prompt' in feedback and feedback['too_similar_to_prompt']):
+        #     results['score']=0
+        #     results['correct']=False
 
         results['success']=True
 

@@ -280,10 +280,12 @@ class FeatureExtractor(object):
             if features is not None:
                 f_row_sum=numpy.sum(features[m,12:])
                 f_row_prop=f_row_sum/len(e_set._text[m])
-                if f_row_prop<(self._mean_f_prop/1.5) or len(e_set._text[m])<20:
+                condition_b = len(e_set._text[m]) < 20
+                condition_a = f_row_prop < (self._mean_f_prop / 1.5)
+                if condition_a or condition_b:
                     individual_feedback['topicality']="Topicality: Essay may be off topic."
 
-                if(features[m,9]>.6):
+                if(features[m,9]>.9):
                     individual_feedback['prompt_overlap']="Prompt Overlap: Too much overlap with prompt."
                     individual_feedback['too_similar_to_prompt']=True
                     log.debug(features[m,9])

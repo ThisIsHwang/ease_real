@@ -100,7 +100,8 @@ def get_cv_error(clf,feats,scores):
     """
     results={'success' : False, 'kappa' : 0, 'mae' : 0}
     try:
-        cv_preds=util_functions.gen_cv_preds(clf,feats,scores)
+        #cv_preds=util_functions.gen_cv_preds(clf,feats,scores)
+        cv_preds=util_functions.gen_preds2(clf, feats, scores)
         err=numpy.mean(numpy.abs(numpy.array(cv_preds)-scores))
         kappa=util_functions.quadratic_weighted_kappa(list(cv_preds),scores)
         results['mae']=err
@@ -110,7 +111,8 @@ def get_cv_error(clf,feats,scores):
         # If this is hit, everything is fine.  It is hard to explain why the error occurs, but it isn't a big deal.
         msg = u"Not enough classes (0,1,etc) in each cross validation fold: {ex}".format(ex=ex)
         log.debug(msg)
-    except:
+    except Exception as e:
+        print(e)
         log.exception("Error getting cv error estimates.")
 
     return results

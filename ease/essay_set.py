@@ -155,44 +155,27 @@ class EssaySet(object):
                 if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
                     syn_toks[z] = all_syns[z][i]
             string = " ".join(syn_toks)
-            stringList = string.split(".")[:-1]
-            tempList = []
-            for s in stringList:
-                s += "."
-                tempList.append(s)
-            stringList = tempList
-            tempList = []
-            for s in stringList:
-                t = s.split("?")
-                for tt in t:
-                    if tt[-1] != '.':
-                        tt += "?"
-                    tempList.append(tt)
-            stringList = tempList
-            tempList = []
-            for s in stringList:
-                t = s.split("!")
-                for tt in t:
-                    if tt[-1] != '.' and tt[-1] != '?':
-                        tt += "!"
-                    tempList.append(tt)
+
+            string = string.strip()
+            tempList = re.split('([.!?])', string)[:-1]
+
             stringList = tempList
             cnt = 0
             tempString = ""
             resultDicts = list()
-            for s in stringList:
-                # print(s)
-                # print(len(s))
-                if len(s) + cnt < 500:
-                    tempString += s
+            s = 0
+            while s < len(stringList):
+                if len(stringList[s] + stringList[s + 1]) + cnt < 500:
+                    tempString += stringList[s] + stringList[s + 1]
                     # print(tempString)
-                    cnt += len(s)
-                    if s == stringList[-1]:
+                    cnt += len(stringList[s] + stringList[s + 1])
+                    if s >= len(stringList) - 2:
                         result = spell_checker.check(tempString)
                         # print(result.as_dict())
                         resultDicts.append(result.as_dict())
                         cnt = 0
                         tempString = ""
+                    s += 2
                 else:
                     # print(tempString)
                     result = spell_checker.check(tempString)
@@ -201,7 +184,8 @@ class EssaySet(object):
                     resultDicts.append(result.as_dict())
                     cnt = 0
                     tempString = ""
-            tempString = ""
+
+
             for r in resultDicts:
                 tempString += r['checked']
             new_essays.append(tempString)
