@@ -42,7 +42,7 @@ def speller(origin, encoding="utf-8"):
             errorCnt : 틀린 맞춤법의 수
     """
 
-    splitted_origin = splitter_re.split(origin)
+    #splitted_origin = splitter_re.split(origin)
 
     error_words = []
 
@@ -50,16 +50,25 @@ def speller(origin, encoding="utf-8"):
 
     # for idx in range(0, len(splitted_origin), 600):
     #     target = "".join(splitted_origin[idx:idx + 600])
+    headers = {
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36"}
 
     params = {'text1': origin}
     while True:
-        r = requests.post("http://speller.cs.pusan.ac.kr/results", data=params)
-        if r.status_code == 200:
-            break
-        time.sleep(3)
+        try:
+            r = requests.post("http://speller.cs.pusan.ac.kr/results", data=params, headers=headers)
+            if r.status_code == 200:
+                break
+            time.sleep(3)
+        except Exception as e:
+            print(e)
+            time.sleep(3)
+            continue
 
     raw_result = r.content.decode('utf-8')
     res = re.findall('\[{"str":[가-힣 a-zA-Z:[{()}\S..",]*', raw_result)
+    if res == []:
+        return params['text1'], 0
     res = res[0][:-1]
 
     jsonData = json.loads(res)
@@ -68,9 +77,10 @@ def speller(origin, encoding="utf-8"):
     for err in jsonData[0]['errInfo']:
         frontSentence = newString[:err['start'] + WordCount]
         corretedWord = err['candWord']
+        corretedWordList = corretedWord.split("|")
         backSentence = newString[err['end'] + WordCount:]
-        WordCount += len(err['candWord']) - len(err['orgStr'])
-        newString = "".join([frontSentence, corretedWord, backSentence])
+        WordCount += len(corretedWordList[0]) - len(err['orgStr'])
+        newString = "".join([frontSentence, corretedWordList[0], backSentence])
 
     errorCnt = len(jsonData[0]['errInfo'])
     # dict = json.loads(res)

@@ -143,26 +143,28 @@ class EssaySet(object):
         max_syns defines the maximum number of additional essays to generate.  Do not set too high.
         """
         #okt = Okt()
-        e_toks = self._okt.morphs(e_text)
-        all_syns = []
-        for word in e_toks:
-            synonyms = KorEDA.eda.get_synonyms(word)
-            print(synonyms)
-            if (len(synonyms) > max_syns):
-                synonyms = random.sample(synonyms, max_syns)
-            all_syns.append(synonyms)
+        #e_toks = self._okt.morphs(e_text)
+        #all_syns = []
+        # for word in e_toks:
+        #     synonyms = KorEDA.eda.get_synonyms(word)
+        #     print(synonyms)
+        #     if (len(synonyms) > max_syns):
+        #         synonyms = random.sample(synonyms, max_syns)
+        #     all_syns.append(synonyms)
+        # new_essays = []
+        # for i in range(0, max_syns):
+        #     syn_toks = e_toks
+        #     for z in range(0, len(e_toks)):
+        #         if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
+        #             syn_toks[z] = all_syns[z][i]
+        #
+        #     string = " ".join(syn_toks)
         new_essays = []
-        for i in range(0, max_syns):
-            syn_toks = e_toks
-            for z in range(0, len(e_toks)):
-                if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
-                    syn_toks[z] = all_syns[z][i]
-
-            string = " ".join(syn_toks)
-
+        strings = KorEDA.eda.EDA(e_text)
+        for string in strings:
             string = string.strip()
-            tempList = re.split('([.!?])', string)[:-1]
 
+            tempList = nltk.sent_tokenize(string)
             stringList = tempList
             cnt = 0
             tempString = ""
@@ -188,7 +190,7 @@ class EssaySet(object):
                     result = spell_checker.check(pusanString)
                     resultDict = result.as_dict()
                     resultDict["errors"] += pusanError  # print(result.as_dict())
-                    resultDicts.append(result.as_dict())
+                    resultDicts.append(resultDict)
                     cnt = 0
                     tempString = ""
 

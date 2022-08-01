@@ -32,11 +32,11 @@ prompt = """제시문 (가)와 제시문 (나)의 ‘경쟁’에 대한 견해�
 """
 from ease.create import create
 
-essays = df["essay"].tolist()
-scores = df["score"].tolist()
-model = create(essays, scores, prompt)
-joblib.dump(model, 'model.pkl')
-#model = joblib.load('model.pkl')
+# essays = df["essay"].tolist()
+# scores = df["score"].tolist()
+# model = create(essays, scores, prompt)
+# joblib.dump(model, 'model.pkl')
+model = joblib.load('model.pkl')
 for key, value in model.items():
   if key != "text" and key != "score" and key != "prompt":
     print(key,":",value)
@@ -45,13 +45,13 @@ for key, value in model.items():
 from ease.grade import grade
 
 
-for i in range(100):
-  tempDf = df["essay"].iloc[i]
-  print(grade(model, tempDf))
-  scoreDf = df["score"].iloc[i]
-  print(grade(model, tempDf)["score"], scoreDf)
+# for i in range(100):
+#   tempDf = df["essay"].iloc[i]
+#   print(grade(model, tempDf))
+#   scoreDf = df["score"].iloc[i]
+#   print(grade(model, tempDf)["score"], scoreDf)
 
-a = """제시문 (가)와 (다)는 공동체를 벗어나 개인의 양심에 의한 선택을 하는 예시를 통해 개인주의적 입장으로 보인다. 그에 반해 제시문 (나)와 (라)는 개발도상국의 코로나 백신 접종률 미달 문제와 공동체주의 내용이 담긴 예시에서 사회 공동체의 발전을 최우선가치로 두고 공동체의 공익을 중요시 여기는 공동체주의적 입장으로 보인다. 이 중에서 공동체주의적 입장인 (나)와 (라)에서 공동체는 곧 개인이다. 개인은 국가 등 개인이 속해있는 공동체의 공익이나 공공선이 증가할 때에 개인의 이익 또한 자연스레 증가한다. 따라서 개인은 공동체적 유대감을 형성하고 공동체의 목표를 달성하는데에 기여해야 한다. 정치적, 사회적 측면에서 개인은 공동체 이상의 가치를 지니며, """
+a = """씨발 몰라 이새끼들아"""
 print("제시문:", prompt)
 print("답안:", a)
 print(grade(model, a))

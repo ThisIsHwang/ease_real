@@ -126,7 +126,7 @@ def spell_correct(string):
             result = spell_checker.check(pusanString)
             resultDict = result.as_dict()
             resultDict["errors"] += pusanError            # print(result.as_dict())
-            resultDicts.append(result.as_dict())
+            resultDicts.append(resultDict)
             cnt = 0
             tempString = ""
 
