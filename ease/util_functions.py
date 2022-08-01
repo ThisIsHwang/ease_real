@@ -14,16 +14,19 @@ import nltk
 import pickle
 import logging
 import sys
-import tempfile
+from external_code import pusanCorrectGrammer
 from hanspell import spell_checker
 from konlpy.tag import Okt
+import nltk
 log=logging.getLogger(__name__)
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
 if not base_path.endswith("/"):
     base_path=base_path+"/"
-okt = Okt()
+
+jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
+okt = Okt(jvmpath=jvm_path)
 #Paths to needed data files
 ESSAY_CORPUS_PATH = base_path + "data/kowikitext_20200920.txt"
 ESSAY_COR_TOKENS_PATH = base_path + "data/essay_cor_tokens.p"
@@ -57,7 +60,9 @@ def sub_chars(string):
     string - string
     """
     #Define replacement patterns
-    sub_pat = r"[^A-Za-z가-힣\.\?!,';:]"
+    open_par_pat = r"(\(|\[|\{\<)"
+    close_par_pat = r"(\)|\]|\}\>)"
+    sub_pat = r"[^A-Za-z가-힣\.\?!,';:\(\)]"
     char_pat = r"\."
     com_pat = r","
     ques_pat = r"\?"
@@ -67,17 +72,24 @@ def sub_chars(string):
     whitespace_pat = r"\s{1,}"
 
     #Replace text.  Ordering is very important!
-    nstring = re.sub(sub_pat, " ", string)
-    nstring = re.sub(char_pat," .", nstring)
-    nstring = re.sub(com_pat, " ,", nstring)
-    nstring = re.sub(ques_pat, " ?", nstring)
-    nstring = re.sub(excl_pat, " !", nstring)
-    nstring = re.sub(sem_pat, " ;", nstring)
-    nstring = re.sub(col_pat, " :", nstring)
+    nstring = re.sub(open_par_pat, "(", string)
+    nstring = re.sub(close_par_pat, ")", nstring)
+    nstring = re.sub(sub_pat, " ", nstring)
+    # nstring = re.sub(char_pat,". ", nstring)
+    # nstring = re.sub(com_pat, ", ", nstring)
+    # nstring = re.sub(ques_pat, "? ", nstring)
+    # nstring = re.sub(excl_pat, "! ", nstring)
+    # nstring = re.sub(sem_pat, "; ", nstring)
+    # nstring = re.sub(col_pat, ": ", nstring)
     nstring = re.sub(whitespace_pat, " ", nstring)
 
     return nstring
 
+def safe_list_get (l, idx, default):
+  try:
+    return l[idx]
+  except IndexError:
+    return default
 
 def spell_correct(string):
     """
@@ -87,97 +99,37 @@ def spell_correct(string):
     string - string
     """
 
-    # Create a temp file so that aspell could be used
-    # By default, tempfile will delete this file when the file handle is closed.
-    # f = tempfile.NamedTemporaryFile(mode='w')
-    # f.write(string)
-    # f.flush()
-    # f_path = os.path.abspath(f.name)
-    # try:
-    #     p = os.popen(aspell_path + " -a < " + f_path + " --sug-mode=ultra")
-    #
-    #     # Aspell returns a list of incorrect words with the above flags
-    #     incorrect = p.readlines()
-    #     p.close()
-    #
-    # except Exception:
-    #     log.exception("aspell process failed; could not spell check")
-    #     # Return original string if aspell fails
-    #     return string,0, string
-    #
-    # finally:
-    #     f.close()
-
-    # incorrect_words = list()
-    # correct_spelling = list()
-    # for i in range(1, len(incorrect)):
-    #     if(len(incorrect[i]) > 10):
-    #         #Reformat aspell output to make sense
-    #         match = re.search(":", incorrect[i])
-    #         if hasattr(match, "start"):
-    #             begstring = incorrect[i][2:match.start()]
-    #             begmatch = re.search(" ", begstring)
-    #             begword = begstring[0:begmatch.start()]
-    #
-    #             sugstring = incorrect[i][match.start() + 2:]
-    #             sugmatch = re.search(",", sugstring)
-    #             if hasattr(sugmatch, "start"):
-    #                 sug = sugstring[0:sugmatch.start()]
-    #
-    #                 incorrect_words.append(begword)
-    #                 correct_spelling.append(sug)
     string = string.strip()
-    tempList = re.split('([.!?])', string)[:-1]
-
-    stringList = tempList
+    #stringList = re.split('([.!?])', string)[:-1]
+    stringList = nltk.sent_tokenize(string)
     cnt = 0
     tempString = ""
     resultDicts = list()
     s = 0
+
     while s < len(stringList):
-        if len(stringList[s] + stringList[s+1]) + cnt < 500:
-            tempString += stringList[s] + stringList[s+1]
-            # print(tempString)
-            cnt += len(stringList[s] + stringList[s+1])
-            if s >= len(stringList) - 2:
-                result = spell_checker.check(tempString)
-                # print(result.as_dict())
+        if len(stringList[s] + tempString) + cnt < 500:
+            tempString += stringList[s]
+            cnt += len(stringList[s])
+            s += 1
+            if s >= len(stringList) - 1:
+                pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
+                result = spell_checker.check(pusanString)
+                resultDict = result.as_dict()
+                resultDict["errors"] += pusanError  # print(result.as_dict())
                 resultDicts.append(result.as_dict())
                 cnt = 0
                 tempString = ""
-            s += 2
         else:
             # print(tempString)
-            result = spell_checker.check(tempString)
-
-            # print(result.as_dict())
+            pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
+            result = spell_checker.check(pusanString)
+            resultDict = result.as_dict()
+            resultDict["errors"] += pusanError            # print(result.as_dict())
             resultDicts.append(result.as_dict())
             cnt = 0
             tempString = ""
 
-
-
-    #for s in range(0, len(stringList), 2):
-        # print(s)
-        # print(len(s))
-        # if len(stringList[s] + stringList[s+1]) + cnt < 500:
-        #     tempString += stringList[s] + stringList[s+1]
-        #     # print(tempString)
-        #     cnt += len(stringList[s] + stringList[s+1])
-        #     if s >= len(stringList) - 2:
-        #         result = spell_checker.check(tempString)
-        #         # print(result.as_dict())
-        #         resultDicts.append(result.as_dict())
-        #         cnt = 0
-        #         tempString = ""
-        # else:
-        #     # print(tempString)
-        #     result = spell_checker.check(tempString)
-        #
-        #     # print(result.as_dict())
-        #     resultDicts.append(result.as_dict())
-        #     cnt = 0
-        #     tempString = ""
     newstring = ""
 
     errorCnt = 0
@@ -185,18 +137,7 @@ def spell_correct(string):
         newstring += r['checked']
         errorCnt += r["errors"]
 
-
-    #Create markup based on spelling errors
-    #newstring = result['checked']
     markup_string = string
-    #already_subbed=[]
-    # for i in range(0, len(incorrect_words)):
-    #     sub_pat = r"\b" + incorrect_words[i] + r"\b"
-    #     sub_comp = re.compile(sub_pat)
-    #     newstring = re.sub(sub_comp, correct_spelling[i], newstring)
-    #     if incorrect_words[i] not in already_subbed:
-    #         markup_string=re.sub(sub_comp,'<bs>' + incorrect_words[i] + "</bs>", markup_string)
-    #         already_subbed.append(incorrect_words[i])
 
     return newstring, errorCnt, markup_string
 
@@ -374,7 +315,7 @@ def gen_preds2(clf, arr, sel_score):
     num_chunks is the number of cross validation folds to use
     Returns an array of the predictions where prediction[n] corresponds to X[n,:]
     """
-    preds = list()
+
     set_score = numpy.asarray(sel_score, dtype=numpy.int)
     sim_fit = clf.fit(arr, set_score)
     preds = (list(sim_fit.predict(arr)))

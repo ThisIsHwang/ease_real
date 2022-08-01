@@ -13,10 +13,13 @@ from konlpy.tag import Okt
 import re
 from hanspell import spell_checker
 import KorEDA.eda
+from external_code import pusanCorrectGrammer
 
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
+jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
+
 from . import util_functions
 
 if not base_path.endswith("/"):
@@ -47,7 +50,7 @@ class EssaySet(object):
         self._prompt = ""
         self._spelling_errors = []
         self._markup_text = []
-        self._okt = Okt()
+        self._okt = Okt(jvmpath=jvm_path)
     def add_essay(self, essay_text, essay_score, essay_generated=0):
         """
         Add new (essay_text,essay_score) pair to the essay set.
@@ -83,7 +86,7 @@ class EssaySet(object):
             self._id.append(max_id + 1)
             self._score.append(essay_score)
             # Clean text by removing non digit/work/punctuation characters
-            essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\']", ' ', essay_text)
+            essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\'\(\{\[\<\)\}\]\>]", ' ', essay_text)
             cleaned_essay = util_functions.sub_chars(essay_text).lower()
             #한글을 테스트 하는 중
             #print(util_functions.sub_chars("안녕 안녕").lower())
@@ -154,6 +157,7 @@ class EssaySet(object):
             for z in range(0, len(e_toks)):
                 if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
                     syn_toks[z] = all_syns[z][i]
+
             string = " ".join(syn_toks)
 
             string = string.strip()
@@ -164,31 +168,38 @@ class EssaySet(object):
             tempString = ""
             resultDicts = list()
             s = 0
+
             while s < len(stringList):
-                if len(stringList[s] + stringList[s + 1]) + cnt < 500:
-                    tempString += stringList[s] + stringList[s + 1]
-                    # print(tempString)
-                    cnt += len(stringList[s] + stringList[s + 1])
-                    if s >= len(stringList) - 2:
-                        result = spell_checker.check(tempString)
-                        # print(result.as_dict())
+                if len(stringList[s] + tempString) + cnt < 500:
+                    tempString += stringList[s]
+                    cnt += len(stringList[s])
+                    s += 1
+                    if s >= len(stringList) - 1:
+                        pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
+                        result = spell_checker.check(pusanString)
+                        resultDict = result.as_dict()
+                        resultDict["errors"] += pusanError  # print(result.as_dict())
                         resultDicts.append(result.as_dict())
                         cnt = 0
                         tempString = ""
-                    s += 2
                 else:
                     # print(tempString)
-                    result = spell_checker.check(tempString)
-
-                    # print(result.as_dict())
+                    pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
+                    result = spell_checker.check(pusanString)
+                    resultDict = result.as_dict()
+                    resultDict["errors"] += pusanError  # print(result.as_dict())
                     resultDicts.append(result.as_dict())
                     cnt = 0
                     tempString = ""
 
+            newstring = ""
 
+            errorCnt = 0
             for r in resultDicts:
-                tempString += r['checked']
-            new_essays.append(tempString)
+                newstring += r['checked']
+                errorCnt += r["errors"]
+
+            new_essays.append(newstring)
 
         for z in range(0, len(new_essays)):
             self.add_essay(new_essays[z], e_score, 1)

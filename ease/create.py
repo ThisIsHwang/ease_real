@@ -21,6 +21,7 @@ from . import predictor_extractor
 from datetime import datetime
 import json
 
+
 #Make a log
 log = logging.getLogger(__name__)
 

@@ -15,4 +15,4 @@ ease.egg-info/
 *.orig
 !.vc
 data/json_data/*
-
+/log/

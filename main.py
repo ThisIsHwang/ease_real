@@ -32,11 +32,11 @@ prompt = """제시문 (가)와 제시문 (나)의 ‘경쟁’에 대한 견해�
 """
 from ease.create import create
 
-# essays = df["essay"].tolist()
-# scores = df["score"].tolist()
-# model = create(essays, scores, prompt)
-# joblib.dump(model, 'model.pkl')
-model = joblib.load('model.pkl')
+essays = df["essay"].tolist()
+scores = df["score"].tolist()
+model = create(essays, scores, prompt)
+joblib.dump(model, 'model.pkl')
+#model = joblib.load('model.pkl')
 for key, value in model.items():
   if key != "text" and key != "score" and key != "prompt":
     print(key,":",value)

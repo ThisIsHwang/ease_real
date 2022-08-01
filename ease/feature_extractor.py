@@ -20,6 +20,7 @@ base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
 from .essay_set import EssaySet
 from . import util_functions
+jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
 
 if not base_path.endswith("/"):
     base_path=base_path+"/"
@@ -29,7 +30,7 @@ log = logging.getLogger(__name__)
 #Paths to needed data files
 NGRAM_PATH = base_path + "data/good_pos_ngrams.p"
 ESSAY_CORPUS_PATH = util_functions.ESSAY_CORPUS_PATH
-okt = Okt()
+okt = Okt(jvmpath=jvm_path)
 
 class FeatureExtractor(object):
     def __init__(self):
