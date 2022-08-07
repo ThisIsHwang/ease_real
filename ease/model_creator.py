@@ -81,7 +81,7 @@ def create_essay_set(text, score, prompt_string, generate_additional=True):
     for i in range(0, len(text)):
         print(i)
 
-        x.add_essay(text[i], score[i])
+        x.add_essay(text[i], score[i]) #데이터셋 Essay을 전처리하여 추가한다.
 
 
         if score[i] == min(score) and generate_additional == True:

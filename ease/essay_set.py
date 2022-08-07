@@ -13,8 +13,7 @@ from konlpy.tag import Okt
 import re
 from hanspell import spell_checker
 import KorEDA.eda
-from external_code import pusanCorrectGrammer
-
+from external_code import pusanCorrectGrammer, dataAumentationByTranslation
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -86,10 +85,9 @@ class EssaySet(object):
             self._id.append(max_id + 1)
             self._score.append(essay_score)
             # Clean text by removing non digit/work/punctuation characters
-            essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\'\(\{\[\<\)\}\]\>]", ' ', essay_text)
+            #essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\'\(\{\[\<\)\}\]\>]", ' ', essay_text)
             cleaned_essay = util_functions.sub_chars(essay_text).lower()
-            #한글을 테스트 하는 중
-            #print(util_functions.sub_chars("안녕 안녕").lower())
+
             if(len(cleaned_essay) > MAXIMUM_ESSAY_LENGTH):
                 cleaned_essay = cleaned_essay[0:MAXIMUM_ESSAY_LENGTH]
             self._text.append(cleaned_essay)
@@ -160,7 +158,8 @@ class EssaySet(object):
         #
         #     string = " ".join(syn_toks)
         new_essays = []
-        strings = KorEDA.eda.EDA(e_text)
+        #strings = KorEDA.eda.EDA(e_text)
+        strings = dataAumentationByTranslation.makingAugmentationbackTranslation(e_text, num=3)
         for string in strings:
             string = string.strip()
 

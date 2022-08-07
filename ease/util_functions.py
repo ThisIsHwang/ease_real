@@ -2,6 +2,7 @@
 #Requires aspell to be installed and added to the path
 
 from fisher import pvalue
+from external_code import pusanCorrectGrammer
 
 aspell_path = "aspell"
 import re
@@ -14,7 +15,7 @@ import nltk
 import pickle
 import logging
 import sys
-from external_code import pusanCorrectGrammer
+
 from hanspell import spell_checker
 from konlpy.tag import Okt
 import nltk
@@ -24,6 +25,9 @@ base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
 if not base_path.endswith("/"):
     base_path=base_path+"/"
+
+os.environ["JAVA_HOME"]="/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home"
+os.environ["PATH"]="${PATH}:$JAVA_HOME/bin:"
 
 jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
 okt = Okt(jvmpath=jvm_path)
@@ -62,7 +66,7 @@ def sub_chars(string):
     #Define replacement patterns
     open_par_pat = r"(\(|\[|\{\<)"
     close_par_pat = r"(\)|\]|\}\>)"
-    sub_pat = r"[^A-Za-z가-힣\.\?!,';:\(\)]"
+    sub_pat = r"[^A-Za-z가-힣\.\ ?!,;:\(\)]"
     char_pat = r"\."
     com_pat = r","
     ques_pat = r"\?"
@@ -70,19 +74,21 @@ def sub_chars(string):
     sem_pat = r";"
     col_pat = r":"
     whitespace_pat = r"\s{1,}"
-
+    separatedCharList = ["\(%s\)" %c for c in "가나다라마바사아자차카타파하"]
+    circleCharList = [s for s in '㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻']
     #Replace text.  Ordering is very important!
     nstring = re.sub(open_par_pat, "(", string)
     nstring = re.sub(close_par_pat, ")", nstring)
-    nstring = re.sub(sub_pat, " ", nstring)
-    # nstring = re.sub(char_pat,". ", nstring)
-    # nstring = re.sub(com_pat, ", ", nstring)
-    # nstring = re.sub(ques_pat, "? ", nstring)
-    # nstring = re.sub(excl_pat, "! ", nstring)
-    # nstring = re.sub(sem_pat, "; ", nstring)
-    # nstring = re.sub(col_pat, ": ", nstring)
+    nstring = re.sub(sub_pat, "", nstring)
+    nstring = re.sub(char_pat,". ", nstring)
+    nstring = re.sub(com_pat, ", ", nstring)
+    nstring = re.sub(ques_pat, "? ", nstring)
+    nstring = re.sub(excl_pat, "! ", nstring)
+    nstring = re.sub(sem_pat, "; ", nstring)
+    nstring = re.sub(col_pat, ": ", nstring)
     nstring = re.sub(whitespace_pat, " ", nstring)
-
+    for s, c in zip(separatedCharList, circleCharList):
+        nstring = re.sub(s, c,nstring)
     return nstring
 
 def safe_list_get (l, idx, default):
