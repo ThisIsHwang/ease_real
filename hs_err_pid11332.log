@@ -1,0 +1,124 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x000000016b46e9c8, pid=11332, tid=25347
+#
+# JRE version: OpenJDK Runtime Environment Zulu15.40+19-CA (15.0.7+4) (build 15.0.7+4-MTS)
+# Java VM: OpenJDK 64-Bit Server VM Zulu15.40+19-CA (15.0.7+4-MTS, mixed mode, tiered, compressed oops, g1 gc, bsd-aarch64)
+# Problematic frame:
+# V  [libjvm.dylib+0x6169c8]  Node::add_out(Node*)+0x0
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://www.azul.com/support/
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+
+Host: MacBookPro18,3 arm64 1 MHz, 8 cores, 16G, Darwin 21.3.0
+Time: Mon Aug  1 15:01:55 2022 KST elapsed time: 0.050460 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000167d1ee00):  JavaThread "C2 CompilerThread0" daemon [_thread_in_vm, id=25347, stack(0x000000017cc00000,0x000000017ce03000)]
+
+Stack: [0x000000017cc00000,0x000000017ce03000],  sp=0x000000017ce016a0,  free space=2053k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.dylib+0x6169c8]  Node::add_out(Node*)+0x0
+V  [libjvm.dylib+0x36f834]  GraphKit::gen_stub(unsigned char*, char const*, int, bool, bool)+0x368
+V  [libjvm.dylib+0x22a428]  Compile::Compile(ciEnv*, TypeFunc const* (*)(), unsigned char*, char const*, int, bool, bool, bool, DirectiveSet*)+0x3e4
+V  [libjvm.dylib+0x796fd4]  OptoRuntime::generate_stub(ciEnv*, TypeFunc const* (*)(), unsigned char*, char const*, int, bool, bool, bool)+0xb0
+V  [libjvm.dylib+0x796bfc]  OptoRuntime::generate(ciEnv*)+0x44
+V  [libjvm.dylib+0x19e370]  C2Compiler::initialize()+0xfc
+V  [libjvm.dylib+0x237540]  CompileBroker::init_compiler_runtime()+0x148
+V  [libjvm.dylib+0x237bf0]  CompileBroker::compiler_thread_loop()+0x1cc
+V  [libjvm.dylib+0x8cb660]  JavaThread::thread_main_inner()+0xa0
+V  [libjvm.dylib+0x8c8b5c]  Thread::call_run()+0x88
+V  [libjvm.dylib+0x711b78]  thread_native_entry(Thread*)+0x1d0
+C  [libsystem_pthread.dylib+0x7240]  _pthread_start+0x94
+
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 2 (SEGV_ACCERR), si_addr: 0x000000016b46e9c8
+
+Register to memory mapping:
+
+ x0=0x0000000167735298 points into unknown readable memory: 0x000000016b8c0588 | 88 05 8c 6b 01 00 00 00
+ x1=0x00000001677353c8 points into unknown readable memory: 0x000000016b8d53d8 | d8 53 8d 6b 01 00 00 00
+ x2=0xffffffffffffffc8 is an unknown value
+ x3=0x0000000167735388 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+ x4=0x00000001677353c0 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+ x5=0x0 is NULL
+ x6=0x0 is NULL
+ x7=0x00000000ffffffff is an unknown value
+ x8=0x0000000167735408 points into unknown readable memory: 0x0000000167735298 | 98 52 73 67 01 00 00 00
+ x9=0x0000000167735568 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+x10=0x0000000167735568 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+x11=0x0000000000000001 is an unknown value
+x12=0x0 is NULL
+x13=0x0 is NULL
+x14=0x0 is NULL
+x15=0x0000000000000102 is an unknown value
+x16=0x0000000000000020 is an unknown value
+x17=0x0000600001931aa0 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+x18=0x0 is NULL
+x19=0x00000001677353c8 points into unknown readable memory: 0x000000016b8d53d8 | d8 53 8d 6b 01 00 00 00
+x20=0x0000000167735298 points into unknown readable memory: 0x000000016b8c0588 | 88 05 8c 6b 01 00 00 00
+x21=0x000000017ce02348 is pointing into the stack for thread: 0x0000000167d1ee00
+x22=0x000000017ce02528 is pointing into the stack for thread: 0x0000000167d1ee00
+x23=0x0000000000000005 is an unknown value
+x24=0x0 is NULL
+x25=0x000000017ce02348 is pointing into the stack for thread: 0x0000000167d1ee00
+x26=0x00000001677353c8 points into unknown readable memory: 0x000000016b8d53d8 | d8 53 8d 6b 01 00 00 00
+x27=0x000000017ce01838 is pointing into the stack for thread: 0x0000000167d1ee00
+x28=0x000000016b8cbd80 is pointing into the stack for thread: 0x00000001042a0400
+
+
+Registers:
+ x0=0x0000000167735298  x1=0x00000001677353c8  x2=0xffffffffffffffc8  x3=0x0000000167735388
+ x4=0x00000001677353c0  x5=0x0000000000000000  x6=0x0000000000000000  x7=0x00000000ffffffff
+ x8=0x0000000167735408  x9=0x0000000167735568 x10=0x0000000167735568 x11=0x0000000000000001
+x12=0x0000000000000000 x13=0x0000000000000000 x14=0x0000000000000000 x15=0x0000000000000102
+x16=0x0000000000000020 x17=0x0000600001931aa0 x18=0x0000000000000000 x19=0x00000001677353c8
+x20=0x0000000167735298 x21=0x000000017ce02348 x22=0x000000017ce02528 x23=0x0000000000000005
+x24=0x0000000000000000 x25=0x000000017ce02348 x26=0x00000001677353c8 x27=0x000000017ce01838
+x28=0x000000016b8cbd80  fp=0x000000017ce016e0  lr=0x000000016b5464b8  sp=0x000000017ce016a0
+pc=0x000000016b46e9c8 cpsr=0x0000000080001000
+Top of Stack: (sp=0x000000017ce016a0)
+0x000000017ce016a0:   00000001677353c8 000000017ce02348
+0x000000017ce016b0:   0000000167735308 0000000000000000
+0x000000017ce016c0:   000000017ce02528 0000000000000005
+0x000000017ce016d0:   000000017ce01800 000000016b8e8070
+0x000000017ce016e0:   000000017ce017d0 000000016b1c7834
+0x000000017ce016f0:   0000000000000000 0000000000000000
+0x000000017ce01700:   000000016b5ef0a4 000000016b8234d6
+0x000000017ce01710:   00000000000083b0 0000000167d623e8
+0x000000017ce01720:   000000017ce01740 0000000000000001
+0x000000017ce01730:   0000000167d558a0 000000007ce021c0
+0x000000017ce01740:   0000000167d5a400 0000000167d5ed30
+0x000000017ce01750:   0000000167d557c0 0000000000000006
+0x000000017ce01760:   0000000167735298 000000017ce017e0
+0x000000017ce01770:   00000001a7f60530 0000600001920a80
+0x000000017ce01780:   000000016b5ef038 000000016b957407
+0x000000017ce01790:   0000000000000000 000000017ce021e8
+0x000000017ce017a0:   000000017ce01838 000000016b5ef0a4
+0x000000017ce017b0:   000000016b8234d6 0000000000000000
+0x000000017ce017c0:   0000000000000001 000000017ce02348
+0x000000017ce017d0:   000000017ce02300 000000016b082428
+0x000000017ce017e0:   000000016b8de720 0000000000000001
+0x000000017ce017f0:   000000017ce02348 000000017ce02c68
+0x000000017ce01800:   000000017ce01838 0000000167735308
+0x000000017ce01810:   0000000000000000 00000000ffffffff
+0x000000017ce01820:   0000000000000000 0000600001520530
+0x000000017ce01830:   0000000000000000 000000016b8eaa68
+0x000000017ce01840:   0000000000000005 000000017ce02348
+0x000000017ce01850:   0000600001920a80 0000600001920a80
+0x000000017ce01860:   0000000000000004 0000000167d5dce0
+0x000000017ce01870:   0000000000000000 0000600001920a80
+0x000000017ce01880:   0000000000000004 0000000167d5dd10
+0x000000017ce01890:   0000000000000000 0000000000000000 
+
+Instructions: (pc=0x000000016b46e9c8)
+0x000000016b46e8c8:   

@@ -131,7 +131,7 @@ def add_word(new_words):
 
 
 
-def EDA(sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
+def EDA(sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=3):
 	sentence = get_only_hangul(sentence)
 	words = sentence.split(' ')
 	words = [word for word in words if word is not ""]
@@ -141,23 +141,23 @@ def EDA(sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9)
 	num_new_per_technique = int(num_aug/4) + 1
 
 	n_sr = max(1, int(alpha_sr*num_words))
-	n_ri = max(1, int(alpha_ri*num_words))
-	n_rs = max(1, int(alpha_rs*num_words))
+	# n_ri = max(1, int(alpha_ri*num_words))
+	#n_rs = max(1, int(alpha_rs*num_words))
 
-	# sr
+	#sr
 	for _ in range(num_new_per_technique):
 		a_words = synonym_replacement(words, n_sr)
 		augmented_sentences.append(' '.join(a_words))
-
-	# ri
-	for _ in range(num_new_per_technique):
-		a_words = random_insertion(words, n_ri)
-		augmented_sentences.append(' '.join(a_words))
+	#
+	# # ri
+	# for _ in range(num_new_per_technique):
+	# 	a_words = random_insertion(words, n_ri)
+	# 	augmented_sentences.append(' '.join(a_words))
 
 	# rs
-	for _ in range(num_new_per_technique):
-		a_words = random_swap(words, n_rs)
-		augmented_sentences.append(" ".join(a_words))
+	# for _ in range(num_new_per_technique):
+	# 	a_words = random_swap(words, n_rs)
+	# 	augmented_sentences.append(" ".join(a_words))
 
 	# rd
 	for _ in range(num_new_per_technique):

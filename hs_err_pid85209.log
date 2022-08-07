@@ -1,0 +1,845 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00000001a7d6fe9c, pid=85209, tid=259
+#
+# JRE version:  (15.0.7+4) (build )
+# Java VM: OpenJDK 64-Bit Server VM (15.0.7+4-MTS, mixed mode, tiered, compressed oops, g1 gc, bsd-aarch64)
+# Problematic frame:
+# C  [libsystem_malloc.dylib+0x3e9c]  tiny_malloc_from_free_list+0x140
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+
+Host: MacBookPro18,3 arm64 1 MHz, 8 cores, 16G, Darwin 21.3.0
+Time: Tue Aug  2 19:43:02 2022 KST elapsed time: 0.008434 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000016840d800):  JavaThread "Unknown thread" [_thread_in_vm, id=259, stack(0x0000000169394000,0x000000016b394000)]
+
+Stack: [0x0000000169394000,0x000000016b394000],  sp=0x000000016b38c750,  free space=32737k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libsystem_malloc.dylib+0x3e9c]  tiny_malloc_from_free_list+0x140
+C  [libsystem_malloc.dylib+0x377c]  tiny_malloc_should_clear+0xe0
+C  [libsystem_malloc.dylib+0x2594]  szone_malloc_should_clear+0x5c
+C  [libsystem_malloc.dylib+0x1e770]  _malloc_zone_malloc+0x9c
+V  [libjvm.dylib+0x70d55c]  _ZN2os6mallocEm10MemoryTypeRK15NativeCallStack+0xa4
+V  [libjvm.dylib+0xcbce8]  _Z12AllocateHeapm10MemoryTypeN17AllocFailStrategy13AllocFailEnumE+0xa0
+V  [libjvm.dylib+0x2eaac4]  _ZN15G1CollectedHeap15new_heap_regionEj9MemRegion+0x30
+V  [libjvm.dylib+0x3a91ec]  _ZN17HeapRegionManager22make_regions_availableEjjP8WorkGang+0xb8
+V  [libjvm.dylib+0x3a956c]  _ZN17HeapRegionManager9expand_atEjjP8WorkGang+0x64
+V  [libjvm.dylib+0x2ed49c]  _ZN15G1CollectedHeap6expandEmP8WorkGangPd+0xc8
+V  [libjvm.dylib+0x2ee868]  _ZN15G1CollectedHeap10initializeEv+0x630
+V  [libjvm.dylib+0x8f7a24]  _Z13universe_initv+0xc4
+V  [libjvm.dylib+0x3bf620]  _Z12init_globalsv+0x4c
+V  [libjvm.dylib+0x8d012c]  _ZN7Threads9create_vmEP14JavaVMInitArgsPb+0x30c
+V  [libjvm.dylib+0x453e00]  JNI_CreateJavaVM+0x78
+C  [_jpype.cpython-38-darwin.so+0x1142c]  _ZN9JPContext8startJVMERKNSt3__112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEERKNS0_6vectorIS6_NS4_IS6_EEEEbbb+0xd8
+C  [_jpype.cpython-38-darwin.so+0x3ffd4]  _ZL18PyJPModule_startupP7_objectS0_+0x304
+C  [Python3+0x21a58]  cfunction_call_varargs+0x16c
+C  [Python3+0x21378]  _PyObject_MakeTpCall+0x174
+C  [Python3+0xee40c]  call_function+0x1c0
+C  [Python3+0xeb728]  _PyEval_EvalFrameDefault+0x5ba4
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb810]  _PyEval_EvalFrameDefault+0x5c8c
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb728]  _PyEval_EvalFrameDefault+0x5ba4
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0x21124]  _PyObject_FastCallDict+0x74
+C  [Python3+0x228bc]  _PyObject_Call_Prepend+0x8c
+C  [Python3+0x7d03c]  slot_tp_init+0xb8
+C  [Python3+0x77f18]  type_call+0x138
+C  [Python3+0x21378]  _PyObject_MakeTpCall+0x174
+C  [Python3+0xee40c]  call_function+0x1c0
+C  [Python3+0xeb810]  _PyEval_EvalFrameDefault+0x5c8c
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0xe5af0]  PyEval_EvalCode+0x3c
+C  [Python3+0xe2f2c]  builtin_exec+0x2a0
+C  [Python3+0x60d88]  cfunction_vectorcall_FASTCALL+0xcc
+C  [Python3+0x216b4]  PyVectorcall_Call+0x68
+C  [Python3+0xebac0]  _PyEval_EvalFrameDefault+0x5f3c
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb728]  _PyEval_EvalFrameDefault+0x5ba4
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb704]  _PyEval_EvalFrameDefault+0x5b80
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb79c]  _PyEval_EvalFrameDefault+0x5c18
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb79c]  _PyEval_EvalFrameDefault+0x5c18
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0x232b4]  object_vacall+0xf8
+C  [Python3+0x2342c]  _PyObject_CallMethodIdObjArgs+0x60
+C  [Python3+0x115978]  PyImport_ImportModuleLevelObject+0x6a0
+C  [Python3+0xe1f74]  builtin___import__+0x6c
+C  [Python3+0x21978]  cfunction_call_varargs+0x8c
+C  [Python3+0xebac0]  _PyEval_EvalFrameDefault+0x5f3c
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb79c]  _PyEval_EvalFrameDefault+0x5c18
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0x232b4]  object_vacall+0xf8
+C  [Python3+0x2342c]  _PyObject_CallMethodIdObjArgs+0x60
+C  [Python3+0x115a84]  PyImport_ImportModuleLevelObject+0x7ac
+C  [Python3+0xea1c8]  _PyEval_EvalFrameDefault+0x4644
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0xe5af0]  PyEval_EvalCode+0x3c
+C  [Python3+0xe2f2c]  builtin_exec+0x2a0
+C  [Python3+0x60d88]  cfunction_vectorcall_FASTCALL+0xcc
+C  [Python3+0x216b4]  PyVectorcall_Call+0x68
+C  [Python3+0xebac0]  _PyEval_EvalFrameDefault+0x5f3c
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0x21ebc]  _PyFunction_Vectorcall+0xf8
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb728]  _PyEval_EvalFrameDefault+0x5ba4
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb704]  _PyEval_EvalFrameDefault+0x5b80
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb79c]  _PyEval_EvalFrameDefault+0x5c18
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0xee36c]  call_function+0x120
+C  [Python3+0xeb79c]  _PyEval_EvalFrameDefault+0x5c18
+C  [Python3+0x21d3c]  function_code_fastcall+0x78
+C  [Python3+0x232b4]  object_vacall+0xf8
+C  [Python3+0x2342c]  _PyObject_CallMethodIdObjArgs+0x60
+C  [Python3+0x115978]  PyImport_ImportModuleLevelObject+0x6a0
+C  [Python3+0xea1c8]  _PyEval_EvalFrameDefault+0x4644
+C  [Python3+0xef2f4]  _PyEval_EvalCodeWithName+0xbe8
+C  [Python3+0xe5af0]  PyEval_EvalCode+0x3c
+...<more frames>...
+
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 2 (SEGV_ACCERR), si_addr: 0x0000000169397af0
+
+Registers:
+ x0=0x0000000104a90080  x1=0x00000001693bbde8  x2=0x40000000169397af  x3=0x0000000000000012
+ x4=0x0000000000000000  x5=0x000000016b38c870  x6=0x0000000000000038  x7=0x0000000000000000
+ x8=0x0000000000000015  x9=0x0000000169397af0 x10=0xf000000000000000 x11=0x0000000169397af4
+x12=0x000000007f45eba0 x13=0x00000000167c90c9 x14=0x0000000000008b3c x15=0x0000000016c5d9cc
+x16=0x00000000000008fd x17=0x00000000000008fd x18=0x0000000000000000 x19=0x0000000000000012
+x20=0x00000001693bbde0 x21=0x0000000104a9a800 x22=0x0000000104a98a00 x23=0x0000000000000003
+x24=0x0000000000000100 x25=0x00000001138cf4d0 x26=0x0000000010000000 x27=0x0000000000000003
+x28=0x0000000104bc8660  fp=0x000000016b38c790  lr=0x025c0001a7d6f77c  sp=0x000000016b38c750
+pc=0x00000001a7d6fe9c cpsr=0x0000000040001000
+Top of Stack: (sp=0x000000016b38c750)
+0x000000016b38c750:   0000000000000000 00000002015d8000
+0x000000016b38c760:   0000000000000800 0000000000000001
+0x000000016b38c770:   0000000104a98a00 0000000104a90080
+0x000000016b38c780:   0000000000000012 0000000104a9a800
+0x000000016b38c790:   000000016b38c850 025c0001a7d6f77c
+0x000000016b38c7a0:   0000000000000005 000000016b38c7f0
+0x000000016b38c7b0:   000000016b38c7e0 3f5f00016d04555c
+0x000000016b38c7c0:   000000016840e400 000000016d3edf88
+0x000000016b38c7d0:   0000000000000005 0000000000000800
+0x000000016b38c7e0:   000000016b38c840 000000016ca03ce8
+0x000000016b38c7f0:   0000000000000000 0000000000000000
+0x000000016b38c800:   0000000000100000 0000000000007800
+0x000000016b38c810:   0000000010000000 0000000010000000
+0x000000016b38c820:   0000000000000100 0000000104a90008
+0x000000016b38c830:   0000000000000000 0000000000000118
+0x000000016b38c840:   0000000000000000 0000000104a8c000
+0x000000016b38c850:   000000016b38c890 be6e0001a7d6e594
+0x000000016b38c860:   0000000000000100 0000000000000000
+0x000000016b38c870:   0000000000000000 00000002015d8000
+0x000000016b38c880:   0000000000000118 0000000000000001
+0x000000016b38c890:   000000016b38c8d0 f75b8001a7d8a770
+0x000000016b38c8a0:   0000000000000100 000000016d437868
+0x000000016b38c8b0:   0000000000000000 0000000000000118
+0x000000016b38c8c0:   0000000000000005 000000016b38c910
+0x000000016b38c8d0:   000000016b38c900 944080016d04555c
+0x000000016b38c8e0:   000000016840e400 000000016d3edf88
+0x000000016b38c8f0:   0000000000000005 0000000000000118
+0x000000016b38c900:   000000016b38c960 000000016ca03ce8
+0x000000016b38c910:   0000000000000000 0000000000000000
+0x000000016b38c920:   0000000000000000 0000000000000000
+0x000000016b38c930:   0000000100000000 000000016ccdb424
+0x000000016b38c940:   000000016840e400 0000000000000059 
+
+Instructions: (pc=0x00000001a7d6fe9c)
+0x00000001a7d6fd9c:   f8408c22 93c2f04a 927ced49 f9413c0c
+0x00000001a7d6fdac:   ca0c012c d348fd8d 0b0c01ad d350fd8e
+0x00000001a7d6fdbc:   0b0e01ad d358fd8e 0b0e01ad d360fd8e
+0x00000001a7d6fdcc:   0b0e01ad d368fd8e 0b0e01ad d370fd8e
+0x00000001a7d6fddc:   0b0e01ad d378fd8c 0b0c01ac 4a0a018c
+0x00000001a7d6fdec:   f2400d9f 54003441 b4000589 f940028c
+0x00000001a7d6fdfc:   f900012c 14000030 f94416a9 9280000a
+0x00000001a7d6fe0c:   9ac82148 ea080128 54001d40 dac00108
+0x00000001a7d6fe1c:   dac01108 f100fd1f 54000ea0 8b080eaa
+0x00000001a7d6fe2c:   f8420d54 b4000e54 aa1403e1 f8408c22
+0x00000001a7d6fe3c:   93c2f04b 927ced69 f9413c0c ca0c012c
+0x00000001a7d6fe4c:   d348fd8d 0b0c01ad d350fd8e 0b0e01ad
+0x00000001a7d6fe5c:   d358fd8e 0b0e01ad d360fd8e 0b0e01ad
+0x00000001a7d6fe6c:   d368fd8e 0b0e01ad d370fd8e 0b0e01ad
+0x00000001a7d6fe7c:   d378fd8c 0b0c01ac 4a0b018c f2400d9f
+0x00000001a7d6fe8c:   54002f61 f9000149 b40022c9 f940028a
+0x00000001a7d6fe9c:   f900012a 1400011b 5280002c 1ac8218c
+0x00000001a7d6feac:   d3457d0d 8b2d4aad b94829ae 0a2c01cc
+0x00000001a7d6febc:   b90829ac f9000169 926cae8c 12880feb
+0x00000001a7d6fecc:   0b0b028b 53047d6e 8b08098b 5287e50d
+0x00000001a7d6fedc:   8b0d016b 7940016d 510005af 6b2e21ff
+0x00000001a7d6feec:   54002be1 f100013f 926cad4a fa4c1140
+0x00000001a7d6fefc:   540016a0 52800009 8b080988 5287e54a
+0x00000001a7d6ff0c:   782a691f 79000169 b9487aa8 11000508
+0x00000001a7d6ff1c:   b9087aa8 531c6e69 f94436a8 8b090108
+0x00000001a7d6ff2c:   f90436a8 926cae88 52880f8a aa0a010b
+0x00000001a7d6ff3c:   b940016a b02cc2ac 9102a18c 7840118c
+0x00000001a7d6ff4c:   6b0c015f 54002981 29422d0a 0b090149
+0x00000001a7d6ff5c:   1100056a 29022909 5299f40a 72a0016a
+0x00000001a7d6ff6c:   6b0a013f 54000043 3900811f 71000a7f
+0x00000001a7d6ff7c:   540000a3 aa1403e0 aa1303e1 94000146
+0x00000001a7d6ff8c:   14000015 9100a109 cb080288 92880fea 
+
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000000016d456450, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x0000000169f15ac0 GCTaskThread "GC Thread#0" [stack: 0x000000016c318000,0x000000016c51b000] [id=18179]
+  0x0000000169f16010 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000016c524000,0x000000016c727000] [id=17923]
+  0x0000000169f16740 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000016c730000,0x000000016c933000] [id=17667]
+
+[error occurred during error reporting (printing all threads), id 0xb, SIGSEGV (0xb) at pc=0x000000016cc3deac]
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00006000035dd680] Heap_lock - owner thread: 0x000000016840d800
+
+Heap address: 0x0000000780000000, size: 1024 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+Heap:
+ garbage-first heap   total 262144K, used 0K [0x0000000780000000, 0x00000007c0000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 0K, capacity 0K, committed 0K, reserved 0K
+  class space    used 0K, capacity 0K, committed 0K, reserved 0K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, OA=open archive, CA=closed archive, TAMS=top-at-mark-start (previous, next)
+
+Card table byte_map: [0x000000016bf14000,0x000000016c114000] _byte_map_base: 0x0000000168314000
+
+Marking Bits (Prev, Next): (CMBitMap*) 0x0000000168427610, (CMBitMap*) 0x0000000168427650
+ Prev Bits: [0x0000000174d48000, 0x0000000175d48000)
+ Next Bits: [0x0000000175d48000, 0x0000000176d48000)
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (4 events):
+Event: 0.005 Protecting memory [0x0000000169394000,0x00000001693a0000] with protection modes 0
+Event: 0.006 Loaded shared library /Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/lib/libjava.dylib
+Event: 0.006 Protecting memory [0x0000000169398000,0x00000001693a0000] with protection modes 3
+Event: 0.006 Protecting memory [0x0000000169394000,0x0000000169398000] with protection modes 3
+
+
+Dynamic libraries:
+0x00000001053cc000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/Python3
+0x00000001a7fa0000 	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+0x00000001a7dde000 	/usr/lib/libobjc.A.dylib
+0x00000001b2989000 	/usr/lib/liboah.dylib
+0x00000001b29bb000 	/usr/lib/libfakelink.dylib
+0x00000001aa3d8000 	/usr/lib/libicucore.A.dylib
+0x00000001b29b9000 	/usr/lib/libSystem.B.dylib
+0x00000001b29bf000 	/System/Library/PrivateFrameworks/SoftLinking.framework/Versions/A/SoftLinking
+0x00000001a7f02000 	/usr/lib/libc++abi.dylib
+0x00000001a7e9e000 	/usr/lib/libc++.1.dylib
+0x00000001b29b3000 	/usr/lib/system/libcache.dylib
+0x00000001b2971000 	/usr/lib/system/libcommonCrypto.dylib
+0x00000001b299a000 	/usr/lib/system/libcompiler_rt.dylib
+0x00000001b2991000 	/usr/lib/system/libcopyfile.dylib
+0x00000001a7cf2000 	/usr/lib/system/libcorecrypto.dylib
+0x00000001a7d97000 	/usr/lib/system/libdispatch.dylib
+0x00000001a7f5f000 	/usr/lib/system/libdyld.dylib
+0x00000001b29a9000 	/usr/lib/system/libkeymgr.dylib
+0x00000001b2953000 	/usr/lib/system/libmacho.dylib
+0x00000001b2053000 	/usr/lib/system/libquarantine.dylib
+0x00000001b29a6000 	/usr/lib/system/libremovefile.dylib
+0x00000001ad0f1000 	/usr/lib/system/libsystem_asl.dylib
+0x00000001a7c9c000 	/usr/lib/system/libsystem_blocks.dylib
+0x00000001a7e1d000 	/usr/lib/system/libsystem_c.dylib
+0x00000001b299e000 	/usr/lib/system/libsystem_collections.dylib
+0x00000001b1512000 	/usr/lib/system/libsystem_configuration.dylib
+0x00000001b0796000 	/usr/lib/system/libsystem_containermanager.dylib
+0x00000001b26ba000 	/usr/lib/system/libsystem_coreservices.dylib
+0x00000001aa683000 	/usr/lib/system/libsystem_darwin.dylib
+0x00000001b29aa000 	/usr/lib/system/libsystem_dnssd.dylib
+0x00000001a7e1a000 	/usr/lib/system/libsystem_featureflags.dylib
+0x00000001a7f74000 	/usr/lib/system/libsystem_info.dylib
+0x00000001b291b000 	/usr/lib/system/libsystem_m.dylib
+0x00000001a7d6c000 	/usr/lib/system/libsystem_malloc.dylib
+0x00000001ad082000 	/usr/lib/system/libsystem_networkextension.dylib
+0x00000001aaad7000 	/usr/lib/system/libsystem_notify.dylib
+0x00000001b8bbd000 	/usr/lib/system/libsystem_product_info_filter.dylib
+0x00000001b1517000 	/usr/lib/system/libsystem_sandbox.dylib
+0x00000001b29a3000 	/usr/lib/system/libsystem_secinit.dylib
+0x00000001a7f1c000 	/usr/lib/system/libsystem_kernel.dylib
+0x00000001a7f6c000 	/usr/lib/system/libsystem_platform.dylib
+0x00000001a7f52000 	/usr/lib/system/libsystem_pthread.dylib
+0x00000001ae82e000 	/usr/lib/system/libsystem_symptoms.dylib
+0x00000001a7cd8000 	/usr/lib/system/libsystem_trace.dylib
+0x00000001b297e000 	/usr/lib/system/libunwind.dylib
+0x00000001a7c9e000 	/usr/lib/system/libxpc.dylib
+0x0000000104e70000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_heapq.cpython-38-darwin.so
+0x0000000104f84000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_opcode.cpython-38-darwin.so
+0x0000000104e48000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_json.cpython-38-darwin.so
+0x0000000106398000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/core/_multiarray_umath.cpython-38-darwin.so
+0x0000000110000000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/.dylibs/libopenblas64_.0.dylib
+0x0000000106750000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/.dylibs/libgfortran.5.dylib
+0x0000000105100000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/.dylibs/libgcc_s.2.dylib
+0x0000000104fd8000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/math.cpython-38-darwin.so
+0x00000001051ac000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_datetime.cpython-38-darwin.so
+0x000000010528c000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_struct.cpython-38-darwin.so
+0x0000000105254000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_pickle.cpython-38-darwin.so
+0x0000000105764000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/core/_multiarray_tests.cpython-38-darwin.so
+0x00000001053a8000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_posixsubprocess.cpython-38-darwin.so
+0x000000010573c000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/select.cpython-38-darwin.so
+0x00000001057cc000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_ctypes.cpython-38-darwin.so
+0x00000001b5fdc000 	/usr/lib/libffi.dylib
+0x00000001061f4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/linalg/_umath_linalg.cpython-38-darwin.so
+0x00000001062e8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/fft/_pocketfft_internal.cpython-38-darwin.so
+0x0000000106b20000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/mtrand.cpython-38-darwin.so
+0x0000000106344000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/bit_generator.cpython-38-darwin.so
+0x0000000106bd0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_common.cpython-38-darwin.so
+0x0000000106374000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/binascii.cpython-38-darwin.so
+0x00000001b2909000 	/usr/lib/libz.1.dylib
+0x0000000106ab0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_hashlib.cpython-38-darwin.so
+0x00000001bbf62000 	/usr/lib/libssl.46.dylib
+0x00000001bbe64000 	/usr/lib/libcrypto.44.dylib
+0x00000001bbe62000 	/System/Library/PrivateFrameworks/TrustEvaluationAgent.framework/Versions/A/TrustEvaluationAgent
+0x0000000106ac8000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_blake2.cpython-38-darwin.so
+0x00000001061c0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_sha3.cpython-38-darwin.so
+0x00000001061e0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_bisect.cpython-38-darwin.so
+0x0000000106c10000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_sha512.cpython-38-darwin.so
+0x0000000106b08000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_random.cpython-38-darwin.so
+0x0000000106c88000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_bounded_integers.cpython-38-darwin.so
+0x0000000106c28000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_mt19937.cpython-38-darwin.so
+0x0000000106c48000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_philox.cpython-38-darwin.so
+0x0000000106c64000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_pcg64.cpython-38-darwin.so
+0x0000000106ce8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_sfc64.cpython-38-darwin.so
+0x0000000106dd4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/random/_generator.cpython-38-darwin.so
+0x0000000107914000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/interval.cpython-38-darwin.so
+0x0000000107b8c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/hashtable.cpython-38-darwin.so
+0x0000000106f60000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/missing.cpython-38-darwin.so
+0x0000000106f28000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/dtypes.cpython-38-darwin.so
+0x0000000107800000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/conversion.cpython-38-darwin.so
+0x0000000106af4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/base.cpython-38-darwin.so
+0x0000000107884000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/nattype.cpython-38-darwin.so
+0x0000000107848000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/np_datetime.cpython-38-darwin.so
+0x0000000107a2c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/timezones.cpython-38-darwin.so
+0x0000000107ab4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/tzconversion.cpython-38-darwin.so
+0x0000000107864000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/ccalendar.cpython-38-darwin.so
+0x0000000107cf0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/parsing.cpython-38-darwin.so
+0x0000000107e54000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/offsets.cpython-38-darwin.so
+0x0000000107d58000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/timedeltas.cpython-38-darwin.so
+0x0000000107afc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/fields.cpython-38-darwin.so
+0x0000000107f50000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/strptime.cpython-38-darwin.so
+0x0000000111590000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/timestamps.cpython-38-darwin.so
+0x0000000107dc8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/properties.cpython-38-darwin.so
+0x00000001116dc000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_decimal.cpython-38-darwin.so
+0x0000000111740000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/period.cpython-38-darwin.so
+0x0000000111610000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslibs/vectorized.cpython-38-darwin.so
+0x0000000107e24000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/ops_dispatch.cpython-38-darwin.so
+0x0000000111918000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/algos.cpython-38-darwin.so
+0x0000000111844000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/lib.cpython-38-darwin.so
+0x0000000111678000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/tslib.cpython-38-darwin.so
+0x00000001116a8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/hashing.cpython-38-darwin.so
+0x0000000111b0c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/ops.cpython-38-darwin.so
+0x0000000106fd8000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_csv.cpython-38-darwin.so
+0x0000000107e3c000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/zlib.cpython-38-darwin.so
+0x0000000106ae0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_bz2.cpython-38-darwin.so
+0x00000001b26ad000 	/usr/lib/libbz2.1.0.dylib
+0x0000000111828000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_lzma.cpython-38-darwin.so
+0x00000001b323e000 	/usr/lib/liblzma.5.dylib
+0x0000000106dc0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/grp.cpython-38-darwin.so
+0x00000001118e0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/arrays.cpython-38-darwin.so
+0x0000000111c84000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/unicodedata.cpython-38-darwin.so
+0x00000001179f4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/index.cpython-38-darwin.so
+0x0000000117cac000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/join.cpython-38-darwin.so
+0x0000000117b1c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/sparse.cpython-38-darwin.so
+0x0000000111648000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/reduction.cpython-38-darwin.so
+0x000000011165c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/indexing.cpython-38-darwin.so
+0x0000000120950000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/internals.cpython-38-darwin.so
+0x0000000120900000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/writers.cpython-38-darwin.so
+0x0000000111900000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/mmap.cpython-38-darwin.so
+0x0000000120ab8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/window/aggregations.cpython-38-darwin.so
+0x0000000117ae8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/window/indexers.cpython-38-darwin.so
+0x0000000120b8c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/reshape.cpython-38-darwin.so
+0x0000000120e98000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/groupby.cpython-38-darwin.so
+0x00000001179c0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_socket.cpython-38-darwin.so
+0x0000000120bcc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/testing.cpython-38-darwin.so
+0x0000000111de0000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/cmath.cpython-38-darwin.so
+0x0000000121068000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/parsers.cpython-38-darwin.so
+0x00000001210e0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/pandas/_libs/json.cpython-38-darwin.so
+0x0000000121034000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_elementtree.cpython-38-darwin.so
+0x0000000121310000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/pyexpat.cpython-38-darwin.so
+0x0000000121394000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/array.cpython-38-darwin.so
+0x0000000121410000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/_lib/_ccallback_c.cpython-38-darwin.so
+0x0000000121514000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/_ckdtree.cpython-38-darwin.so
+0x0000000127000000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/_sparsetools.cpython-38-darwin.so
+0x0000000121634000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/_csparsetools.cpython-38-darwin.so
+0x00000001216ac000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_shortest_path.cpython-38-darwin.so
+0x00000001215ec000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_tools.cpython-38-darwin.so
+0x00000001215c0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_traversal.cpython-38-darwin.so
+0x0000000121740000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_min_spanning_tree.cpython-38-darwin.so
+0x00000001217f4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_flow.cpython-38-darwin.so
+0x000000012183c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_matching.cpython-38-darwin.so
+0x0000000121880000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/csgraph/_reordering.cpython-38-darwin.so
+0x00000001219b0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/_qhull.cpython-38-darwin.so
+0x0000000158000000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/.dylibs/libopenblas.0.dylib
+0x0000000127458000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/.dylibs/libgfortran.5.dylib
+0x00000001213f4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/.dylibs/libgcc_s.2.dylib
+0x0000000117c94000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/_lib/messagestream.cpython-38-darwin.so
+0x00000001217b0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/_voronoi.cpython-38-darwin.so
+0x0000000121aa0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_fblas.cpython-38-darwin.so
+0x0000000127778000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_flapack.cpython-38-darwin.so
+0x0000000121b30000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_cythonized_array_utils.cpython-38-darwin.so
+0x0000000121618000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_flinalg.cpython-38-darwin.so
+0x0000000121974000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_solve_toeplitz.cpython-38-darwin.so
+0x0000000121710000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_matfuncs_sqrtm_triu.cpython-38-darwin.so
+0x0000000121bdc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_decomp_update.cpython-38-darwin.so
+0x0000000121c24000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/cython_blas.cpython-38-darwin.so
+0x0000000127934000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/cython_lapack.cpython-38-darwin.so
+0x0000000120e80000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/_distance_wrap.cpython-38-darwin.so
+0x0000000121c68000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/_hausdorff.cpython-38-darwin.so
+0x0000000127b6c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/special/_ufuncs.cpython-38-darwin.so
+0x0000000121d10000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/special/_ufuncs_cxx.cpython-38-darwin.so
+0x0000000127aa4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/special/_specfun.cpython-38-darwin.so
+0x000000010519c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/special/_comb.cpython-38-darwin.so
+0x0000000121940000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/special/_ellip_harm_2.cpython-38-darwin.so
+0x0000000127e00000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/_distance_pybind.cpython-38-darwin.so
+0x0000000127e5c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/spatial/transform/_rotation.cpython-38-darwin.so
+0x0000000121cd8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/ndimage/_nd_image.cpython-38-darwin.so
+0x0000000127f38000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/ndimage/_ni_label.cpython-38-darwin.so
+0x0000000165448000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/linalg/_isolve/_iterative.cpython-38-darwin.so
+0x00000001654ec000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-38-darwin.so
+0x00000001655d8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-38-darwin.so
+0x00000001214ec000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_minpack2.cpython-38-darwin.so
+0x0000000121de4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_group_columns.cpython-38-darwin.so
+0x0000000165668000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_trlib/_trlib.cpython-38-darwin.so
+0x0000000127fc4000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_ssl.cpython-38-darwin.so
+0x0000000107900000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_contextvars.cpython-38-darwin.so
+0x0000000127b3c000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_asyncio.cpython-38-darwin.so
+0x0000000120aa4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/numpy/linalg/lapack_lite.cpython-38-darwin.so
+0x00000001658b4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_lbfgsb.cpython-38-darwin.so
+0x00000001658e0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_moduleTNC.cpython-38-darwin.so
+0x0000000165904000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_cobyla.cpython-38-darwin.so
+0x0000000165928000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_slsqp.cpython-38-darwin.so
+0x000000016594c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_minpack.cpython-38-darwin.so
+0x0000000165974000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_lsq/givens_elimination.cpython-38-darwin.so
+0x00000001053bc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_zeros.cpython-38-darwin.so
+0x00000001217dc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/__nnls.cpython-38-darwin.so
+0x0000000165bc0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_highs/_highs_wrapper.cpython-38-darwin.so
+0x0000000105754000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_highs/_highs_constants.cpython-38-darwin.so
+0x0000000165ab0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/linalg/_interpolative.cpython-38-darwin.so
+0x0000000165a64000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_bglu_dense.cpython-38-darwin.so
+0x0000000106f50000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/optimize/_lsap_module.cpython-38-darwin.so
+0x0000000165b40000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/integrate/_odepack.cpython-38-darwin.so
+0x0000000165b60000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/integrate/_quadpack.cpython-38-darwin.so
+0x0000000165df4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/integrate/_vode.cpython-38-darwin.so
+0x0000000165b88000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/integrate/_dop.cpython-38-darwin.so
+0x0000000165e2c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/integrate/_lsoda.cpython-38-darwin.so
+0x0000000165f90000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/interpolate/_fitpack.cpython-38-darwin.so
+0x0000000166030000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/interpolate/dfitpack.cpython-38-darwin.so
+0x0000000166094000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/interpolate/_bspl.cpython-38-darwin.so
+0x00000001660d8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/interpolate/_ppoly.cpython-38-darwin.so
+0x0000000166124000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/interpolate/interpnd.cpython-38-darwin.so
+0x00000001661e0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/interpolate/_rbfinterp_pythran.cpython-38-darwin.so
+0x00000001662c4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_stats.cpython-38-darwin.so
+0x0000000166540000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/special/cython_special.cpython-38-darwin.so
+0x0000000166340000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_boost/beta_ufunc.cpython-38-darwin.so
+0x00000001663a4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_boost/binom_ufunc.cpython-38-darwin.so
+0x00000001663fc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_boost/nbinom_ufunc.cpython-38-darwin.so
+0x0000000166458000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_boost/hypergeom_ufunc.cpython-38-darwin.so
+0x0000000165f54000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_biasedurn.cpython-38-darwin.so
+0x000000016600c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_hypotests_pythran.cpython-38-darwin.so
+0x0000000121dc8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_statlib.cpython-38-darwin.so
+0x0000000166980000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_mvn.cpython-38-darwin.so
+0x0000000166ad8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_sobol.cpython-38-darwin.so
+0x0000000166c90000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_qmc_cy.cpython-38-darwin.so
+0x0000000166e5c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/stats/_unuran/unuran_wrapper.cpython-38-darwin.so
+0x0000000120938000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_scproxy.cpython-38-darwin.so
+0x00000001a8b88000 	/System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration
+0x00000001b151e000 	/System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/AppleSystemInfo
+0x00000001aaa01000 	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x00000001aa055000 	/System/Library/Frameworks/Security.framework/Versions/A/Security
+0x00000001b207e000 	/usr/lib/libbsm.0.dylib
+0x00000001ac101000 	/usr/lib/libnetwork.dylib
+0x00000001ad09c000 	/usr/lib/libMobileGestalt.dylib
+0x00000001aea05000 	/usr/lib/libDiagnosticMessagesClient.dylib
+0x00000001ad09a000 	/usr/lib/libenergytrace.dylib
+0x00000001b2959000 	/usr/lib/system/libkxld.dylib
+0x00000001a8e94000 	/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+0x00000001b1c95000 	/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/Versions/A/IOMobileFramebuffer
+0x00000001af460000 	/System/Library/PrivateFrameworks/CoreAutoLayout.framework/Versions/A/CoreAutoLayout
+0x00000001b2c58000 	/usr/lib/libcompression.dylib
+0x00000001acbc9000 	/System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork
+0x00000001aeaf9000 	/System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration
+0x00000001b2b02000 	/usr/lib/libarchive.2.dylib
+0x00000001af4aa000 	/usr/lib/libxml2.2.dylib
+0x00000001b8ce0000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices
+0x00000001b1522000 	/usr/lib/liblangid.dylib
+0x00000001b2c26000 	/usr/lib/libapple_nghttp2.dylib
+0x00000001ae456000 	/usr/lib/libsqlite3.dylib
+0x00000002251f2000 	/usr/lib/libCoreEntitlements.dylib
+0x00000001b269c000 	/System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression
+0x00000001b2066000 	/usr/lib/libcoretls.dylib
+0x00000001b3257000 	/usr/lib/libcoretls_cfhelpers.dylib
+0x00000001b2c53000 	/usr/lib/libpam.2.dylib
+0x00000001b32bf000 	/usr/lib/libxar.1.dylib
+0x00000001b29c0000 	/usr/lib/libpcap.A.dylib
+0x00000001ae825000 	/usr/lib/libdns_services.dylib
+0x00000001b29fd000 	/usr/lib/libiconv.2.dylib
+0x00000001b2952000 	/usr/lib/libcharset.1.dylib
+0x00000001af429000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/FSEvents
+0x00000001aa68e000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+0x00000001aea5c000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+0x00000001b26c0000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+0x00000001b2b88000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+0x00000001ae7b3000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+0x00000001a84e4000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+0x00000001b31e7000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+0x00000001af436000 	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SharedFileList.framework/Versions/A/SharedFileList
+0x00000001b2056000 	/usr/lib/libCheckFix.dylib
+0x00000001ad109000 	/System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC
+0x00000001b1524000 	/System/Library/PrivateFrameworks/CoreNLP.framework/Versions/A/CoreNLP
+0x00000001aea08000 	/System/Library/PrivateFrameworks/MetadataUtilities.framework/Versions/A/MetadataUtilities
+0x00000001a8c41000 	/usr/lib/libmecabra.dylib
+0x00000001b8f35000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate
+0x00000001b208f000 	/usr/lib/libmecab.dylib
+0x00000001a8c0d000 	/usr/lib/libCRFSuite.dylib
+0x00000001b20ed000 	/usr/lib/libgermantok.dylib
+0x00000001b2bff000 	/usr/lib/libThaiTokenizer.dylib
+0x00000001aeb01000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
+0x00000001b8cb7000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
+0x00000001b3303000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
+0x00000001b1b9f000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+0x00000001a8867000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+0x00000001b2d27000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+0x00000001b20f0000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLinearAlgebra.dylib
+0x00000001b2c3e000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparseBLAS.dylib
+0x00000001b2d22000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libQuadrature.dylib
+0x00000001b161b000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBNNS.dylib
+0x00000001a8b25000 	/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libSparse.dylib
+0x00000001ae9d5000 	/System/Library/PrivateFrameworks/CoreAnalytics.framework/Versions/A/CoreAnalytics
+0x00000001b1613000 	/System/Library/PrivateFrameworks/LinguisticData.framework/Versions/A/LinguisticData
+0x00000001a8adb000 	/System/Library/PrivateFrameworks/Lexicon.framework/Versions/A/Lexicon
+0x00000001b32fb000 	/usr/lib/libChineseTokenizer.dylib
+0x00000001a9282000 	/System/Library/PrivateFrameworks/LanguageModeling.framework/Versions/A/LanguageModeling
+0x00000001b2c01000 	/System/Library/PrivateFrameworks/AppleSauce.framework/Versions/A/AppleSauce
+0x00000001b1c82000 	/System/Library/PrivateFrameworks/CoreEmoji.framework/Versions/A/CoreEmoji
+0x00000001b2af0000 	/usr/lib/libcmph.dylib
+0x00000001af409000 	/System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory
+0x00000001af3f9000 	/System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory
+0x00000001b3259000 	/System/Library/PrivateFrameworks/APFS.framework/Versions/A/APFS
+0x00000001b1fae000 	/System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation
+0x00000001b32cd000 	/usr/lib/libutil.dylib
+0x00000001aa9c3000 	/System/Library/PrivateFrameworks/CoreServicesStore.framework/Versions/A/CoreServicesStore
+0x00000001af45d000 	/usr/lib/libapp_launch_measurement.dylib
+0x00000001b32d1000 	/usr/lib/libxslt.1.dylib
+0x00000001b2042000 	/System/Library/PrivateFrameworks/BackgroundTaskManagement.framework/Versions/A/BackgroundTaskManagement
+0x00000001b07b5000 	/System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface
+0x0000000127cd4000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_tkinter.cpython-38-darwin.so
+0x000000020c9ad000 	/System/Library/Frameworks/Tcl.framework/Versions/8.5/Tcl
+0x000000020ca7d000 	/System/Library/Frameworks/Tk.framework/Versions/8.5/Tk
+0x00000001be5be000 	/System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa
+0x00000001c6aa9000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Carbon
+0x00000001aab37000 	/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit
+0x00000001bc37e000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices
+0x00000001ad4f2000 	/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics
+0x00000001a9749000 	/System/Library/Frameworks/CoreText.framework/Versions/A/CoreText
+0x00000001ae06d000 	/System/Library/Frameworks/CoreData.framework/Versions/A/CoreData
+0x00000001ab9ee000 	/System/Library/PrivateFrameworks/UIFoundation.framework/Versions/A/UIFoundation
+0x00000001b88b7000 	/System/Library/PrivateFrameworks/RemoteViewServices.framework/Versions/A/RemoteViewServices
+0x00000001b0ed0000 	/System/Library/PrivateFrameworks/XCTTargetBootstrap.framework/Versions/A/XCTTargetBootstrap
+0x00000001b46ba000 	/System/Library/PrivateFrameworks/InternationalSupport.framework/Versions/A/InternationalSupport
+0x00000001b4743000 	/System/Library/PrivateFrameworks/UserActivity.framework/Versions/A/UserActivity
+0x00000001b3be8000 	/usr/lib/libspindump.dylib
+0x00000001abc5e000 	/System/Library/Frameworks/UniformTypeIdentifiers.framework/Versions/A/UniformTypeIdentifiers
+0x00000001b07d3000 	/System/Library/Frameworks/Metal.framework/Versions/A/Metal
+0x00000001b0ed4000 	/System/Library/PrivateFrameworks/CoreSVG.framework/Versions/A/CoreSVG
+0x00000001ad125000 	/System/Library/PrivateFrameworks/SkyLight.framework/Versions/A/SkyLight
+0x00000001b365c000 	/System/Library/PrivateFrameworks/IconServices.framework/Versions/A/IconServices
+0x00000001b0eb8000 	/System/Library/PrivateFrameworks/DFRFoundation.framework/Versions/A/DFRFoundation
+0x00000001b54bb000 	/System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+0x00000001b46c6000 	/System/Library/PrivateFrameworks/DataDetectorsCore.framework/Versions/A/DataDetectorsCore
+0x00000001ca814000 	/System/Library/PrivateFrameworks/TextInput.framework/Versions/A/TextInput
+0x00000001b0b88000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+0x00000001aee66000 	/System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore
+0x00000001b88f7000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SpeechRecognition.framework/Versions/A/SpeechRecognition
+0x00000001af1b4000 	/System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/CoreUI
+0x00000001a9926000 	/System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio
+0x00000001b3fcd000 	/System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport
+0x00000001af3ed000 	/System/Library/PrivateFrameworks/PerformanceAnalysis.framework/Versions/A/PerformanceAnalysis
+0x00000002093c1000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL
+0x00000001b1f73000 	/System/Library/PrivateFrameworks/MobileKeyBag.framework/Versions/A/MobileKeyBag
+0x00000001adb02000 	/System/Library/Frameworks/ColorSync.framework/Versions/A/ColorSync
+0x00000001b1155000 	/System/Library/Frameworks/CoreImage.framework/Versions/A/CoreImage
+0x00000001b0f04000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+0x00000001b4613000 	/System/Library/PrivateFrameworks/TextureIO.framework/Versions/A/TextureIO
+0x00000001b3376000 	/usr/lib/libate.dylib
+0x00000001b4534000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib
+0x00000001b453d000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib
+0x00000001b448f000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib
+0x00000001b44b1000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+0x00000001b4598000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib
+0x00000001b3edd000 	/System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib
+0x00000001b3622000 	/usr/lib/libexpat.1.dylib
+0x00000001b3e98000 	/System/Library/PrivateFrameworks/AppleJPEG.framework/Versions/A/AppleJPEG
+0x00000001b0a47000 	/System/Library/PrivateFrameworks/FontServices.framework/libFontParser.dylib
+0x00000001ae758000 	/System/Library/PrivateFrameworks/RunningBoardServices.framework/Versions/A/RunningBoardServices
+0x00000001bec34000 	/System/Library/PrivateFrameworks/IOSurfaceAccelerator.framework/Versions/A/IOSurfaceAccelerator
+0x00000001b3fc9000 	/System/Library/PrivateFrameworks/WatchdogClient.framework/Versions/A/WatchdogClient
+0x00000001a9386000 	/System/Library/Frameworks/CoreDisplay.framework/Versions/A/CoreDisplay
+0x00000001b0935000 	/System/Library/Frameworks/CoreMedia.framework/Versions/A/CoreMedia
+0x00000001b07c9000 	/System/Library/PrivateFrameworks/IOAccelerator.framework/Versions/A/IOAccelerator
+0x00000001af597000 	/System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo
+0x00000001b2c51000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/MetalPerformanceShaders
+0x00000001b4006000 	/System/Library/Frameworks/VideoToolbox.framework/Versions/A/VideoToolbox
+0x00000001ae69c000 	/System/Library/PrivateFrameworks/BaseBoard.framework/Versions/A/BaseBoard
+0x00000001ae43b000 	/System/Library/PrivateFrameworks/ProtocolBuffer.framework/Versions/A/ProtocolBuffer
+0x00000001b452f000 	/System/Library/PrivateFrameworks/GPUWrangler.framework/Versions/A/GPUWrangler
+0x00000001b450e000 	/System/Library/PrivateFrameworks/IOPresentment.framework/Versions/A/IOPresentment
+0x00000001b4537000 	/System/Library/PrivateFrameworks/DSExternalDisplay.framework/Versions/A/DSExternalDisplay
+0x00000002093b4000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreFSCache.dylib
+0x0000000212b9f000 	/System/Library/PrivateFrameworks/GPUCompiler.framework/Versions/31001/Libraries/libGPUCompilerUtils.dylib
+0x00000001b459d000 	/System/Library/PrivateFrameworks/CMCaptureCore.framework/Versions/A/CMCaptureCore
+0x00000001b3bd6000 	/System/Library/PrivateFrameworks/AppServerSupport.framework/Versions/A/AppServerSupport
+0x00000001b5d76000 	/System/Library/PrivateFrameworks/perfdata.framework/Versions/A/perfdata
+0x00000001a94a6000 	/System/Library/PrivateFrameworks/AudioToolboxCore.framework/Versions/A/AudioToolboxCore
+0x00000001b090d000 	/System/Library/PrivateFrameworks/caulk.framework/Versions/A/caulk
+0x00000001b566b000 	/usr/lib/libAudioStatistics.dylib
+0x00000001c6f88000 	/System/Library/PrivateFrameworks/SystemPolicy.framework/Versions/A/SystemPolicy
+0x00000001b58cb000 	/usr/lib/libSMC.dylib
+0x00000001be4a0000 	/System/Library/Frameworks/CoreMIDI.framework/Versions/A/CoreMIDI
+0x00000001b445d000 	/usr/lib/libAudioToolboxUtility.dylib
+0x00000001c33b5000 	/System/Library/PrivateFrameworks/OSAServicesClient.framework/Versions/A/OSAServicesClient
+0x00000001b5d83000 	/usr/lib/libperfcheck.dylib
+0x00000001c7a8f000 	/usr/lib/libmis.dylib
+0x0000000209415000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+0x00000002093d4000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib
+0x00000002095be000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+0x00000002093dd000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib
+0x00000002093d1000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib
+0x00000002093bb000 	/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib
+0x00000001b149f000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSCore.framework/Versions/A/MPSCore
+0x00000001b260f000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSImage.framework/Versions/A/MPSImage
+0x00000001b2105000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSNeuralNetwork.framework/Versions/A/MPSNeuralNetwork
+0x00000001b2542000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSMatrix.framework/Versions/A/MPSMatrix
+0x00000001b231d000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSRayIntersector.framework/Versions/A/MPSRayIntersector
+0x00000001b2573000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSNDArray.framework/Versions/A/MPSNDArray
+0x000000020b0ec000 	/System/Library/Frameworks/MetalPerformanceShaders.framework/Versions/A/Frameworks/MPSFunctions.framework/Versions/A/MPSFunctions
+0x00000001a8745000 	/System/Library/PrivateFrameworks/MetalTools.framework/Versions/A/MetalTools
+0x00000001b151c000 	/System/Library/PrivateFrameworks/AggregateDictionary.framework/Versions/A/AggregateDictionary
+0x00000001b3408000 	/usr/lib/libIOReport.dylib
+0x00000001bd487000 	/System/Library/PrivateFrameworks/ASEProcessing.framework/Versions/A/ASEProcessing
+0x00000001b377b000 	/System/Library/PrivateFrameworks/FaceCore.framework/Versions/A/FaceCore
+0x00000001b376d000 	/System/Library/PrivateFrameworks/GraphVisualizer.framework/Versions/A/GraphVisualizer
+0x0000000212ab6000 	/System/Library/PrivateFrameworks/FontServices.framework/Versions/A/FontServices
+0x00000001b3b90000 	/System/Library/PrivateFrameworks/OTSVG.framework/Versions/A/OTSVG
+0x00000001af165000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib
+0x00000001b3bdf000 	/System/Library/PrivateFrameworks/FontServices.framework/libhvf.dylib
+0x0000000212ab7000 	/System/Library/PrivateFrameworks/FontServices.framework/libXTFontStaticRegistryData.dylib
+0x0000000209760000 	/System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL
+0x00000001b35d6000 	/System/Library/PrivateFrameworks/AppleVA.framework/Versions/A/AppleVA
+0x00000001b5693000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+0x00000001adbff000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+0x00000001b45a7000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+0x00000001b5a1e000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+0x00000001b5a16000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSyncLegacy.framework/Versions/A/ColorSyncLegacy
+0x00000001b567f000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+0x00000001b4568000 	/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATSUI.framework/Versions/A/ATSUI
+0x00000001b59ab000 	/usr/lib/libcups.2.dylib
+0x00000001b5d91000 	/System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+0x00000001b5da2000 	/System/Library/Frameworks/GSS.framework/Versions/A/GSS
+0x00000001b5702000 	/usr/lib/libresolv.9.dylib
+0x00000001b3bed000 	/System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal
+0x00000001bc6f6000 	/System/Library/Frameworks/Kerberos.framework/Versions/A/Libraries/libHeimdalProxy.dylib
+0x00000001ae837000 	/System/Library/Frameworks/Network.framework/Versions/A/Network
+0x00000001b363d000 	/usr/lib/libheimdal-asn1.dylib
+0x00000001b5de8000 	/System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth
+0x00000001b55f9000 	/System/Library/PrivateFrameworks/AudioSession.framework/Versions/A/AudioSession
+0x00000001b36ce000 	/System/Library/PrivateFrameworks/MediaExperience.framework/Versions/A/MediaExperience
+0x00000001b5481000 	/System/Library/PrivateFrameworks/AudioSession.framework/libSessionUtility.dylib
+0x00000001b5a2a000 	/System/Library/PrivateFrameworks/AudioResourceArbitration.framework/Versions/A/AudioResourceArbitration
+0x00000001b9b35000 	/System/Library/PrivateFrameworks/PowerLog.framework/Versions/A/PowerLog
+0x00000001b3646000 	/System/Library/PrivateFrameworks/IconFoundation.framework/Versions/A/IconFoundation
+0x00000001b88e3000 	/System/Library/PrivateFrameworks/SpeechRecognitionCore.framework/Versions/A/SpeechRecognitionCore
+0x00000001bffe7000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CommonPanels.framework/Versions/A/CommonPanels
+0x00000001bc0f6000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Help.framework/Versions/A/Help
+0x00000001bffeb000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/ImageCapture.framework/Versions/A/ImageCapture
+0x00000001bffb7000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/OpenScripting.framework/Versions/A/OpenScripting
+0x00000001bffe3000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Ink.framework/Versions/A/Ink
+0x00000001c6aa5000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Print.framework/Versions/A/Print
+0x00000001bffdf000 	/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SecurityHI.framework/Versions/A/SecurityHI
+0x0000000167268000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/regex/_regex.cpython-38-darwin.so
+0x0000000121054000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/__check_build/_check_build.cpython-38-darwin.so
+0x00000001675a8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/.dylibs/libomp.dylib
+0x000000016628c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/murmurhash.cpython-38-darwin.so
+0x0000000120bec000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_queue.cpython-38-darwin.so
+0x000000012172c000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_uuid.cpython-38-darwin.so
+0x0000000121960000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_multiprocessing.cpython-38-darwin.so
+0x00000001654d0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_openmp_helpers.cpython-38-darwin.so
+0x000000016651c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/feature_extraction/_hashing_fast.cpython-38-darwin.so
+0x0000000167230000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_vector_sentinel.cpython-38-darwin.so
+0x0000000167e00000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_logistic_sigmoid.cpython-38-darwin.so
+0x0000000167ecc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/sparsefuncs_fast.cpython-38-darwin.so
+0x0000000167e70000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/preprocessing/_csr_polynomial_expansion.cpython-38-darwin.so
+0x00000001688d0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/svm/_libsvm.cpython-38-darwin.so
+0x0000000168980000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_cython_blas.cpython-38-darwin.so
+0x00000001679d4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/svm/_liblinear.cpython-38-darwin.so
+0x00000001689dc000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/svm/_libsvm_sparse.cpython-38-darwin.so
+0x0000000168924000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_seq_dataset.cpython-38-darwin.so
+0x00000001673e0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_random.cpython-38-darwin.so
+0x0000000168a5c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/arrayfuncs.cpython-38-darwin.so
+0x0000000168b30000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/metrics/_dist_metrics.cpython-38-darwin.so
+0x0000000165bac000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_typedefs.cpython-38-darwin.so
+0x0000000168b90000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_readonly_array_wrapper.cpython-38-darwin.so
+0x0000000167580000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/metrics/cluster/_expected_mutual_info_fast.cpython-38-darwin.so
+0x0000000168c38000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/metrics/_pairwise_distances_reduction.cpython-38-darwin.so
+0x00000001661b4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_heap.cpython-38-darwin.so
+0x00000001661c8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_sorting.cpython-38-darwin.so
+0x0000000168ca4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/metrics/_pairwise_fast.cpython-38-darwin.so
+0x0000000168d44000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/linear_model/_cd_fast.cpython-38-darwin.so
+0x0000000168f74000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/_loss/_loss.cpython-38-darwin.so
+0x0000000168de8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/linear_model/_sgd_fast.cpython-38-darwin.so
+0x0000000168da4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/utils/_weight_vector.cpython-38-darwin.so
+0x0000000168a28000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/linear_model/_sag_fast.cpython-38-darwin.so
+0x0000000168b10000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/datasets/_svmlight_format_fast.cpython-38-darwin.so
+0x00000001662ac000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/io/matlab/_mio_utils.cpython-38-darwin.so
+0x0000000169144000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/io/matlab/_mio5_utils.cpython-38-darwin.so
+0x0000000168c0c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/scipy/io/matlab/_streams.cpython-38-darwin.so
+0x0000000168950000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_sqlite3.cpython-38-darwin.so
+0x00000001696c0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/tree/_criterion.cpython-38-darwin.so
+0x0000000169700000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/tree/_splitter.cpython-38-darwin.so
+0x00000001697ac000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/tree/_tree.cpython-38-darwin.so
+0x0000000169820000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/neighbors/_ball_tree.cpython-38-darwin.so
+0x0000000166e48000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/neighbors/_partition_nodes.cpython-38-darwin.so
+0x000000016988c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/neighbors/_kd_tree.cpython-38-darwin.so
+0x0000000169770000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/decomposition/_cdnmf_fast.cpython-38-darwin.so
+0x0000000167eb0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/decomposition/_online_lda_fast.cpython-38-darwin.so
+0x0000000169978000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/neighbors/_quad_tree.cpython-38-darwin.so
+0x0000000169938000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/tree/_utils.cpython-38-darwin.so
+0x00000001699f8000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_gradient_boosting.cpython-38-darwin.so
+0x0000000169a6c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/_gradient_boosting.cpython-38-darwin.so
+0x0000000169aa0000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/common.cpython-38-darwin.so
+0x0000000169b04000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/_binning.cpython-38-darwin.so
+0x0000000169b34000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/_bitset.cpython-38-darwin.so
+0x0000000169bac000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/splitting.cpython-38-darwin.so
+0x0000000169bf4000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/histogram.cpython-38-darwin.so
+0x0000000169b64000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/_predictor.cpython-38-darwin.so
+0x0000000169c34000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/sklearn/ensemble/_hist_gradient_boosting/utils.cpython-38-darwin.so
+0x0000000169d9c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/_jpype.cpython-38-darwin.so
+0x0000000168d24000 	/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/lib/python3.8/lib-dynload/_multibytecodec.cpython-38-darwin.so
+0x000000016973c000 	/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/fisher/cfisher.cpython-38-darwin.so
+0x0000000167fec000 	/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java
+0x000000016a240000 	/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/lib/libjli.dylib
+0x000000016c938000 	/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/lib/server/libjvm.dylib
+0x0000000169b98000 	/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/lib/libjimage.dylib
+0x000000016a29c000 	/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/lib/libjava.dylib
+
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+java_command: <unknown>
+java_class_path (initial): /Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/bin:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/scala-library-2.12.3.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/twitter-text-1.14.7.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/komoran-3.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/jhannanum-0.8.4.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/open-korean-text-2.1.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/aho-corasick.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/kkma-2.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/shineware-common-1.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/snakeyaml-1.12.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/shineware-ds-1.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/jhannanum-0.8.4.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/kkma-2.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/aho-corasick.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/shineware-common-1.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/shineware-ds-1.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/java/komoran-3.0.jar:/Users/hwangyun/PycharmProjects/ease_real/venv/lib/python3.8/site-packages/konlpy/
+Launcher Type: generic
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 2                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 8                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 268435456                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1073741824                                {product} {command line}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5839564                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909338                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909338                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 1073741824                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseNUMA                                  = false                                     {product} {ergonomic}
+     bool UseNUMAInterleaving                      = false                                     {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home
+PATH=${PATH}:$JAVA_HOME/bin:
+SHELL=/bin/zsh
+LC_CTYPE=en_US.UTF-8
+
+Signal Handlers:
+SIGSEGV: [libjvm.dylib+0x929b20], sa_mask[0]=11111111011111110111111111111111, sa_flags=SA_ONSTACK|SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.dylib+0x929b20], sa_mask[0]=11111111011111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.dylib+0x929b20], sa_mask[0]=11111111011111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.dylib+0x713fe0], sa_mask[0]=11111111011111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.dylib+0x713fe0], sa_mask[0]=11111111011111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.dylib+0x929b20], sa_mask[0]=11111111011111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR2: [libjvm.dylib+0x714a14], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: SIG_DFL, sa_mask[0]=11100110000111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [Python3+0x17fa34], sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGTERM: SIG_DFL, sa_mask[0]=11100110000111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: SIG_DFL, sa_mask[0]=11100110000111110111111111111111, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:uname: Darwin 21.3.0 Darwin Kernel Version 21.3.0: Wed Jan  5 21:37:58 PST 2022; root:xnu-8019.80.24~20/RELEASE_ARM64_T6000 arm64
+OS uptime: 1 days 6:13 hours
+rlimit (soft/hard): STACK 8176k/65520k , CORE 0k/infinity , NPROC 2666/4000 , NOFILE 10240/infinity , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK infinity/infinity , RSS infinity/infinity
+load average: 2.78 2.46 2.45
+
+CPU: total 8 (initial active 8) 0x61:0x0:0x1b588bb3:0, simd, crc, lse
+
+Memory: 16k page, physical 16777216k(427040k free), swap 4194304k(1436672k free)
+
+vm_info: OpenJDK 64-Bit Server VM (15.0.7+4-MTS) for bsd-aarch64 JRE (15.0.7+4-MTS) (Zulu15.40+19-CA), built on Apr 16 2022 08:21:05 by "zulu_re" with clang Apple LLVM 12.0.0 (clang-1200.0.32.28)
+
+END.

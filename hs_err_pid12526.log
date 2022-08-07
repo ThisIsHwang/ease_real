@@ -1,0 +1,55 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x000000016afdb9b4, pid=12526, tid=38659
+#
+# JRE version: OpenJDK Runtime Environment Zulu15.40+19-CA (15.0.7+4) (build 15.0.7+4-MTS)
+# Java VM: OpenJDK 64-Bit Server VM Zulu15.40+19-CA (15.0.7+4-MTS, mixed mode, tiered, compressed oops, g1 gc, bsd-aarch64)
+# Problematic frame:
+# V  [libjvm.dylib+0x15f9b4]  _ZN12LIRGenerator7do_GotoEP4Goto+0x0
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://www.azul.com/support/
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+
+Host: MacBookPro18,3 arm64 1 MHz, 8 cores, 16G, Darwin 21.3.0
+Time: Mon Aug  1 15:19:10 2022 KST elapsed time: 0.020722 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000112598600):  JavaThread "C1 CompilerThread0" daemon [_thread_in_native, id=38659, stack(0x0000000294950000,0x0000000294b53000)]
+
+
+Current CompileTask:
+C1:     20    1       3       java.lang.String::isLatin1 (19 bytes)
+
+Stack: [0x0000000294950000,0x0000000294b53000],  sp=0x0000000294b52350,  free space=2056k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.dylib+0x15f9b4]  _ZN12LIRGenerator7do_GotoEP4Goto+0x0
+V  [libjvm.dylib+0x13a7d8]  _ZN9BlockList15iterate_forwardEP12BlockClosure+0x44
+V  [libjvm.dylib+0x113c38]  _ZN11Compilation8emit_lirEv+0xd0
+V  [libjvm.dylib+0x1145fc]  _ZN11Compilation19compile_java_methodEv+0x2a0
+V  [libjvm.dylib+0x1148d8]  _ZN11Compilation14compile_methodEv+0x124
+V  [libjvm.dylib+0x114d88]  _ZN11CompilationC2EP16AbstractCompilerP5ciEnvP8ciMethodiP10BufferBlobP12DirectiveSet+0x1a8
+V  [libjvm.dylib+0x115fe8]  _ZN8Compiler14compile_methodEP5ciEnvP8ciMethodiP12DirectiveSet+0x58
+V  [libjvm.dylib+0x238408]  _ZN13CompileBroker25invoke_compiler_on_methodEP11CompileTask+0x50c
+V  [libjvm.dylib+0x237e6c]  _ZN13CompileBroker20compiler_thread_loopEv+0x448
+V  [libjvm.dylib+0x8cb660]  _ZN10JavaThread17thread_main_innerEv+0xa0
+V  [libjvm.dylib+0x8c8b5c]  _ZN6Thread8call_runEv+0x88
+V  [libjvm.dylib+0x711b78]  _ZL19thread_native_entryP6Thread+0x1d0
+C  [libsystem_pthread.dylib+0x7240]  _pthread_start+0x94
+
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 2 (SEGV_ACCERR), si_addr: 0x000000016afdb9b4
+
+Register to memory mapping:
+
+ x0=0x0000000294b52408 is pointing into the stack for thread: 0x0000000112598600
+ x1=0x00000001125b8b90 points into unknown readable memory: 0x000000016b8da1e0 | e0 a1 8d 6b 01 00 00 00
+ x2=
