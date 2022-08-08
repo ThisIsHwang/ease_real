@@ -78,8 +78,8 @@ def speller(origin, encoding="utf-8"):
         frontSentence = newString[:err['start'] + WordCount]
         corretedWord = err['candWord']
         corretedWordList = corretedWord.split("|")
-        backSentence = newString[err['end'] + WordCount:]
-        WordCount += len(corretedWordList[0]) - len(err['orgStr'])
+        backSentence = newString[(err['end'] + WordCount):]
+        WordCount += (len(corretedWordList[0]) - len(err['orgStr']) - 1)
         newString = "".join([frontSentence, corretedWordList[0], backSentence])
 
     errorCnt = len(jsonData[0]['errInfo'])

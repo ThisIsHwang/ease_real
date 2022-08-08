@@ -66,7 +66,7 @@ def sub_chars(string):
     #Define replacement patterns
     open_par_pat = r"(\(|\[|\{\<)"
     close_par_pat = r"(\)|\]|\}\>)"
-    sub_pat = r"[^A-Za-z가-힣\.\ ?!,;:\(\)]"
+    sub_pat = r"[^㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻A-Za-z가-힣\.\ ?!,;:\(\)]"
     char_pat = r"\."
     com_pat = r","
     ques_pat = r"\?"
@@ -115,23 +115,23 @@ def spell_correct(string):
 
     while s < len(stringList):
         if len(stringList[s] + tempString) + cnt < 500:
-            tempString += stringList[s]
+            tempString += " " + stringList[s]
             cnt += len(stringList[s])
             s += 1
             if s >= len(stringList) - 1:
-                pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
-                result = spell_checker.check(pusanString)
+                #pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
+                result = spell_checker.check(tempString)
                 resultDict = result.as_dict()
-                resultDict["errors"] += pusanError  # print(result.as_dict())
+                #resultDict["errors"] += pusanError  # print(result.as_dict())
                 resultDicts.append(result.as_dict())
                 cnt = 0
                 tempString = ""
         else:
             # print(tempString)
-            pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
-            result = spell_checker.check(pusanString)
+            #pusanString, pusanError = pusanCorrectGrammer.speller(tempString)
+            result = spell_checker.check(tempString)
             resultDict = result.as_dict()
-            resultDict["errors"] += pusanError            # print(result.as_dict())
+            #resultDict["errors"] += pusanError            # print(result.as_dict())
             resultDicts.append(resultDict)
             cnt = 0
             tempString = ""

@@ -52,13 +52,13 @@ def create(text,score,prompt_string, dump_data=False):
     if dump_data:
         dump_input_data(text, score)
 
-    algorithm = select_algorithm(score)
+    algorithm = select_algorithm(score) #알고리즘을 선택함 3개 이하면 분류, 3개 이상이면 회귀 알고리즘을 선택
     #Initialize a results dictionary to return
     results = {'errors': [],'success' : False, 'cv_kappa' : 0, 'cv_mean_absolute_error': 0,
                'feature_ext' : "", 'classifier' : "", 'algorithm' : algorithm,
                'score' : score, 'text' : text, 'prompt' : prompt_string}
 
-    if len(text)!=len(score):
+    if len(text)!=len(score): #텍스트와 점수 리스트의 길이를 확인하여 무결성 체크
         msg = "Target and text lists must be same length."
         results['errors'].append(msg)
         log.exception(msg)
@@ -66,7 +66,7 @@ def create(text,score,prompt_string, dump_data=False):
 
     try:
         #Create an essay set object that encapsulates all the essays and alternate representations (tokens, etc)
-        e_set = model_creator.create_essay_set(text, score, prompt_string, generate_additional=False)
+        e_set = model_creator.create_essay_set(text, score, prompt_string)
     except Exception as e:
         print(e)
         msg = "essay set creation failed."

@@ -1,0 +1,2193 @@
+[33mcommit a3962af83195ecc613ada103ddeaaf3098f8d15e[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Sun Aug 7 14:18:27 2022 +0900
+
+    commit for testing
+
+[33mcommit dd65b4c185272adf103255a9e06afe0246d4607e[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Mon Aug 1 16:07:33 2022 +0900
+
+    Add Pusan Grammar correct
+
+[33mcommit 1ae0ef1202c6790dfc584bfcd872aa9e67de455a[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Mon Aug 1 14:17:14 2022 +0900
+
+    commit
+
+[33mcommit d0e3ec737ace68229b4d12da8954a57e1faf8a53[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Mon Jul 18 21:18:38 2022 +0900
+
+    fix the bugs and improve the model.
+
+[33mcommit a17333940b1af613ce010b3e7faf187efbda2ed6[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Sat Jul 16 21:54:26 2022 +0900
+
+    complete the model.
+
+[33mcommit 36e389b2bf4811798c06690da051f895ecf22870[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Tue Jul 12 16:54:26 2022 +0900
+
+    fix several things.
+
+[33mcommit 310acc8d86a7a5d28e0a759cff9db4a7d8fa2e54[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Mon Jul 11 21:52:19 2022 +0900
+
+    Complete patch essay_set.py
+
+[33mcommit ca74f29198f4a2aed27ada2d110eb8fb000ac464[m
+Author: 황태호 <doubleyyh@knu.ac.kr>
+Date:   Sat Jul 9 21:54:32 2022 +0900
+
+    generate_additional_essays - okt
+    util_functions.get_wordnet_syns(word) - using korean wordnet
+
+[33mcommit 056da0adc6f351789d8e477b5ebec4f6db610c36[m
+Merge: 097d8c5 1ac1bd1
+Author: Sarina Canelake <sarina@tcril.org>
+Date:   Thu Feb 24 14:53:09 2022 -0500
+
+    Merge DEPR automation workflow
+    
+    Add DEPR workflow automation & default issue overrides
+
+[33mcommit 1ac1bd1f3c45431e020dfffb00b4b8fb93afc268[m
+Author: Sarina Canelake <sarina@tcril.org>
+Date:   Tue Feb 22 01:14:37 2022 -0500
+
+    build: add DEPR workflow automation & default issue overrides
+
+[33mcommit 097d8c51f4bebfff15df501cfaeb3bc037b558e9[m
+Author: Usama Sadiq <usama.sadiq@arbisoft.com>
+Date:   Wed Dec 1 21:30:35 2021 +0500
+
+    build: Replace Travis with GitHub CI (#97)
+    
+    * build: Replace Travis with GitHub CI
+    * build: drop Python 35 support
+    * build: add user permissions for nltk corpora
+    * build: specify test files path
+    * build: Install required ubuntu packages
+    * fix: update apt-packages list
+    
+    BOM-2955
+
+[33mcommit bd772002c54f4b634871bbd88783108e5cbebdc7[m
+Author: Ned Batchelder <ned@edx.org>
+Date:   Thu Oct 7 13:47:42 2021 -0400
+
+    build: use the organization commitlint check
+
+[33mcommit 760b4a9fb07c3b5c1e9022cb7887da1c049d0870[m
+Merge: aa0324c d1f06a4
+Author: Awais Qureshi <awais.qureshi@arbisoft.com>
+Date:   Wed Sep 22 10:16:51 2021 +0500
+
+    Merge pull request #95 from eduNEXT/Gonzalo/Remove_django_sphinx
+    
+    Remove django-sphinx-autodoc package
+
+[33mcommit d1f06a4c205a87333126891c270a8f77f62f13c5[m
+Author: GonzaloRomero <gonzalo.romero@edunext.co>
+Date:   Tue Sep 21 15:47:16 2021 -0500
+
+    Remove django-sphinx-autodoc package
+
+[33mcommit aa0324c58b8b4f6352c4d7e85ea29f38520432fc[m
+Merge: 498729a e728197
+Author: Feanil Patel <feanil@edx.org>
+Date:   Wed Jul 22 16:20:15 2020 -0400
+
+    Merge pull request #90 from edly-io/zubair/EDE-620_siwtch_from_nose_to_pycharm
+    
+    [BD-18] switch from nose to pytest
+
+[33mcommit e7281975f66b9fa0e562c63bc9be5045963415d8[m
+Author: emzubair <muhammad.zubair@arbisoft.com>
+Date:   Wed Jul 22 18:50:06 2020 +0500
+
+    [BD-18] switch from nose to pytest
+
+[33mcommit 498729a38d45735822a192c7f200294afa0d8e6a[m
+Merge: 952962b d464499
+Author: Usama Sadiq <usama.sadiq@arbisoft.com>
+Date:   Thu Jun 25 19:10:13 2020 +0500
+
+    Merge pull request #89 from edx/usamasadiq/bom-1807-remove-package-six
+    
+    Remove usage of package six
+
+[33mcommit d4644990727f0b746cabc4d884a8f28d56f9df48[m
+Author: usamasadiq <usama.sadiq@arbisoft.com>
+Date:   Thu Jun 25 17:04:09 2020 +0500
+
+    Remove usage of package six
+
+[33mcommit 952962b8546a7b5f0db5bbddd6200399b65ae01d[m
+Merge: 286b9b8 db38791
+Author: Aarif <MrAarif@outlook.com>
+Date:   Tue Jun 23 18:26:04 2020 +0500
+
+    Removed deprecated future imports (#88)
+
+[33mcommit db38791bf9ce8c76ad6ee24e18bfc6d1da69be9d[m
+Author: Aarif <mraarif@outlook.com>
+Date:   Mon Jun 22 17:45:50 2020 +0500
+
+    Removed deprecated future imports
+
+[33mcommit 286b9b897480ead4a00f65f3d4e25cacfc4e85a4[m
+Merge: 7b2de92 28dab7a
+Author: Muhammad Soban Javed <58461728+iamsobanjaved@users.noreply.github.com>
+Date:   Fri Jun 19 14:11:26 2020 +0500
+
+    Merge pull request #87 from edx/iamsobanjaved/py38
+    
+    BOM-1682: Fix python 3.8 test failures
+
+[33mcommit 28dab7ad7202108aa1de2184a91c325aea9b0fe8[m
+Author: Soban Javed <iamsobanjaved@gmail.com>
+Date:   Tue Jun 2 17:09:25 2020 +0500
+
+    fix python 3.8 test failures
+    
+    removed allow_failure from python 3.8
+    
+    packages installed from pypi instead from apt
+    
+    upgraded sklearn
+
+[33mcommit 7b2de9243d88a4b9db591481266c39472ab442a7[m
+Merge: 6a59156 943d314
+Author: Awais Qureshi <awais.qureshi@arbisoft.com>
+Date:   Fri May 15 13:14:45 2020 +0500
+
+    Merge pull request #86 from eduNEXT/eric/OEP-18_python38
+    
+    [BD-6] OPE-18 Compliance and Python 3.5 (3.8)
+
+[33mcommit 943d3148dccb0d8e6b4f58bc7df1346ff05eb24e[m
+Author: Eric Herrera <eric.herrera@edunext.co>
+Date:   Tue May 12 20:57:55 2020 -0500
+
+    Allow failures for pyton3.8.
+    Add aspell-en.
+    Add punkt package to fix tests.
+
+[33mcommit 954bc3dc683d2d8e62811ed605bab2ab4563c1ba[m
+Author: Eric Herrera <eric.herrera@edunext.co>
+Date:   Tue May 12 20:49:43 2020 -0500
+
+    Update code with python-modernize to use python3.
+
+[33mcommit a7120f1da2cd87408ce8cec18996f632fc90c2ec[m
+Author: Eric Herrera <eric.herrera@edunext.co>
+Date:   Mon May 11 21:04:45 2020 -0500
+
+    Update nltk constraint.
+
+[33mcommit c108d655f38a2f9d34f902e67370c04ffd2eb593[m
+Author: Eric Herrera <eric.herrera@edunext.co>
+Date:   Mon May 11 19:37:40 2020 -0500
+
+    Update travis Ubuntu version.
+
+[33mcommit 149a722afe23bf274f7ee3064962ec86e663360f[m
+Author: Eric Herrera <eric.herrera@edunext.co>
+Date:   Mon May 11 19:23:32 2020 -0500
+
+    Add setup.py install_requirements definition.
+    Update travis file using new requirements.
+    Create requirements folder.
+    create pip_tools, base, dev, production, doc, test and travis requirements files.
+    Remove old requirements file.
+    Add Makefile.
+    Add makefile upgrade command.
+    Include requirements files generated using upgrade command.
+    Remove old requirement files
+    Update openedx.yaml.
+    Add venv to gitignore.
+
+[33mcommit 6a59156323f07f0d360cb8cf847f3bc24bbb1c6f[m
+Merge: a7890ed 6695c94
+Author: Ahtisham Shahid <ahtisham300@gmail.com>
+Date:   Thu Dec 12 18:41:07 2019 +0500
+
+    Merge pull request #83 from edx/bug/numpy_version_update
+    
+    updated numpy version to 1.16.5
+
+[33mcommit 6695c94cd709f561b6444a99cd8b053e4189607f[m
+Author: Ahtisham Shahid <ahtisham300@gmail.com>
+Date:   Thu Dec 12 11:35:27 2019 +0500
+
+    Updated numpy version to 1.16.5
+
+[33mcommit a7890ed403da94d03726b0639cd8ebda45af6bbb[m
+Merge: 5e3e82f db940a4
+Author: Christina Roberts <christina@edx.org>
+Date:   Thu Jan 19 10:17:29 2017 -0500
+
+    Merge pull request #72 from edx/christina/archived
+    
+    Remove "obsolete", as ease is a requirement of ora2.
+
+[33mcommit db940a42b00e4145764f5be284934e8ca6265864[m
+Author: cahrens <christina@edx.org>
+Date:   Wed Jan 18 16:18:32 2017 -0500
+
+    Remove "obsolete", as ease is a requirement of ora2.
+
+[33mcommit 5e3e82f6c6485bb0598f7eea2972d201dc810998[m
+Merge: f8c109f b1a4ed3
+Author: Calen Pennington <calen.pennington@gmail.com>
+Date:   Wed Sep 7 11:12:32 2016 -0400
+
+    Merge pull request #71 from edx/add-openedx-yaml
+    
+    Add an OEP-2 compliant openedx.yaml file
+
+[33mcommit b1a4ed365842b519bb8b6f29e1315f2d70f8250f[m
+Author: Calen Pennington <calen.pennington@gmail.com>
+Date:   Thu Sep 1 11:07:11 2016 -0400
+
+    Update openedx.yaml
+
+[33mcommit d676ce56111e943b99e3a5826b52b99e57eee86a[m
+Author: Calen Pennington <calen.pennington@gmail.com>
+Date:   Tue Aug 23 14:47:31 2016 -0400
+
+    Specify an owner
+
+[33mcommit 7fab10b1ced9b4e1f8a770b0a985e28c96e35796[m
+Author: Calen Pennington <calen.pennington@gmail.com>
+Date:   Tue Aug 23 10:42:37 2016 -0400
+
+    Add an OEP-2 compliant openedx.yaml file
+
+[33mcommit f8c109ff5cb03021c7fa35c24c447c092322ed43[m
+Merge: e8349a2 923eefd
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Fri Aug 7 15:29:16 2015 -0400
+
+    Merge pull request #69 from edx/remove-rtd-reference
+    
+    Remove reference to ReadTheDocs
+
+[33mcommit 923eefdfd37510c7d18d0952944ffa91adb5fa40[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Fri Aug 7 15:17:18 2015 -0400
+
+    Remove reference to ReadTheDocs
+    
+    Fixes #66
+
+[33mcommit e8349a2e66c7f0c9a8ff62fba7fd5d187aa23fc4[m
+Merge: 3d436b7 cce7373
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Tue Jul 14 11:05:45 2015 -0400
+
+    Merge pull request #68 from edx/db/update-lxml
+    
+    Update lxml to 3.4.4
+
+[33mcommit cce73733b054221909640d6d250b819c60e50e6f[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Mon Jul 13 16:10:53 2015 -0400
+
+    Update lxml to 3.4.4
+
+[33mcommit 3d436b7763c7670f36e2e4630629002e8d01611e[m
+Merge: b67d292 42ff61e
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Wed Jul 8 16:47:40 2015 -0400
+
+    Merge pull request #67 from edx/nltk-setuptools
+    
+    Use NLTK 2.0.6
+
+[33mcommit 42ff61e5c8303c28ba6ac620f1b2d0079acf6403[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Thu May 21 16:32:27 2015 -0400
+
+    Use NLTK 2.0.6
+
+[33mcommit b67d2928a26fe497826b6ea359b9a3d0371548a7[m
+Merge: 15ebafb 7cdffe5
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Fri May 8 11:21:31 2015 -0400
+
+    Merge pull request #65 from edx/update-version-number
+    
+    Update version number
+
+[33mcommit 7cdffe5b834a6fd702f3d8a0e89b7e9c71b017d6[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Fri May 8 11:05:47 2015 -0400
+
+    Update version number
+
+[33mcommit 15ebafb570ae63e8e2c1438ede494e82a5528d17[m
+Merge: 0528510 d0722ac
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Mon May 4 14:11:44 2015 -0400
+
+    Merge pull request #63 from edx/path-py-dynamic-requirement
+    
+    Make path.py a dynamic requirement (don't specify version)
+
+[33mcommit d0722ac2f642abe41575ec7ca8e27ab4635406aa[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Fri Mar 20 09:53:31 2015 -0400
+
+    Make path.py a dynamic requirement (don't specify version)
+    
+    ease is a library, and it should be more flexible with the versions
+    of its requirements.
+
+[33mcommit 0528510f7753bdde207e240ee9e0fdbcb5aced2c[m
+Merge: c6dee05 8e82a06
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Mon May 4 13:54:53 2015 -0400
+
+    Merge pull request #64 from edx/update-nltk
+    
+    Update NLTK to 2.0.5
+
+[33mcommit 8e82a067c5dc129126796aa1d5b4338d0080424b[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Fri Mar 20 10:09:07 2015 -0400
+
+    Update NLTK to 2.0.5
+
+[33mcommit c6dee053eae6b3ac4fdf6be11fa7a9f8265540aa[m
+Merge: bcb36e8 38df7d5
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Wed Apr 29 11:42:51 2015 -0400
+
+    Merge pull request #62 from edx/update-pytz
+    
+    Update pytz to 2015.2
+
+[33mcommit 38df7d5fe2c58283f6f6365f4f76c0090a4e78a3[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Wed Jan 21 11:43:40 2015 -0500
+
+    Update pytz to 2015.2
+    
+    pytz changed their versioning scheme from using letters to using
+    numbers. The old scheme is screwing up new versions of pip.
+
+[33mcommit bcb36e84b5ffa4ac00813577079dd6eef4fff566[m
+Merge: f9f47fb 9dc0f76
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Thu Jul 31 09:56:56 2014 -0400
+
+    Merge pull request #61 from edx/update-scipy
+    
+    Update scipy to 0.14.0
+
+[33mcommit 9dc0f765fe395bb8920d5be5459b506891b8baf1[m
+Author: David Baumgold <david@davidbaumgold.com>
+Date:   Tue Jul 29 09:31:35 2014 -0400
+
+    Update scipy to 0.14.0
+
+[33mcommit f9f47fb6b5c7c8b6c3360efa72eb56561e1a03b0[m
+Merge: 97de684 c88f112
+Author: gradyward <gward@edx.org>
+Date:   Tue Jun 24 11:17:27 2014 -0400
+
+    Merge pull request #60 from edx/grady/NLTK-requirements
+    
+    Changed NLTK requirements from 2.0.3 to 2.0.4
+
+[33mcommit c88f112179483f8835a8e3cec875e4e15da80605[m
+Author: gradyward <gward@edx.or>
+Date:   Tue Jun 24 10:51:55 2014 -0400
+
+    Changed NLTK requirements from 2.0.3 to 2.0.4
+
+[33mcommit 97de68448e5495385ba043d3091f570a699d5b5f[m
+Merge: a990b25 94014b7
+Author: Will Daly <will@edx.org>
+Date:   Mon Jun 23 09:26:14 2014 -0400
+
+    Merge pull request #59 from edx/will/optimize-good-ngram-lookup
+    
+    Use a set instead of a list for good ngram lookup
+
+[33mcommit 94014b71a91c02e92ef1c5e4709577c54074e6f6[m
+Author: Will Daly <will@edx.org>
+Date:   Mon Jun 23 07:48:31 2014 -0400
+
+    Use a set instead of a list for good ngram lookup
+
+[33mcommit a990b25ed4238acb1b15ee6f027465db3a10960e[m
+Merge: 8e85a00 fc27d99
+Author: Will Daly <will@edx.org>
+Date:   Mon Jun 2 14:37:51 2014 -0400
+
+    Merge pull request #57 from edx/will/include-base-reqs-in-setup-py
+    
+    Include base requirements in setup.py
+
+[33mcommit 8e85a0057109a77115d85dd81730651f2da3848a[m
+Merge: ea5770e e9eff7a
+Author: Will Daly <will@edx.org>
+Date:   Sat May 31 13:40:30 2014 -0400
+
+    Merge pull request #56 from edx/will/minimal-nltk-data
+    
+    Download only the NLTK data we actually use
+
+[33mcommit fc27d993d3550dd462a2e0ebee03a991c929c79a[m
+Author: Will Daly <will@edx.org>
+Date:   Sat May 31 11:59:26 2014 -0400
+
+    Include base requirements in setup.py
+
+[33mcommit e9eff7a5cb44708f16d13da43d6622db1fe1ac78[m
+Author: Will Daly <will@edx.org>
+Date:   Sat May 31 11:19:09 2014 -0400
+
+    Download only the NLTK data we actually use
+
+[33mcommit ea5770eaba4ce129cb5db8a41662435649ba6d4c[m
+Merge: e40bbed 7be3c43
+Author: Will Daly <will@edx.org>
+Date:   Fri May 30 09:25:24 2014 -0400
+
+    Merge pull request #54 from edx/will/silence-noisy-error
+    
+    Change error logging for an error we're suppressing to debug logging
+
+[33mcommit e40bbeded897b21035b194332dd1eba2e216bc27[m
+Merge: 64bab01 c47771f
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 14:40:32 2014 -0400
+
+    Merge pull request #55 from edx/will/remove-extra-data-dirs-from-setup
+    
+    Remove data directory installation from setup.py
+
+[33mcommit c47771f806e2a52e1e275cf6e67150fce235f47b[m
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 14:20:25 2014 -0400
+
+    Remove data directory installation from setup.py
+
+[33mcommit 64bab0174d141b98a4b14050d1aac4cfc8289613[m
+Merge: 80d9682 5f1f267
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 11:14:24 2014 -0400
+
+    Merge pull request #52 from edx/will/update-readme
+    
+    Update README: mailing list links and discern info
+
+[33mcommit 7be3c43a7858a94cdd0801faccb6c4e1b4e2bfef[m
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 07:47:12 2014 -0400
+
+    Change error logging for an error we're suppressing to debug logging
+
+[33mcommit 80d9682117acbc05c0e98c98198ed8e81e9b5a41[m
+Merge: 9c2c28a b4a8d76
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 11:08:05 2014 -0400
+
+    Merge pull request #53 from edx/will/remove-nltk-corpus
+    
+    Remove NLTK corpus from repository; download it from S3 instead
+
+[33mcommit 5f1f2671c07f89061b46e6291a5731fcbd1530bb[m
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 07:01:18 2014 -0400
+
+    Update README: mailing list links and discern info
+
+[33mcommit b4a8d76cef5e35923467df235644a839ea0f3a38[m
+Author: Will Daly <will@edx.org>
+Date:   Thu May 29 06:46:12 2014 -0400
+
+    Remove NLTK corpus from repository; download it from S3 instead
+
+[33mcommit 9c2c28aa2600fbf841703ec3d96bef3a59362123[m
+Merge: cf1be47 6eee938
+Author: Will Daly <will@edx.org>
+Date:   Wed May 28 15:47:52 2014 -0400
+
+    Merge pull request #51 from edx/will/sane-requirements
+    
+    Reorganize requirements files
+
+[33mcommit 6eee938f98777367b414217c09a8dce05efc2d7f[m
+Author: Will Daly <will@edx.org>
+Date:   Wed May 28 14:08:51 2014 -0400
+
+    Reorganize requirements files
+
+[33mcommit cf1be4704641d2abcf40f7273084cd7a9bfc5d79[m
+Merge: 6ace8b7 d44b446
+Author: Will Daly <will@edx.org>
+Date:   Wed May 28 12:41:42 2014 -0400
+
+    Merge pull request #50 from edx/will/setup-requirements
+    
+    Add requirements to setup.py; bump version number
+
+[33mcommit d44b446ae4ed659a79cca8d9a8678ff3c52324d3[m
+Author: Will Daly <will@edx.org>
+Date:   Wed May 28 10:53:10 2014 -0400
+
+    Add requirements to setup.py; bump version number
+
+[33mcommit 6ace8b7ca40ce2faba1a907208586b6c98d3c951[m
+Merge: 5dbcad3 6cc9064
+Author: Will Daly <will@edx.org>
+Date:   Wed May 28 10:51:23 2014 -0400
+
+    Merge pull request #48 from edx/will/remove-random-seed-reset
+    
+    Remove random.seed call in essay_set
+
+[33mcommit 6cc9064f7ba0a2a28c9bbe7ff650392f1f4fa7e1[m
+Author: Will Daly <will@edx.org>
+Date:   Tue May 27 16:22:22 2014 -0400
+
+    Remove random.seed call in essay_set
+
+[33mcommit 5dbcad331f2c672f0a2dfe6e40e37573ca1c3052[m
+Merge: 42f9513 2b66d6b
+Author: Will Daly <will@edx.org>
+Date:   Mon Dec 9 13:56:02 2013 -0800
+
+    Merge pull request #47 from edx/will/tempdir-fix
+    
+    Will/tempdir fix
+
+[33mcommit 2b66d6b01c1e8d2c11f523389302599d42b5a74a[m
+Author: Will Daly <will@edx.org>
+Date:   Fri Dec 6 10:34:02 2013 -0500
+
+    Create unique tempfiles in the system /tmp directory
+
+[33mcommit cc97ad30f80bbf3afe02d6d3eeb9ad472921a61d[m
+Author: Will Daly <will@edx.org>
+Date:   Fri Dec 6 10:31:14 2013 -0500
+
+    Added tests for spellcheck
+
+[33mcommit 42f951387b5908a8095da18026a93094406aca35[m
+Merge: b011087 da9884a
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Thu Oct 31 13:44:51 2013 -0700
+
+    Merge pull request #46 from edx/e0d/update-boto
+    
+    upgrade boto to match platform
+
+[33mcommit da9884a09199769a1bc764dad85a309c9588b4ff[m
+Author: e0d <ed@edx.org>
+Date:   Thu Oct 31 16:07:06 2013 -0400
+
+    removing unused req
+
+[33mcommit 384fd644ff6920601ea3add62db26488901e2f58[m
+Author: e0d <ed@edx.org>
+Date:   Thu Oct 31 13:53:06 2013 -0400
+
+    upgrade boto to match platform
+
+[33mcommit b011087dd37cd76c238f628238fb088a98d997aa[m
+Author: James Tauber <jtauber@jtauber.com>
+Date:   Thu Oct 31 20:29:23 2013 +0800
+
+    Update AUTHORS
+
+[33mcommit d54445a407686176e09ebf36398119eb885abc02[m
+Merge: 965a61b 528fbd9
+Author: James Tauber <jtauber@jtauber.com>
+Date:   Tue Jul 9 23:19:44 2013 -0700
+
+    Merge pull request #45 from edx/jtauber/license-change
+    
+    clarify LICENSE
+
+[33mcommit 528fbd94e2e71d6f0afbe25aedda60d86aa74194[m
+Author: James Tauber <jtauber@jtauber.com>
+Date:   Wed Jul 10 02:14:30 2013 -0400
+
+    clarify LICENSE
+    
+    - make clear the viral nature does not extend to other network services
+    - fixed title centering
+
+[33mcommit 965a61b0701bb93bebdcd7173c3538008a1ea009[m
+Merge: af2cac9 9dc97f1
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jun 7 12:15:25 2013 -0700
+
+    Merge pull request #43 from edx/dev
+    
+    fix md syntax
+
+[33mcommit 9dc97f1cf3371fdfca759664759b13b2f32d55b9[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Jun 7 15:14:55 2013 -0400
+
+    fix md syntax
+
+[33mcommit af2cac9500a4f1975d18ef452fe11e3475be4caa[m
+Merge: 2800704 c508393
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jun 7 12:13:47 2013 -0700
+
+    Merge pull request #42 from edx/dev
+    
+    Update readme with irc and mailing list links
+
+[33mcommit c50839373ba0940fc2981ad4ad43de54aeca51ea[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Jun 7 15:13:34 2013 -0400
+
+    Update readme with irc and mailing list links
+
+[33mcommit 28007041d693d2a1878279c0e07055743fdea1a2[m
+Merge: a72e462 026dee5
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jun 7 11:45:52 2013 -0700
+
+    Merge pull request #41 from edx/dev
+    
+    explicit int conversions
+
+[33mcommit 026dee57f79fdb6bbb81df2c0796177b3419337d[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Jun 7 14:33:28 2013 -0400
+
+    explicit int conversions
+
+[33mcommit a72e462bb77354f09e1c11b23caba2737bed612a[m
+Merge: f1276cb 6193608
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jun 7 05:16:41 2013 -0700
+
+    Merge pull request #40 from edx/dev
+    
+    Dev
+
+[33mcommit 61936085a7bffc2198c972c33cc8bf58bbc76bbe[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jun 7 08:15:23 2013 -0400
+
+    Bump version number
+
+[33mcommit 0ba70fe2b38e42092158351ea4c86c0254fbaf1a[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jun 7 08:10:34 2013 -0400
+
+    Fix setup.py
+
+[33mcommit f1276cb7166b82b9cdd7c325ee5311634eedf199[m
+Merge: 59089ff cf5e827
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Thu Jun 6 14:59:44 2013 -0700
+
+    Merge pull request #39 from edx/dev
+    
+    Add in test case creation, ability to run those test cases
+
+[33mcommit cf5e827c59c3c5c1454c86ad4a8687554d70b1c5[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 17:30:31 2013 -0400
+
+    Add in test case creation, ability to run those test cases
+
+[33mcommit 59089ffdc47582a18666b96947db84d297f45bdf[m
+Merge: 6d5d380 d8662d9
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Thu Jun 6 13:11:55 2013 -0700
+
+    Merge pull request #38 from edx/dev
+    
+    Add in contribution guidelines
+
+[33mcommit d8662d92fc386436c6bf7e8bafa3216acb33327c[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 16:10:19 2013 -0400
+
+    Add in contribution guidelines
+
+[33mcommit 6d5d38034dd5e44e5cea463977b89f06aecd7dcb[m
+Merge: 5c6a7ad fa58a68
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Thu Jun 6 12:53:03 2013 -0700
+
+    Merge pull request #37 from edx/dev
+    
+    Remove fisher, fix generic model generation, update tests
+
+[33mcommit fa58a68a496b08c5674baf15540a746ab6bee8be[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 15:50:49 2013 -0400
+
+    Lower training limit for faster travis execution
+
+[33mcommit 889b5bb3ae29b0800025629b54abd6662f032363[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 15:39:51 2013 -0400
+
+    Fix confidence generation
+
+[33mcommit 1708ba5948b10a3fb3824ed30af4fa54a182c0f5[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 15:35:07 2013 -0400
+
+    Fix issues with generic stuff
+
+[33mcommit f238e7dba42dd953e581bf0f92764c7e40349872[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 14:41:14 2013 -0400
+
+    Remove fisher, fix generic model generation, update tests
+
+[33mcommit 5c6a7ad7a377909a85cdfae568496b70e7bb0113[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jun 6 12:00:37 2013 -0400
+
+    Bugfixes
+
+[33mcommit 59bde54ec110b69663be3f0fd544dfdf6d1e7adb[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri May 31 15:09:27 2013 -0400
+
+    Fix potential travis issue
+
+[33mcommit 0e9ed3dddad514bc399808d8b15d16f0509cd46c[m
+Merge: f02baf7 fb93b5d
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu May 30 18:08:53 2013 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit f02baf7064adcd3e4a6657bad1d232c050973a3e[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu May 30 18:08:40 2013 -0400
+
+    Fix confidence generation
+
+[33mcommit fb93b5d06bc750c0ec02f17af1d62de02230f705[m
+Merge: a06241a 5607275
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 16:22:55 2013 -0700
+
+    Merge pull request #27 from edx/dev
+    
+    Commit to activate travis
+
+[33mcommit 560727561492c21d79cb16f1f0d11fe707441dff[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 19:09:39 2013 -0400
+
+    Reset thresholds -- for some reason, jenkins versions of numpy/scipy causing issues with scikits.learn
+
+[33mcommit 3df28416efba7a53bd2004368a92b76682d83738[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:58:42 2013 -0400
+
+    Edit test thresholds
+
+[33mcommit c5eae177dd93680ddb1f376ae193c9b1e6056c57[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:23:59 2013 -0400
+
+    Update nltk_data
+
+[33mcommit 11522530510d68506c587b662534611c8d492eac[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:18:16 2013 -0400
+
+    Commit to activate travis
+
+[33mcommit a06241abde9c1cc084fb8d672300c9ac0b798b68[m
+Merge: 7391e75 e5ad79a
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 15:17:55 2013 -0700
+
+    Merge pull request #26 from edx/dev
+    
+    Dev
+
+[33mcommit e5ad79a160f29fe9229eaa85c516aa631552f1ee[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:16:06 2013 -0400
+
+    Fix travis.yml
+
+[33mcommit f6dd9bdda04506dda785cc4a6d9991e1cf71f021[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:15:31 2013 -0400
+
+    Update gitignore
+
+[33mcommit 97d3b23bc78b3bc651774a67388b534c56ab8dec[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:14:28 2013 -0400
+
+    Shuffle requirements, add in travis file
+
+[33mcommit 7dc8236fe41b9c367ef43ad3103898f974b99b48[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:11:06 2013 -0400
+
+    Polish tests a bit, add in a test script
+
+[33mcommit 0536be97070e4850061dfd643e5a6f79627746e9[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Wed May 29 18:00:06 2013 -0400
+
+    Add in some test data and work on a test script
+
+[33mcommit 7391e75c36f5d78ad009445423cd5e4198f4607f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue May 28 14:39:31 2013 -0400
+
+    Fix docs
+
+[33mcommit 3fc157e4b333153287702bd3e7e3e4e12bc197a3[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue May 28 14:29:03 2013 -0400
+
+    Update nltk directions
+
+[33mcommit 2d3b69894ba8ea53a3960339d8dc59b9e1dae3f5[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue May 28 14:24:22 2013 -0400
+
+    Update setup.py
+
+[33mcommit 87f29f0b3e7702ab8ba9893c359c2d502df31e1b[m
+Merge: cd91e07 57b8178
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue May 28 14:19:43 2013 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit cd91e0796cfae2a3c2bd9d927cf6150312dd0aae[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue May 28 14:19:24 2013 -0400
+
+    Check in nltk data
+
+[33mcommit 57b8178591af6a39e510d064431a57615e6dd682[m
+Merge: a2d0173 e1bddd7
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Fri May 24 22:40:27 2013 -0700
+
+    Merge pull request #25 from edx/dev
+    
+    Update reqs
+
+[33mcommit e1bddd77b23eabb142fced52802919c4a63f57d9[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Sat May 25 01:40:10 2013 -0400
+
+    Update reqs
+
+[33mcommit a2d0173fe20cd4d6d9c63cf1c0114afa99318b27[m
+Merge: a991fa6 4c2c113
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Fri May 24 22:20:59 2013 -0700
+
+    Merge pull request #24 from edx/vik/rename
+    
+    Fix requirements for travis
+
+[33mcommit 4c2c1135f57d1e1651b3d3c9a20a7ccfbdb96c40[m
+Merge: fac8a87 a991fa6
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Sat May 25 01:20:48 2013 -0400
+
+    Merge remote-tracking branch 'origin/master' into vik/rename
+    
+    Conflicts:
+            requirements.txt
+
+[33mcommit fac8a8710e543e2d277272ffd6a36c1d48ecbc0a[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Sat May 25 01:19:40 2013 -0400
+
+    Fix requirements for travis
+
+[33mcommit a991fa6038ea3a5fa834b729ca19b46fd9a24bc2[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri May 17 18:32:41 2013 -0400
+
+    Update rtd link
+
+[33mcommit 4f81f1d1ee391b9995fd128fc4c4777a01c84c18[m
+Author: Nate Aune <nate@noderabbit.com>
+Date:   Fri May 17 18:49:08 2013 -0300
+
+    Update requirements.txt
+    
+    need for this to be in sync with discern's requirements
+
+[33mcommit f9e9c93067918be9d92ece75a067724063fa3cb7[m
+Merge: f65d609 01eddf6
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Thu May 16 14:54:16 2013 -0700
+
+    Merge pull request #23 from edx/jtauber/fix-readme
+    
+    fix README heading
+
+[33mcommit 01eddf6d621f5792e6ab032e5cb51705b6f74b12[m
+Author: James Tauber <jtauber@jtauber.com>
+Date:   Thu May 16 17:47:38 2013 -0400
+
+    fix README heading
+
+[33mcommit f65d6099fcaedf050b63948d44396a748d26f6e5[m
+Merge: 7a0f872 815e4a2
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Tue May 14 09:16:37 2013 -0700
+
+    Merge pull request #22 from kern3020/master
+    
+    update repo name to discern
+
+[33mcommit 815e4a26d5d7146f627f440de7983c6e660c7da7[m
+Author: John Kern <kern3020@gmail.com>
+Date:   Tue May 14 08:18:46 2013 -0700
+
+    ml-service-api renamed discern
+
+[33mcommit 7a0f87232d9b8558a8ff59a5c95f623be5c47cdd[m
+Merge: b54f1a0 7c1d060
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Mon May 13 13:46:45 2013 -0700
+
+    Merge pull request #21 from edx/jtauber/initial-authors
+    
+    initial AUTHORS file
+
+[33mcommit 7c1d060714c3f6c11198f3fe6fb6c64998eae920[m
+Author: James Tauber <jtauber@jtauber.com>
+Date:   Mon May 13 16:39:42 2013 -0400
+
+    initial AUTHORS file
+
+[33mcommit b54f1a0397e03f38258d2b2a3937df2017aea0b0[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon May 13 16:23:52 2013 -0400
+
+    Update package info
+
+[33mcommit 8cc465cbcca2f925f52581654763fde618cd1203[m
+Merge: 7d9d170 5ac6c69
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Mon May 13 08:26:47 2013 -0700
+
+    Merge pull request #20 from edx/vik/rename
+    
+    Rename, strip out statsd
+
+[33mcommit 5ac6c69ab475cab74345c5e5b360445fd8602235[m
+Author: Vik Paruchuri <vik.paruchuri@gmail.com>
+Date:   Mon May 13 11:16:46 2013 -0400
+
+    Rename, strip out statsd
+
+[33mcommit 7d9d1700b7003c630f07a7903e9eb9d5d97331a7[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu May 9 11:35:12 2013 -0400
+
+    Add in init.py
+
+[33mcommit 93b6ea51003bf7ccdc567d91d659c0723da14238[m
+Author: vik <vik@vik-VirtualBox.(none)>
+Date:   Thu May 2 19:57:32 2013 -0400
+
+    Update reqs
+
+[33mcommit 41a81b92b334eaa1fdf22ebce333af7e78abc9b6[m
+Merge: 7336d0a b9b283a
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Mon Apr 22 11:38:28 2013 -0700
+
+    Merge pull request #18 from edx/vik/make-package
+    
+    Vik/make package
+
+[33mcommit b9b283a68b6245f252231d6a7e4d36858f2dc1ad[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Apr 22 14:41:11 2013 -0400
+
+    Update docs for package
+
+[33mcommit 98ec66ee1ad6ae92bbbc581ecbd2246e564cd7c0[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Apr 22 14:26:26 2013 -0400
+
+    Add needed files back in
+
+[33mcommit e328366986b1485075fe2563dd686552d12387c9[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Apr 22 14:26:16 2013 -0400
+
+    Remove cached files
+
+[33mcommit 80367b9cb1a90f7ef7b8c47ed464b31597b86877[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Apr 22 14:22:58 2013 -0400
+
+    Update gitignore
+
+[33mcommit 52120fed4e653f9958f9ab99a22cd31fddbcda37[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Apr 22 14:04:21 2013 -0400
+
+    Package things up, trim out excess dependencies
+
+[33mcommit 80f01ca80c60737f4a6f2f385997b13fcd3cf069[m
+Merge: b205895 7336d0a
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Apr 22 13:48:37 2013 -0400
+
+    Merge remote-tracking branch 'origin/master' into vik/deployment_work
+
+[33mcommit b205895e81d19c32247b72cb57b052be835eed58[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Apr 17 19:00:17 2013 -0400
+
+    Add in full requirements file
+
+[33mcommit 5052e29b6bfbb0176ad330d99c8e4ae611ecd7b7[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Mar 13 17:01:23 2013 -0400
+
+    Add sphinx to reqs
+
+[33mcommit 7336d0a1c0897365871e1f4d9601980341d289c5[m
+Merge: ad9eb79 ddc245b
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Mar 13 14:00:16 2013 -0700
+
+    Merge pull request #17 from MITx/vik/deployment_work
+    
+    Update readme and add license
+
+[33mcommit ddc245bef178613325561292cfd70f40a54f0968[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Mar 13 16:59:52 2013 -0400
+
+    Update readme and add license
+
+[33mcommit ad9eb795c3ebc121919eea774d97a96dd4c59912[m
+Merge: 8e7bacb 6fc87e7
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Mar 13 13:56:21 2013 -0700
+
+    Merge pull request #16 from MITx/vik/deployment_work
+    
+    Vik/deployment work
+
+[33mcommit 6fc87e78f8044cd0d168725a5c873af9182f8db8[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Mar 13 16:55:16 2013 -0400
+
+    Minor doc changes
+
+[33mcommit e242d3ad8f5571f7d77084e584be2d4c00e4d790[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Mar 13 16:52:48 2013 -0400
+
+    Update docs
+
+[33mcommit 9f5bf6e002ce6ab44662a50ff0628d6941a0331e[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Mar 12 14:18:23 2013 -0400
+
+    Versions for reqs
+
+[33mcommit 8e7bacb97803fb6b19f3ae1231b4a05733ee90e6[m
+Merge: 27fba27 9f5bf6e
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Tue Mar 12 11:17:26 2013 -0700
+
+    Merge pull request #15 from MITx/vik/deployment_work
+    
+    Versions for reqs
+
+[33mcommit 7bab96a8020b39289640470b496821c2f5bca5b4[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Mar 12 14:07:24 2013 -0400
+
+    Fix sklearn version issue
+
+[33mcommit 27fba27c58c7ea70e6bbea055fb490822c25a16f[m
+Merge: 19b75bc 7bab96a
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Tue Mar 12 11:07:08 2013 -0700
+
+    Merge pull request #14 from MITx/vik/deployment_work
+    
+    Fix sklearn version issue
+
+[33mcommit 19b75bc196902db7dbc48eb920c57667dfb402a4[m
+Merge: ec69584 dfe62dd
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Tue Mar 5 07:45:30 2013 -0800
+
+    Merge pull request #13 from MITx/vik/deployment_work
+    
+    Adding in requirements back to root dir
+
+[33mcommit dfe62ddeaaaf84f5ad1e7dad26631de9a85902e7[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Mar 5 10:44:37 2013 -0500
+
+    Adding in requirements back to root dir
+
+[33mcommit ec6958435ba97a6e54f8451da27f303331e9079f[m
+Merge: 658ec6c 7f0ae18
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Feb 27 16:02:14 2013 -0800
+
+    Merge pull request #12 from MITx/vik/deployment_work
+    
+    Remove = sign
+
+[33mcommit 7f0ae188853c3b61c4fdd0818bb4b3e2b6e97897[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 19:02:08 2013 -0500
+
+    Remove = sign
+
+[33mcommit 658ec6cb4f5fe4d451df12380b45dea8a863f0b9[m
+Merge: 1e01a03 870d338
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Feb 27 16:00:37 2013 -0800
+
+    Merge pull request #11 from MITx/vik/deployment_work
+    
+    Get rid of req versions
+
+[33mcommit 870d338e7caf85faeb6ddfc7f2380129503d14f4[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 18:54:25 2013 -0500
+
+    Get rid of req versions
+
+[33mcommit 1e01a0338329c0ec74597ee511da4a87d5327511[m
+Merge: 51d33f2 5a7a6a3
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Feb 27 15:44:00 2013 -0800
+
+    Merge pull request #10 from MITx/vik/deployment_work
+    
+    Remove extraneous req
+
+[33mcommit 5a7a6a3ca395558807e5559da85528fc18ca492b[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 18:43:46 2013 -0500
+
+    Remove extraneous req
+
+[33mcommit 51d33f293c127983da01cebb3d86f959756c9768[m
+Merge: ed93065 18fdc2a
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Feb 27 14:21:20 2013 -0800
+
+    Merge pull request #9 from MITx/vik/deployment_work
+    
+    Vik/deployment work
+
+[33mcommit 18fdc2ab297c3f35d48b13b24ba568040b6d4ec7[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 13:19:09 2013 -0500
+
+    Fix argument passing
+
+[33mcommit 838cde83b63060cfb6b52fd65930acb7315c8e51[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 13:18:36 2013 -0500
+
+    Fix to return proper values
+
+[33mcommit 6d709db10dea8f6cc5fb2eabb5aa3473198cbdb8[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 13:10:24 2013 -0500
+
+    Fix some ML model creation issues
+
+[33mcommit 06f69411209d0cd4c9fd834067edbbdfb6f01236[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 27 12:49:51 2013 -0500
+
+    Fix some weird docstrings
+
+[33mcommit 92d51e677ec8b6a96bda8c5995ac7335be4deb88[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 17:03:22 2013 -0500
+
+    Docs, remove old variables from create and grade interfaces
+
+[33mcommit 3e7457ae2a8b9769b597abc22e904c85c2dbe5be[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 16:08:55 2013 -0500
+
+    Update docs
+
+[33mcommit aae59858bef7bccad52a8eb6476f5b3afbc8eab5[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 15:59:06 2013 -0500
+
+    Generate some documentation
+
+[33mcommit 2c7214d86a653188b85895f1c1573e82673af302[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 14:09:27 2013 -0500
+
+    Add some more docs for grade
+
+[33mcommit d62d57a7c2013f5e2b12885d38836d66bf6460be[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 14:05:38 2013 -0500
+
+    Incorporate confidence value into generic and regular
+
+[33mcommit 5378393bfa8aadb1c29e789f708e9d9b86154b78[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:48:45 2013 -0500
+
+    More documentation for ML grading algo
+
+[33mcommit b70221dbd0cda6eb96c9337a09c3e7ad6d496352[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:40:42 2013 -0500
+
+    Add some docs to create
+
+[33mcommit 006f934245a7ad3cafd7097386e8d24dd6d901c0[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:33:58 2013 -0500
+
+    Fix minor import issue
+
+[33mcommit d7f57c57138d056cbdd8e31bc60a2ee4f16dd680[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:31:13 2013 -0500
+
+    Implement flexible switching between classification and regression
+
+[33mcommit 4286f7e9d6f67ee735f3640fb43904ace5399c7f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:15:35 2013 -0500
+
+    Add files back in
+
+[33mcommit ade012fcb8ee79b07641c8855d0615b428a833be[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:15:22 2013 -0500
+
+    Remove all
+
+[33mcommit ec2148729316feb42a484bd897f089f672a339ee[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:14:29 2013 -0500
+
+    Add in current installation instructions
+
+[33mcommit 4011a2fbf44f0d51a041682959859b203528a397[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:07:12 2013 -0500
+
+    Move documentation and other files around
+
+[33mcommit e2c155af0984d89f2c811d6bb75b2a95bd5f355b[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 11:04:14 2013 -0500
+
+    move around data files
+
+[33mcommit 6b14ee8300aacff97db78e92a1e056f02d9c798a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 10:54:44 2013 -0500
+
+    Move around fisher.py
+
+[33mcommit 15040b0b0a65530cf861b24439a104c8861055f9[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 26 10:30:37 2013 -0500
+
+    General folder cleanup in prep for open source
+
+[33mcommit 1f693f8d67dee913f2348fb1af0c99a612811132[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 13 19:32:47 2013 -0500
+
+    Add in count to train on
+
+[33mcommit e13aafa3f6af6b0c3ed22ff77578c12bc4e313f1[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 13 17:58:13 2013 -0500
+
+    Fix cv error generator to run for 100
+
+[33mcommit c9596b82f2c808c33f396accfa29b7658ef050f8[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Feb 13 09:53:52 2013 -0500
+
+    Remove prompt overlap and topicality, fix cv error
+
+[33mcommit 1fb02a6d7d1a0c0651bec89caa6fddf6e4b33aab[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 19:46:33 2013 -0500
+
+    Parallel ml cv training
+
+[33mcommit 119a6390ecc2547813cf23fff97bac759de5b0f3[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 19:28:31 2013 -0500
+
+    Add in test cv single, fix up test cv full to work with arbitrary scales
+
+[33mcommit 56fab8d8af06ddc32c3d5c70732aa31ba003a1fd[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 19:25:13 2013 -0500
+
+    Fix rounding
+
+[33mcommit 80a39f7ccade68f3caae5b1fcb5c8f825eb244c1[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 19:03:06 2013 -0500
+
+    Write out proper summary stats
+
+[33mcommit afbe0bf075363760edb394d3946fb39b4c241b05[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 19:00:35 2013 -0500
+
+    Fixes to cv error gen code
+
+[33mcommit 5487bad68cb17d43f327d0fc960bd6f09aa10d49[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 18:56:32 2013 -0500
+
+    Fix ascii decoding issue
+
+[33mcommit fc598c06be9a84d2300e9f629f2fdcee276bee52[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Feb 12 18:47:22 2013 -0500
+
+    Modify cv test to run with hewlett stuff
+
+[33mcommit 0f3c2dac0983b386ba476073997f542078027049[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Feb 11 15:54:57 2013 -0500
+
+    Patch cv error estimate generation
+
+[33mcommit ed93065865e4f54845b49db215f579ae10c61439[m
+Merge: 2e81fda 844d0f7
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Mon Feb 11 06:41:36 2013 -0800
+
+    Merge pull request #8 from MITx/vik/deployment_work
+    
+    Vik/deployment work
+
+[33mcommit 844d0f7b28ea9cfa76d8cb6e0d8596e91bcf013f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Feb 4 10:58:55 2013 -0500
+
+    Fix cv issue
+
+[33mcommit 13deffc6fa3fc11f90138d53b1c1c04be6ba96fd[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Feb 4 10:52:31 2013 -0500
+
+    Fix some cv prediction stuff
+
+[33mcommit bb995e3b20a2256565ab46b3cc6e8bb006dd0566[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Feb 1 12:31:06 2013 -0500
+
+    Add in some testing scripts, install script
+
+[33mcommit 2e81fda2c433ee2cff4a18f697893187c7e6caa3[m
+Merge: 434571f ae7ab0f
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Fri Jan 25 13:15:51 2013 -0800
+
+    Merge pull request #7 from MITx/vik/deployment_work
+    
+    Vik/deployment work
+
+[33mcommit ae7ab0f010033e89b74405c0f4e6ee0d84ad30dd[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 17:34:28 2013 -0500
+
+    Make generic ML grading
+
+[33mcommit eb7578297b50825bc702efe65039b69682c39b11[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 17:23:25 2013 -0500
+
+    Fix div by zero error
+
+[33mcommit 79bf43f573cb244361d2c5200ba7ef3b8a37be77[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 17:20:52 2013 -0500
+
+    Generic ML model creation
+
+[33mcommit b8f9cdfc0422a0cba90cec6bd884af1f3010c20a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 17:08:21 2013 -0500
+
+    Create generic ml algo and test for it
+
+[33mcommit 3e7a4342d4a8486d5e6888f19ef68ad573526c89[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 14:25:01 2013 -0500
+
+    Add flexible maximum for feature counts
+
+[33mcommit 2e7f9e6ae1c37841195833cdbc739079bbffdeed[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 14:02:42 2013 -0500
+
+    Start working on predictor extractor
+
+[33mcommit cee523635165459076674ef45b576401e4a94a14[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 13:56:51 2013 -0500
+
+    More work on adding predictors to generic set
+
+[33mcommit ea255e9f4d68e1c5bc7c7d491efcda000493271d[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 11:48:07 2013 -0500
+
+    Adding generic ML algo
+
+[33mcommit 862c1637ea4ec31bfc6828cde14611618bb132ea[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 24 11:34:35 2013 -0500
+
+    Working on a generic ml algorithm
+
+[33mcommit c6664d06de6a5fee01e869851904ba0f963b9d1a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 17 10:01:26 2013 -0500
+
+    Fix issue with aspell not working properly
+
+[33mcommit 434571f69e56159ef9a71f3dddf139caabb7ab0b[m
+Merge: 240d554 c6664d0
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Thu Jan 17 07:01:12 2013 -0800
+
+    Merge pull request #6 from MITx/vik/deployment_work
+    
+    Fix issue with aspell not working properly
+
+[33mcommit 8930995c245da88098a72722aa412e930a6bb9a1[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 3 13:36:11 2013 -0500
+
+    Adjust constant
+
+[33mcommit 240d55472bcb0a921e77a00a416e9e4ba4baab7a[m
+Merge: 52a3efc 8930995
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Thu Jan 3 10:34:14 2013 -0800
+
+    Merge pull request #5 from MITx/vik/deployment_work
+    
+    Adjust constant
+
+[33mcommit 52a3efcc5bbdfd11c5f635380db6885863c4bdd7[m
+Merge: 4780792 e77640d
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Thu Jan 3 07:06:05 2013 -0800
+
+    Merge pull request #4 from MITx/vik/deployment_work
+    
+    Minor feedback updates (only display spelling/grammar for low scoring re...
+
+[33mcommit e77640db23bf1725065a87135aaa4969d0eae861[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Jan 3 09:45:17 2013 -0500
+
+    Minor feedback updates (only display spelling/grammar for low scoring responses)
+
+[33mcommit 9cd7079728ff30e816f890d2390c204406b246cd[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Jan 2 11:36:35 2013 -0500
+
+    Fix annoying score problem
+
+[33mcommit 478079269471dfbe73e44d99a175aa3fd260453f[m
+Merge: 1865c54 9cd7079
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Wed Jan 2 08:35:28 2013 -0800
+
+    Merge pull request #3 from MITx/vik/deployment_work
+    
+    Vik/deployment work
+
+[33mcommit fd8d2888c2642e81774632c491d5a175f2333429[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Dec 14 12:03:08 2012 -0500
+
+    Hopefully make model creator more robust
+
+[33mcommit 1865c54db65b0c45ae4861732fe308058f5f653a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Dec 12 19:57:04 2012 -0500
+
+    Fix encoding issues
+
+[33mcommit aa57934c6294d4b5a970a32d0d6f602fa75d22ce[m
+Merge: 093c871 5ec6a5f
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Dec 12 15:45:10 2012 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 093c8711f12a03fc4a187ce4b42082e9b494ba67[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Dec 12 15:44:31 2012 -0500
+
+    Add in apt-packages file
+
+[33mcommit 5ec6a5f931e99d6d3d0e36424d14b4c6e57ffc10[m
+Merge: 087eb3d b02e0e2
+Author: jarv <john@jarv.org>
+Date:   Tue Dec 11 13:07:55 2012 -0800
+
+    Merge pull request #2 from MITx/feature/jarv/numpy
+    
+    numpy needs to be installed before scipy
+
+[33mcommit b02e0e2016d1b71132a0d0dc5e4add8fd628e455[m
+Author: John Jarvis <jarv@edx.org>
+Date:   Tue Dec 11 16:05:31 2012 -0500
+
+    numpy needs to be installed before scipy
+    
+    See https://github.com/pypa/pip/issues/25
+    
+    We do the same thing for mitx, I doubt there will be any
+    fix for this unfortunately.
+
+[33mcommit 087eb3d4a4e7df1dfe8ea656112ac69dccfb5088[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Dec 7 16:54:51 2012 -0500
+
+    Grammar error fix
+
+[33mcommit 1a3c0334485a8a51c633d65739a3fa5d74f9e437[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Dec 6 17:13:13 2012 -0500
+
+    Fix minor feedback issue
+
+[33mcommit c3b419c8196382dc425c223cef4f56f1374c8ce8[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Dec 6 16:17:20 2012 -0500
+
+    Fix grammar feedback
+
+[33mcommit 9ebb8e47263499194e090bb1e41f7d45fcad3a95[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Dec 6 14:09:53 2012 -0500
+
+    Remove some old code
+
+[33mcommit d9b47a73fc0f524b96aaf8e659f796ea53b4c69f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Dec 6 13:47:21 2012 -0500
+
+    Fix some error handling
+
+[33mcommit e86966aa830d16d6755d7f3e2a771bbdad0763b1[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Dec 6 09:17:54 2012 -0500
+
+    Abstract out grader model files from ml repo.
+
+[33mcommit f48373e36713016ba45b227ad47c27312b577827[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Dec 6 08:41:50 2012 -0500
+
+    Add in support for returning ml confidence
+
+[33mcommit 0b1b7f2f4e4f833367d04826d16ca8fa304b1ff8[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Dec 4 15:15:53 2012 -0500
+
+    Deployment steps update
+
+[33mcommit 6591af1226975fbcfadf3ca7895f4135d24e0431[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Dec 4 13:46:45 2012 -0500
+
+    Fix issue with invalid text types
+
+[33mcommit bb934d320b089c8208cf6a0bba50491c68a429e1[m
+Merge: 791d4fd d9787fc
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Dec 3 18:33:50 2012 -0500
+
+    Merge remote-tracking branch 'origin/master'
+    
+    Merge in master commits
+
+[33mcommit 791d4fdd36364ac02a8a2d0261305ec1e4513be7[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Dec 3 18:33:35 2012 -0500
+
+    Update reqs, add deployment steps file
+
+[33mcommit d9787fc71f91ded9196f1df964815bec5dc55dbc[m
+Merge: 93c879d 365a381
+Author: VikParuchuri <vik.paruchuri@gmail.com>
+Date:   Mon Dec 3 14:06:00 2012 -0800
+
+    Merge pull request #1 from MITx/diana/log-exceptions
+    
+    add exception logging when model creation fails
+
+[33mcommit 365a3810cd82ceaefb926be1f612e034e72638df[m
+Author: Diana Huang <dkh@edx.org>
+Date:   Mon Dec 3 16:49:53 2012 -0500
+
+    add exception logging when model creation fails
+
+[33mcommit 93c879dd5dccad72f6b7117474d7302563be086c[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Dec 3 11:07:52 2012 -0500
+
+    Remove erroneous addition to requirements
+
+[33mcommit 80c2731c7a7d932d8ea62e8e8a7c7737c30a3a4f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 30 13:25:36 2012 -0500
+
+    Fix naming, other formatting
+
+[33mcommit d81b4306a462f71405c1f47118651607f8116000[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 30 13:22:22 2012 -0500
+
+    Modify tag names for correct rendering in lms
+
+[33mcommit 45d672e23b71a59187fed2d157f99d40ad9183be[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 29 13:38:09 2012 -0500
+
+    Update requirements
+
+[33mcommit 18582b61db505c6b748ceea1e2e2bdbf1a2bbe81[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 29 11:10:26 2012 -0500
+
+    Add in dogstatsd hooks for machine learning
+
+[33mcommit 1c06c0f7d248fcb0b7345a7e7248759d079cbd0a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 28 11:20:18 2012 -0500
+
+    Now generating cv error output
+
+[33mcommit e48e90a9f24f3f2e5111637077386039a9528ca9[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 28 11:13:10 2012 -0500
+
+    start modifying create to return cv errors
+
+[33mcommit bf87cfa7e562678e4dadad273fe40c96a5629d53[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 28 10:52:52 2012 -0500
+
+    Alter create to use the full passed in path
+
+[33mcommit 44738c167091332b552e2756b8c3982704176705[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 28 09:45:05 2012 -0500
+
+    Pull templating and path assignment out of ML functions
+
+[33mcommit 91b194c0f0f69c84cddd08de0d5747a6ac09be09[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Nov 20 18:52:54 2012 -0500
+
+    Remove code that assigns correctness--it is now centralized in lms
+
+[33mcommit cc8f91a67bf6e1c969a729bcdcfaa4defed32837[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 19 19:51:10 2012 -0500
+
+    Fix cv accuracy
+
+[33mcommit 886190a8e85884185bee831d28cfcb5f387e210b[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 19 15:56:28 2012 -0500
+
+    Test cv script
+
+[33mcommit a3b5a6be0485bbe17a0d28a9ce7f2e5cc6551bf0[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 19 15:37:25 2012 -0500
+
+    Adding in a test
+
+[33mcommit b6d19aca15a190d930e5808ec0fbbbf04f321a55[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 19 15:31:33 2012 -0500
+
+    Add in new test file and tests data, alter essay set to sanitize input more.
+
+[33mcommit b2d0ae38a52281c1039192daabbbb96f09dd1685[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 16 14:49:32 2012 -0500
+
+    Change feedback messages
+
+[33mcommit 883016d35b4e7643fd475dbe70390d5666a7f5ba[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 15 14:38:51 2012 -0500
+
+    Add way to pass back prompt overlap and punish essays that overlap too much.
+
+[33mcommit 8a7ea7ec667088fb9443f43728489288a65b2d9c[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 15 12:28:59 2012 -0500
+
+    Modifications to path
+
+[33mcommit 2ba3ee30cbb196860fa67e0a83ced579fe57a272[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 15 11:47:30 2012 -0500
+
+    Add new success key to results
+
+[33mcommit 69e8798137ca63b78adf0c41582e89973d2ea129[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 15 11:28:34 2012 -0500
+
+    Work on model file handling
+
+[33mcommit e1e52e8fa5d2025c6978e1df68d19dc950b6366d[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 15 11:22:21 2012 -0500
+
+    Add directory creation for model file if it isn't found
+
+[33mcommit 190102249c976812729ab9f440a814ac6dbbd287[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 15 11:01:36 2012 -0500
+
+    Add in ability to check if model file exists.
+
+[33mcommit ab6de5d9996a1dbdf8d002ded7f1de9b90ad10e4[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Nov 8 09:34:29 2012 -0500
+
+    Reorder code so that errors will return error template instead of crashing process
+
+[33mcommit 91013c9f6759330e6d2cdd4ccb2ff306201b4f7b[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 17:39:36 2012 -0500
+
+    Document feedback function
+
+[33mcommit 152e23d6d007da7f23a2c7421bb995bfedada5d6[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 17:29:45 2012 -0500
+
+    Change feedback generation, and change off topic indicator
+
+[33mcommit d718322bfa27212ab64b4560b16b33d6cceddf00[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 16:12:26 2012 -0500
+
+    Modified template to only have one top level tag (needed to be parsed via etree)
+
+[33mcommit 412a6ad3899ee3bc6e6086647bd9645acff5a106[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 13:49:09 2012 -0500
+
+    Change tags used for grammar and spelling to not have spaces.  Modify grade and create to append .p to passed in model path
+
+[33mcommit 9ad3a9ef799a0e40cffc426158d4fed0142a5068[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 12:01:10 2012 -0500
+
+    Change span tag to custom feedback tag
+
+[33mcommit 6f6617ba844599314f83ab07f09064557f0ddfe1[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 11:51:58 2012 -0500
+
+    Fix problem area pluralization by rewording text, use span tags instead of custom tags for spell/grammar.
+
+[33mcommit 5e05459f8e095f28ddd98488160bcf15cc9a6675[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 11:40:40 2012 -0500
+
+    Fix classes in template, add number of problem areas in shortform feedback.
+
+[33mcommit 9a39aeb357fec41b1cf263cfabe84231aabdb102[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 11:04:50 2012 -0500
+
+    Add in error template.  Return errors instead of feedback if errors exist.
+
+[33mcommit d6ddd2d7c919446c0cfa058b08b95ca1f4c0c055[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Nov 7 10:48:45 2012 -0500
+
+    Alter feedback handling to return feedback as an html string based on a template.
+
+[33mcommit f5df42e6049b31b1c147da7160e0595e595c6dbc[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Nov 6 16:31:35 2012 -0500
+
+    Add logging to grade
+
+[33mcommit b19ce60cc2d086d9fbb6edd8ffc8e659f71dd06f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Nov 6 16:26:27 2012 -0500
+
+    Patch issue with max having an empty sequence to operate on
+
+[33mcommit 334a94c6a1cc84d2d3423a38d5eeda72f5932f13[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 13:14:12 2012 -0500
+
+    alter markup to xml tags
+
+[33mcommit f11695c71f109d70ea52b91726a8151caf2aa2c5[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 12:44:52 2012 -0500
+
+    appropriately close grammar markup tags
+
+[33mcommit fe57f9a3a24ddbf51bc541f5b63e2ae2ab40cbaa[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 12:03:34 2012 -0500
+
+    fixed issue with multiple errors with same misspelling
+
+[33mcommit c36d48d41710729e6be60736aef89c244a8b2f93[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 11:24:45 2012 -0500
+
+    move part of speech tagger away from nltk word splitting
+
+[33mcommit b3bbeec306f3f1f111066eb15967741d324109d6[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 11:20:31 2012 -0500
+
+    fix markup issues
+
+[33mcommit 0cbcc2025cc7533cf1b3c7fda106aa1fa6768c24[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 11:10:53 2012 -0500
+
+    modify util functions to allow apostrophes
+
+[33mcommit 62ea08b7db86b077f81662b360c85c5cd8e69efb[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 10:55:36 2012 -0500
+
+    markup bugfixes to display grammar errors and not display corrected spelling
+
+[33mcommit a276d16cb933f6f5e16dd9c0a9fc7e81572815fd[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 10:21:13 2012 -0500
+
+    grammar markup
+
+[33mcommit 4652659cbb9d8fb0e8f779ccbc4802bcceb9b9ed[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 10:00:13 2012 -0500
+
+    altered grammar error function return
+
+[33mcommit 8a5dbd1e4ecc73a650b818cdf864a23a482383f2[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 09:54:43 2012 -0500
+
+    created way to get positions of bad grammar
+
+[33mcommit 760bcddc80d9af744fb6605323a7e983b6b40936[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 09:19:48 2012 -0500
+
+    adding markup for grammatical errors
+
+[33mcommit e2a4b13c08fe9d0ebc4abd968a30d9a833168bcd[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Mon Nov 5 09:03:05 2012 -0500
+
+    add way for spell corrector to markup text
+
+[33mcommit 709c160ed293805dd92ed480d208e3bde6fce5ea[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 17:37:52 2012 -0400
+
+    fix spell correction where wrong length was being returned
+
+[33mcommit 2d2838a939dccf2211b401cb497a4c7dc9f35742[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 17:22:12 2012 -0400
+
+    fix grammar error detection
+
+[33mcommit e291f7ee2e39a63c5cac62cdfbee4baabba19e50[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 17:13:17 2012 -0400
+
+    fix bug with spell check fallback option and add modifier ratio for grammar/spelling
+
+[33mcommit c6c7477ba8dc8d1839df5a24a16bb8ea0cd48f87[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 17:10:22 2012 -0400
+
+    add grammar fallback in case needed files cannot be found
+
+[33mcommit d7f6245d52bbd6bfe3abc2ae25d2c96021a20504[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 17:01:07 2012 -0400
+
+    add better off topic detection
+
+[33mcommit 5edf82ef681acc94b2830ae7ae01f2a1d83781f2[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 16:50:29 2012 -0400
+
+    reconfigure grammar and spell checking
+
+[33mcommit 9cd08f36bbe35c76ef2f1f0f9a91b7e92b3fd1a5[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 16:32:41 2012 -0400
+
+    fixed spell error detection
+
+[33mcommit 155a2c39ff8f370b5ae6ea0006c041fac92b24f6[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 16:26:12 2012 -0400
+
+    fixed float bug in grammar and spelling feedback
+
+[33mcommit b933419dcb00d2961e47d6a2ac220ff5108b3ce3[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 16:20:31 2012 -0400
+
+    grammar feedback and modified tests
+
+[33mcommit c04dc463db2763f4cf14c8f2d1dd2831217a925a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 15:54:07 2012 -0400
+
+    add feedback mechanism for grammar and spelling errors
+
+[33mcommit eff6f5f9b32aa0ca7380f9a56f2b3128884fe731[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 15:39:30 2012 -0400
+
+    patch some functionality relating to grammar errors
+
+[33mcommit d2ec5c55e0de9a4bdb1c680ac20922bda597e4d4[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 14:50:55 2012 -0400
+
+    put grammar detection in a function, add in grammar errors per word in feature extractor
+
+[33mcommit 9b0033c9f8f3cc91babd2ab6256c0b80bae633ef[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Nov 2 14:25:54 2012 -0400
+
+    add in spell errors per word and grammar errors per word to feature extractor
+
+[33mcommit 9beeab71b2af86c2ed623ad04b5bfba89f2f947a[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Oct 30 19:09:24 2012 -0400
+
+    created create module that contains model creator code for server
+
+[33mcommit 693c2f8997d13c318c64661077f96f029365f2aa[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Oct 30 17:44:20 2012 -0400
+
+    fix problem with new xserver
+
+[33mcommit 6b7405b94c4a73f7de181bc2558d387e8112cc54[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Tue Oct 30 13:26:39 2012 -0400
+
+    modified grade.py to work with new xserver
+
+[33mcommit f850957431ea1faeaf3b50dce9e2e4dd467bf852[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Oct 26 11:15:31 2012 -0400
+
+    division by zero error fixes
+
+[33mcommit ef68f076da0221ae9040ce7c616caa3448a8fd8c[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Fri Oct 26 09:27:24 2012 -0400
+
+    updates to base path and removed deprecated sklearn code
+
+[33mcommit e90b1d9034f53d57e56ff3bf3ad2d2968e7038ee[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 19:00:31 2012 -0400
+
+    Remove essay text return
+
+[33mcommit 8b47106ae82867aaff3ae8839a60a23f2f41ad17[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 18:46:24 2012 -0400
+
+    maximum essay length now truncates essay
+
+[33mcommit c381bebf836764985a138e81f613226e83b9f342[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 17:33:58 2012 -0400
+
+    added functionality to model creator
+
+[33mcommit a5ba0de3c5304c755e4936bc3288cc37c1b064bc[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 12:17:34 2012 -0400
+
+    added maximum essay length check to prevent abuse
+
+[33mcommit b913722833478924e0ea2e62ce5974d73569121e[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 12:08:35 2012 -0400
+
+    break up long lines
+
+[33mcommit 6ad21117c97d33fce2485b850778aabb168e2b46[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 11:49:13 2012 -0400
+
+    fixed tests and server
+
+[33mcommit 708153d1d6f7434e74c9ce4a88bc005e699211d9[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 11:31:03 2012 -0400
+
+    fixing test server functionality
+
+[33mcommit c040eaee2906f6b56487e3ba89c8859013516329[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 11:23:38 2012 -0400
+
+    moving around files and working on tests
+
+[33mcommit 6b80f741088d7a889fee4c3b72dff5dc212f42a4[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 11:15:56 2012 -0400
+
+    formatting changes, removed unneeded files, and moved tests to tests dir
+
+[33mcommit b1f0109bad666f33f70d8b46d234fe4c58bfde5c[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 11:15:01 2012 -0400
+
+    formatting changes, removed unneeded files, and moved tests to tests dir
+
+[33mcommit c070a02f5f375f5c4c26a1925f593b737c504460[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 10:56:14 2012 -0400
+
+    updated gitignore to not track temporary files
+
+[33mcommit 7bc92d3d7de1e4db2c9e1e3c285c2be66c57f8a6[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Thu Oct 25 10:54:54 2012 -0400
+
+    add tests compatible with nose
+
+[33mcommit 6f7ae1c2f33a29a508ca166486b5fcefdcf26fa2[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 17:22:24 2012 -0400
+
+    added documentation strings and reformatted code
+
+[33mcommit 88b1585b1ab651210b8f729bc67da9ecd25e4e95[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 17:17:56 2012 -0400
+
+    changed class names, added documentation
+
+[33mcommit 4f1c10ca5bd807c0416544a474c6a73ff432e272[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:59:29 2012 -0400
+
+    documenting util_functions
+
+[33mcommit 09b8c904979b4b27bb4ab8c6e1ff6cef16e5187f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:44:36 2012 -0400
+
+    adding documentation
+
+[33mcommit ead03fa6e52f1e678e4a72d3651bd9ac553ee13f[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:20:27 2012 -0400
+
+    moved test server code to its own folder
+
+[33mcommit 2b4d928a0eff00c2ca2149da31a5897867f84b14[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:09:23 2012 -0400
+
+    removing pyc and modify readme
+
+[33mcommit 189d56759e75af0bb3c0af3d35d7b18ba351eeea[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:05:45 2012 -0400
+
+    gitignore working
+
+[33mcommit 7a7a7edfd75e01751ac9c210ff2c0b25fa68ce49[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:04:33 2012 -0400
+
+    updating gitignore
+
+[33mcommit c3a626a49540965c30a46fff2fb83974f501671b[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 16:02:39 2012 -0400
+
+    cleaning up files
+
+[33mcommit 1a0a3c0a7edf2487085b0212de12861ddb5f5976[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 15:49:57 2012 -0400
+
+    cleaned up files
+
+[33mcommit 79dd16652a2386c62ce95005ff15bc35bb0f2af4[m
+Author: Vik Paruchuri <vik@edx.org>
+Date:   Wed Oct 24 15:47:12 2012 -0400
+
+    initial ml grader commit
