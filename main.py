@@ -12,7 +12,7 @@ from ease.create import create
 from ease import util_functions
 # training_set_rel3.xlsx 를 현재 디렉토리로 옮겨야됨
 #논술 한글
-testSet = pd.read_csv("ebsi_0701_testset.csv")
+testSet = pd.read_csv("ebsi_0701_testset_300.csv")
 trainSet = pd.read_csv("ebsi_0701_trainset.csv")
 df = trainSet["score"].value_counts()
 
@@ -49,6 +49,7 @@ from ease.grade import grade
 
 predList = []
 for data in testSet["essay"]:
+  data = util_functions.sub_chars(data)
   score = grade(model, data)
   predList.append(score["score"])
   print(score)

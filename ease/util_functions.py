@@ -195,7 +195,7 @@ def regenerate_good_tokens(string):
 
     # toks = nltk.word_tokenize(string)
     # pos_string = nltk.pos_tag(toks)
-    pos_seq = [tag[1] for tag in pos_string if tag[1] != "Josa"]
+    pos_seq = [tag[1] for tag in pos_string]
     pos_ngrams = ngrams(pos_seq, 2, 4)
     sel_pos_ngrams = f7(pos_ngrams)
     return sel_pos_ngrams

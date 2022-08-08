@@ -111,7 +111,7 @@ class FeatureExtractor(object):
         max_pos_seq=4
         bad_pos_positions=[]
         for i in range(0, len(text)):
-            pos_seq = [tag[1] for tag in pos[i] if tag[1] != 'Josa']
+            pos_seq = [tag[1] for tag in pos[i] if tag[1]]
             pos_ngrams = util_functions.ngrams(pos_seq, min_pos_seq, max_pos_seq)
             long_pos_ngrams=[z for z in pos_ngrams if z.count(' ')==(max_pos_seq-1)]
             bad_pos_tuples=[[z,z+max_pos_seq] for z in range(0,len(long_pos_ngrams)) if long_pos_ngrams[z] not in self._good_pos_ngrams]
