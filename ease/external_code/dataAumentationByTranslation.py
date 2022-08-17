@@ -51,6 +51,7 @@ def makingAugmentationbackTranslation(text, num):
                 break
             l = languages[index]
             if l == "ja":
+                index += 1
                 continue
             translatedList.append((l, translate_text(source="ko", target=l, text=japToKor)))
             index += 1

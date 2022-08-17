@@ -1,10 +1,11 @@
 #Provides interface functions to create and save models
-
-
+import lightgbm
 import numpy
 import re
 import nltk
 import sys
+
+import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle
 import os
@@ -117,21 +118,29 @@ def get_cv_error(clf,feats,scores):
 
     return results
 
-def get_algorithms(algorithm):
+def get_algorithms(algorithm, lgbm=False):
     """
     Gets two classifiers for each type of algorithm, and returns them.  First for predicting, second for cv error.
     type - one of util_functions.AlgorithmTypes
     """
     if algorithm == util_functions.AlgorithmTypes.classification:
-        clf = sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=.05,
-            max_depth=4, random_state=1,min_samples_leaf=3)
-        clf2=sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=.05,
-            max_depth=4, random_state=1,min_samples_leaf=3)
+        if lgbm:
+            clf = lightgbm.LGBMClassifier(n_estimators=400) #, device_type='gpu')
+            clf2 = lightgbm.LGBMClassifier(n_estimators=400) #, device_type='gpu')
+        else:
+            clf = sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=.05,
+                max_depth=4, random_state=1,min_samples_leaf=3)
+            clf2=sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=.05,
+                max_depth=4, random_state=1,min_samples_leaf=3)
     else:
-        clf = sklearn.ensemble.GradientBoostingRegressor(n_estimators=100, learning_rate=.05,
-            max_depth=4, random_state=1,min_samples_leaf=3)
-        clf2=sklearn.ensemble.GradientBoostingRegressor(n_estimators=100, learning_rate=.05,
-            max_depth=4, random_state=1,min_samples_leaf=3)
+        if lgbm:
+            clf = lightgbm.LGBMRegressor(n_estimators=400) #, device_type='gpu')
+            clf2 = lightgbm.LGBMRegressor(n_estimators=400) #, device_type='gpu')
+        else:
+            clf = sklearn.ensemble.GradientBoostingRegressor(n_estimators=100, learning_rate=.05,
+                max_depth=4, random_state=1,min_samples_leaf=3)
+            clf2=sklearn.ensemble.GradientBoostingRegressor(n_estimators=100, learning_rate=.05,
+                max_depth=4, random_state=1,min_samples_leaf=3)
     return clf, clf2
 
 
@@ -165,7 +174,7 @@ def extract_features_and_generate_model_predictors(predictor_set, algorithm=util
     return f, clf, cv_error_results
 
 
-def extract_features_and_generate_model(essays, algorithm=util_functions.AlgorithmTypes.regression):
+def extract_features_and_generate_model(essays, algorithm=util_functions.AlgorithmTypes.regression, lgbm=False):
     """
     Feed in an essay set to get feature vector and classifier
     essays must be an essay set object
@@ -176,7 +185,11 @@ def extract_features_and_generate_model(essays, algorithm=util_functions.Algorit
     f = feature_extractor.FeatureExtractor()
     f.initialize_dictionaries(essays)
 
-    train_feats = f.gen_feats(essays)
+    if lgbm:
+        feats, feats_name = f.gen_feats(essays, True)
+        train_feats = pd.DataFrame(feats, columns=feats_name)
+    else:
+        train_feats = f.gen_feats(essays)
 
     set_score = numpy.asarray(essays._score, dtype=numpy.int)
     if len(util_functions.f7(list(set_score)))>5:
@@ -184,7 +197,7 @@ def extract_features_and_generate_model(essays, algorithm=util_functions.Algorit
     else:
         algorithm = util_functions.AlgorithmTypes.classification
 
-    clf,clf2 = get_algorithms(algorithm)
+    clf,clf2 = get_algorithms(algorithm, lgbm=lgbm)
 
     cv_error_results=get_cv_error(clf2,train_feats,essays._score)
 

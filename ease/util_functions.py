@@ -32,7 +32,7 @@ os.environ["PATH"]="${PATH}:$JAVA_HOME/bin:"
 jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
 okt = Okt(jvmpath=jvm_path)
 #Paths to needed data files
-ESSAY_CORPUS_PATH = base_path + "data/kowikitext_20200920.txt"
+ESSAY_CORPUS_PATH = base_path + "data/nonsultext.txt"
 ESSAY_COR_TOKENS_PATH = base_path + "data/essay_cor_tokens.p"
 
 class AlgorithmTypes(object):

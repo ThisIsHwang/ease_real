@@ -40,7 +40,7 @@ def dump_input_data(text, score):
         error = "Could not dump data to file."
         log.exception(error)
 
-def create(text,score,prompt_string, dump_data=False):
+def create(text,score,prompt_string, dump_data=False, lgbm=False):
     """
     Creates a machine learning model from input text, associated scores, a prompt, and a path to the model
     TODO: Remove model path argument, it is needed for now to support legacy code
@@ -74,7 +74,7 @@ def create(text,score,prompt_string, dump_data=False):
         log.exception(msg)
     try:
         #Gets features from the essay set and computes error
-        feature_ext, classifier, cv_error_results = model_creator.extract_features_and_generate_model(e_set, algorithm = algorithm)
+        feature_ext, classifier, cv_error_results = model_creator.extract_features_and_generate_model(e_set, algorithm = algorithm, lgbm=lgbm)
         results['cv_kappa']=cv_error_results['kappa']
         results['cv_mean_absolute_error']=cv_error_results['mae']
         results['feature_ext']=feature_ext

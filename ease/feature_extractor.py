@@ -15,6 +15,7 @@ import operator
 import logging
 from Korpora import Korpora
 from konlpy.tag import Okt
+from sklearn.preprocessing import StandardScaler
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -38,6 +39,9 @@ class FeatureExtractor(object):
         self.dict_initialized = False
         self._spell_errors_per_character=0
         self._grammar_errors_per_character=0
+        self._bag_feats_name = []
+        self._length_feats_name = ['lengths', 'word_counts', 'comma_count', 'ap_count', 'punc_count', 'chars_per_word', 'good_pos_tags', 'good_pos_tag_prop']
+        self._prompt_feats_name = ['prompt_overlap', 'prompt_overlap_prop', 'expand_overlap', 'expand_overlap_prop']
 
     def initialize_dictionaries(self, e_set, max_feats2 = 200):
         """
@@ -177,7 +181,7 @@ class FeatureExtractor(object):
             raise util_functions.InputError(self, "Dictionaries must be initialized prior to generating bag features.")
         return bag_feats.copy()
 
-    def gen_feats(self, e_set):
+    def gen_feats(self, e_set, name=False):
         """
         Generates bag of words, length, and prompt features from an essay set object
         returns an array of features
@@ -189,7 +193,16 @@ class FeatureExtractor(object):
         overall_feats = numpy.concatenate((length_feats, prompt_feats, bag_feats), axis=1)
         overall_feats = overall_feats.copy()
 
-        return overall_feats
+        if name:
+            for sw in self._stem_dict.vocabulary:
+                self._bag_feats_name.append('S_' + sw.replace(" ", "_"))
+            for nw in self._normal_dict.vocabulary:
+                self._bag_feats_name.append('N_' + nw.replace(" ", "_"))
+            feats_name = self._bag_feats_name + self._length_feats_name + self._prompt_feats_name
+            return overall_feats, feats_name
+        else:
+            return overall_feats
+
 
     def gen_prompt_feats(self, e_set):
         """
