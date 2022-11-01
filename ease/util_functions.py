@@ -28,9 +28,13 @@ if not base_path.endswith("/"):
 
 os.environ["JAVA_HOME"]="/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home"
 os.environ["PATH"]="${PATH}:$JAVA_HOME/bin:"
-
-jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
-okt = Okt(jvmpath=jvm_path)
+# '/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java'
+# jvm_path = '/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home/lib/libjli.dylib'
+jvm_path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home/bin/java"
+# jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
+# jvm_path = '/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/MacOS/libjli.dylib'
+# okt = Okt(jvmpath=jvm_path)
+okt = Okt()
 #Paths to needed data files
 ESSAY_CORPUS_PATH = base_path + "data/nonsultext.txt"
 ESSAY_COR_TOKENS_PATH = base_path + "data/essay_cor_tokens.p"

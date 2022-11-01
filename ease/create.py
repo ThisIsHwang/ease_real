@@ -40,7 +40,7 @@ def dump_input_data(text, score):
         error = "Could not dump data to file."
         log.exception(error)
 
-def create(text,score,prompt_string, dump_data=False, lgbm=False):
+def create(text,score,prompt_string, dump_data=False, lgbm=False, generate_additional=True):
     """
     Creates a machine learning model from input text, associated scores, a prompt, and a path to the model
     TODO: Remove model path argument, it is needed for now to support legacy code
@@ -66,7 +66,7 @@ def create(text,score,prompt_string, dump_data=False, lgbm=False):
 
     try:
         #Create an essay set object that encapsulates all the essays and alternate representations (tokens, etc)
-        e_set = model_creator.create_essay_set(text, score, prompt_string)
+        e_set = model_creator.create_essay_set(text, score, prompt_string, generate_additional=generate_additional)
     except Exception as e:
         print(e)
         msg = "essay set creation failed."

@@ -125,8 +125,15 @@ prompt = """[가]에 제시된 상황을 [나], [다]를 바탕으로 분석하�
 essays = trainSet["essay"].tolist()
 scores = trainSet["score"].tolist()
 
-model = create(essays, scores, prompt, lgbm=True)
-joblib.dump(model, 'model_for_dockhae.pkl')
+
+model_name = 'model_for_dockhae.pkl'
+if os.path.isfile(model_name):
+    model = joblib.load(model_name)
+else:
+    model = create(essays, scores, prompt, lgbm=True, generate_additional=False)
+    joblib.dump(model, model_name)
+
+
 # model = joblib.load('model.pkl')
 for key, value in model.items():
   if key != "text" and key != "score" and key != "prompt":
@@ -134,23 +141,21 @@ for key, value in model.items():
 
 from ease.grade import grade
 
-
-
-predList = []
-for data in testSet["essay"]:
-  data = util_functions.sub_chars(data)
-  score = grade(model, data)
-  predList.append(score["score"])
-  print(score)
-  print("당신의 점수는", score["score"], "점입니다.")
-
-data = util_functions.sub_chars(data)
-score = grade(model, "씨발 몰라 개새끼야")
-print(score)
-print("kappa_score:", util_functions.quadratic_weighted_kappa(predList, list(testSet["score"])))
-print()
-print(predList)
-print(list(testSet["score"]))
+# predList = []
+# for data in testSet["essay"]:
+#   data = util_functions.sub_chars(data)
+#   score = grade(model, data)
+#   predList.append(score["score"])
+#   print(score)
+#   print("당신의 점수는", score["score"], "점입니다.")
+#
+# # data = util_functions.sub_chars(data)
+# score = grade(model, "씨발 몰라 개새끼야")
+# print(score)
+# print("kappa_score:", util_functions.quadratic_weighted_kappa(predList, list(testSet["score"])))
+# print()
+# print(predList)
+# print(list(testSet["score"]))
 
 clf = model['classifier']
 f_n = clf.feature_name_
@@ -169,47 +174,49 @@ from sklearn.model_selection import train_test_split
 # df = pd.read_csv(file_path)
 # train_df, test_df = train_test_split(df, train_size=0.8)
 
-e_train = trainSet["essay"].tolist()
-e_test = testSet["essay"].tolist()
-set_train = set()
-okt = Okt()
-for e in e_train:
-  temp_set = set(okt.morphs(e))
-  set_train = set_train | temp_set
-set_test = set()
-okt = Okt()
-for e in e_test:
-  temp_set = set(okt.morphs(e))
-  set_test = set_test | temp_set
-intersec = set_train & set_test
-set_train_stem = set()
-okt = Okt()
-for e in e_train:
-  temp_set = set(okt.morphs(e, stem=True))
-  set_train_stem = set_train_stem | temp_set
-set_test_stem = set()
-okt = Okt()
-for e in e_test:
-  temp_set = set(okt.morphs(e, stem=True))
-  set_test_stem = set_test_stem | temp_set
-intersec_stem = set_train_stem & set_test_stem
-print(f'Normal vocab:\n train: {len(set_train)} test: {len(set_test)} intersection: {len(intersec)} OOV percent: {(len(set_test)-len(intersec))/len(set_test)*100}')
-print(f'Stem vocab:\n train: {len(set_train_stem)} test: {len(set_test_stem)} intersection: {len(intersec_stem)} OOV percent: {(len(set_test_stem)-len(intersec_stem))/len(set_test_stem)*100}')
+if False:
+    e_train = trainSet["essay"].tolist()
+    e_test = testSet["essay"].tolist()
+    set_train = set()
+    okt = Okt()
+    for e in e_train:
+      temp_set = set(okt.morphs(e))
+      set_train = set_train | temp_set
+    set_test = set()
+    okt = Okt()
+    for e in e_test:
+      temp_set = set(okt.morphs(e))
+      set_test = set_test | temp_set
+    intersec = set_train & set_test
+    set_train_stem = set()
+    okt = Okt()
+    for e in e_train:
+      temp_set = set(okt.morphs(e, stem=True))
+      set_train_stem = set_train_stem | temp_set
+    set_test_stem = set()
+    okt = Okt()
+    for e in e_test:
+      temp_set = set(okt.morphs(e, stem=True))
+      set_test_stem = set_test_stem | temp_set
+    intersec_stem = set_train_stem & set_test_stem
+    print(f'Normal vocab:\n train: {len(set_train)} test: {len(set_test)} intersection: {len(intersec)} OOV percent: {(len(set_test)-len(intersec))/len(set_test)*100}')
+    print(f'Stem vocab:\n train: {len(set_train_stem)} test: {len(set_test_stem)} intersection: {len(intersec_stem)} OOV percent: {(len(set_test_stem)-len(intersec_stem))/len(set_test_stem)*100}')
 
 from lightgbm import plot_importance
 import matplotlib.pyplot as plt
 
+
 fig, ax = plt.subplots(figsize=(10, 12))
-df_feature_importance = (
-    pd.DataFrame({
-        'feature': model.feature_name(),
-        'importance': model.feature_importance(),
-    })
-    .sort_values('importance', ascending=False)
-)
-print(df_feature_importance)
+# df_feature_importance = (
+#     pd.DataFrame({
+#         'feature': f_n,
+#         'importance': f_i,
+#     })
+#     .sort_values('importance', ascending=False)
+# )
+# print(df_feature_importance)
+plt.rc('font', family='AppleGothic')
 plot_importance(model['classifier'], ax=ax)
 plt.show()
-
 
 print(1)
