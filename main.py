@@ -126,11 +126,11 @@ essays = trainSet["essay"].tolist()
 scores = trainSet["score"].tolist()
 
 
-model_name = 'model_for_dockhae.pkl'
+model_name = 'model_jae.pkl'
 if os.path.isfile(model_name):
     model = joblib.load(model_name)
 else:
-    model = create(essays, scores, prompt, lgbm=True, generate_additional=False)
+    model = create(essays, scores, prompt, lgbm=True, generate_additional=True)
     joblib.dump(model, model_name)
 
 
@@ -215,7 +215,7 @@ fig, ax = plt.subplots(figsize=(10, 12))
 #     .sort_values('importance', ascending=False)
 # )
 # print(df_feature_importance)
-plt.rc('font', family='AppleGothic')
+plt.rc('font', family=['NanumGothic', ])
 plot_importance(model['classifier'], ax=ax)
 plt.show()
 

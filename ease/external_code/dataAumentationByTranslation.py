@@ -1,5 +1,5 @@
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/jaecheol/opt/anaconda3/envs/nonmentor/ease_real/nonmentor-4378d254e9ba.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/jaecheol/opt/anaconda3/envs/nonmentor/key.json"
 import pandas as pd
 import random
 
