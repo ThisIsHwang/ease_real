@@ -14,6 +14,7 @@ import re
 from hanspell import spell_checker
 import KorEDA.eda
 from external_code import pusanCorrectGrammer, dataAumentationByTranslation
+from konlpy.tag import Mecab
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -49,7 +50,7 @@ class EssaySet(object):
         self._prompt = ""
         self._spelling_errors = []
         self._markup_text = []
-        self._okt = Okt(jvmpath=jvm_path)
+        self._okt = Mecab()
     def add_essay(self, essay_text, essay_score, essay_generated=0):
         """
         Add new (essay_text,essay_score) pair to the essay set.
