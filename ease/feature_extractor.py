@@ -6,6 +6,8 @@ import numpy
 import re
 import nltk
 import sys
+
+import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle
 import os
@@ -16,6 +18,17 @@ import logging
 from Korpora import Korpora
 from konlpy.tag import Okt
 from sklearn.preprocessing import StandardScaler
+from .external_code.summary_compare import Summarizing, Comparing
+from .external_code.similarity import Similarity, max_pool, mean_pool
+import pandas as pd
+from konlpy.tag import Okt
+import pandas as pd
+
+def getVerbAndNoun(text):
+    okt = Okt()
+    df = pd.DataFrame(okt.pos(text), columns=['morph', 'tag'])
+    df.set_index('tag', inplace=True)
+    return df['morph'].values
 
 base_path = os.path.dirname(__file__)
 sys.path.append(base_path)
@@ -181,16 +194,23 @@ class FeatureExtractor(object):
             raise util_functions.InputError(self, "Dictionaries must be initialized prior to generating bag features.")
         return bag_feats.copy()
 
-    def gen_feats(self, e_set, name=False):
+    def gen_feats(self, e_set, PK_NUM, sbert=None, name=False, grade=False):
         """
         Generates bag of words, length, and prompt features from an essay set object
         returns an array of features
         e_set - EssaySet object
         """
+        if grade:
+            similarity_feats, sim_matrix = self.gen_similarity_feats(e_set, PK_NUM, sbert=sbert, grade=grade)
+        else:
+            similarity_feats = self.gen_similarity_feats(e_set, PK_NUM, sbert=sbert, grade=grade)
+        type_feats = self.gen_type_feats(e_set)
         bag_feats = self.gen_bag_feats(e_set)
         length_feats = self.gen_length_feats(e_set)
         prompt_feats = self.gen_prompt_feats(e_set)
-        overall_feats = numpy.concatenate((length_feats, prompt_feats, bag_feats), axis=1)
+        overall_feats = numpy.concatenate((length_feats, prompt_feats, bag_feats, type_feats, similarity_feats), axis=1)
+        # overall_feats = numpy.concatenate((length_feats, prompt_feats, bag_feats), axis=1)
+
         overall_feats = overall_feats.copy()
 
         if name:
@@ -198,11 +218,51 @@ class FeatureExtractor(object):
                 self._bag_feats_name.append('S_' + sw.replace(" ", "_"))
             for nw in self._normal_dict.vocabulary:
                 self._bag_feats_name.append('N_' + nw.replace(" ", "_"))
-            feats_name = self._bag_feats_name + self._length_feats_name + self._prompt_feats_name
-            return overall_feats, feats_name
-        else:
-            return overall_feats
+            feats_name = self._bag_feats_name + self._length_feats_name + self._prompt_feats_name + \
+                         ['comparing', 'summarizing'] + [f'max_sim{i}' for i in range(similarity_feats.shape[1]//2)] + [f'mean_sim{i}' for i in range(similarity_feats.shape[1]//2)]
+            # feats_name = self._bag_feats_name + self._length_feats_name + self._prompt_feats_name
+            if grade:
+                return overall_feats, feats_name, sim_matrix
+            else:
+                return overall_feats, feats_name
 
+        else:
+            if grade:
+                return overall_feats, sim_matrix
+            else:
+                return overall_feats
+
+    def gen_type_feats(self, e_set):
+        text = e_set._text
+        compare_model = Comparing()
+        summarize_model = Summarizing()
+        compare = []
+        summarize = []
+        for t in text:
+            sentences = util_functions.sentence_split(t)
+            c_num = 0
+            s_num = 0
+            for s in sentences:
+                c_num+=compare_model.predict(s)
+                s_num+=summarize_model.predict(s)
+            compare.append(c_num)
+            summarize.append(s_num)
+        type_feats = np.array((compare, summarize)).transpose()
+        return type_feats.copy()
+
+    def gen_similarity_feats(self, e_set, PK_NUM, sbert=None, grade=False):
+        text = e_set._text
+        similarity_model = Similarity(f'Problem_{PK_NUM}', sbert=sbert)
+        result = np.empty([1, len(similarity_model.answer_embeddings)*2])
+        for t in text:
+            sentences = util_functions.sentence_split(t)
+            sim_matrix = similarity_model.sbert_sim(sentences)
+            sim_pooled = np.concatenate((max_pool(sim_matrix),mean_pool(sim_matrix)), axis=0).reshape((1, -1))
+            result = np.concatenate((result, sim_pooled), axis=0)
+        if grade:
+            return result[1:], sim_matrix
+        else:
+            return result[1:]
 
     def gen_prompt_feats(self, e_set):
         """
@@ -310,3 +370,10 @@ class FeatureExtractor(object):
             all_feedback.append(individual_feedback)
 
         return all_feedback
+
+
+def getVerbAndNoun(text):
+    okt = Okt()
+    df = pd.DataFrame(okt.pos(text), columns=['morph', 'tag'])
+    df.set_index('tag', inplace=True)
+    return df['morph'].values

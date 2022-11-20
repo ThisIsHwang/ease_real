@@ -28,9 +28,13 @@ if not base_path.endswith("/"):
 
 os.environ["JAVA_HOME"]="/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home"
 os.environ["PATH"]="${PATH}:$JAVA_HOME/bin:"
-
-jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
-okt = Okt(jvmpath=jvm_path)
+# '/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java'
+# jvm_path = '/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home/lib/libjli.dylib'
+jvm_path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_341.jdk/Contents/Home/bin/java"
+# jvm_path = "/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/Home/bin/java"
+# jvm_path = '/Library/Java/JavaVirtualMachines/zulu-15.jdk/Contents/MacOS/libjli.dylib'
+# okt = Okt(jvmpath=jvm_path)
+okt = Okt()
 #Paths to needed data files
 ESSAY_CORPUS_PATH = base_path + "data/nonsultext.txt"
 ESSAY_COR_TOKENS_PATH = base_path + "data/essay_cor_tokens.p"
@@ -44,7 +48,7 @@ class AlgorithmTypes(object):
 
 def create_model_path(model_path):
     """
-    Creates a path to model files
+    Creates a path to models files
     model_path - string
     """
     if not model_path.startswith("/") and not model_path.startswith("models/"):
@@ -66,7 +70,7 @@ def sub_chars(string):
     #Define replacement patterns
     open_par_pat = r"(\(|\[|\{\<)"
     close_par_pat = r"(\)|\]|\}\>)"
-    sub_pat = r"[^㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻A-Za-z가-힣\.\ ?!,;:\(\)]"
+    sub_pat = r"[^㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻A-Za-z가-힣\.\ ?!,;:\(\)0-9]"
     char_pat = r"\."
     com_pat = r","
     ques_pat = r"\?"
@@ -89,7 +93,7 @@ def sub_chars(string):
     nstring = re.sub(whitespace_pat, " ", nstring)
     for s, c in zip(separatedCharList, circleCharList):
         nstring = re.sub(s, c,nstring)
-    return nstring
+    return nstring.strip()
 
 def safe_list_get (l, idx, default):
   try:
@@ -542,3 +546,12 @@ def getMedian(numericValues):
         upper = theValues[len(theValues) / 2]
 
         return (float(lower + upper)) / 2
+
+
+def sentence_split(text):
+    s_list = text.split('.')
+    result = []
+    for i in s_list:
+        if i != '':
+            result.append(i+'.')
+    return result

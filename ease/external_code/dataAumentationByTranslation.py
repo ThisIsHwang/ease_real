@@ -1,6 +1,5 @@
-
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/hwangyun/PycharmProjects/ease_real/nonmentor-4378d254e9ba.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/ubuntu/anaconda3/envs/nonmentor/key.json"
 import pandas as pd
 import random
 
@@ -15,7 +14,7 @@ def list_languages():
     results = translate_client.get_languages()
     return results
 
-def translate_text(source, target, text):
+def translate_text(source, target, text, google=None):
     """Translates text into the target language.
 
     Target must be an ISO 639-1 language code.

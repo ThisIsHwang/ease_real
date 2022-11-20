@@ -20,6 +20,7 @@ from . import util_functions
 from . import feature_extractor
 import logging
 from . import predictor_extractor
+from xgboost import XGBClassifier, XGBRegressor
 
 log=logging.getLogger()
 
@@ -70,7 +71,7 @@ def read_in_test_data_twocolumn(filename,sep=","):
     return score, text
 
 
-def create_essay_set(text, score, prompt_string, generate_additional=True):
+def create_essay_set(text, d_score, n_score, p_score, prompt_string, generate_additional=True):
     """
     Creates an essay set from given data.
     Text should be a list of strings corresponding to essay text.
@@ -82,11 +83,11 @@ def create_essay_set(text, score, prompt_string, generate_additional=True):
     for i in range(0, len(text)):
         print(i)
 
-        x.add_essay(text[i], score[i]) #데이터셋 Essay을 전처리하여 추가한다.
+        x.add_essay(text[i], d_score[i], n_score[i], p_score[i]) #데이터셋 Essay을 전처리하여 추가한다.
 
-
-        if score[i] == min(score) and generate_additional == True:
-            x.generate_additional_essays(x._clean_text[len(x._clean_text) - 1], score[i])
+        # 데이터 증강
+        if d_score[i] == min(d_score) or n_score[i] == min(n_score) or p_score[i] == min(p_score) and generate_additional == True:
+            x.generate_additional_essays(x._clean_text[len(x._clean_text) - 1], d_score[i], n_score[i], p_score[i])
 
     x.update_prompt(prompt_string)
 
@@ -101,7 +102,7 @@ def get_cv_error(clf,feats,scores):
     """
     results={'success' : False, 'kappa' : 0, 'mae' : 0}
     try:
-        #cv_preds=util_functions.gen_cv_preds(clf,feats,scores)
+        # cv_preds=util_functions.gen_cv_preds(clf,feats,scores)
         cv_preds=util_functions.gen_preds2(clf, feats, scores)
         err=numpy.mean(numpy.abs(numpy.array(cv_preds)-scores))
         kappa=util_functions.quadratic_weighted_kappa(list(cv_preds),scores)
@@ -118,24 +119,31 @@ def get_cv_error(clf,feats,scores):
 
     return results
 
-def get_algorithms(algorithm, lgbm=False):
+def get_algorithms(algorithm, model_type=False):
     """
     Gets two classifiers for each type of algorithm, and returns them.  First for predicting, second for cv error.
     type - one of util_functions.AlgorithmTypes
     """
     if algorithm == util_functions.AlgorithmTypes.classification:
-        if lgbm:
+        if model_type == 'lgbm':
             clf = lightgbm.LGBMClassifier(n_estimators=400) #, device_type='gpu')
             clf2 = lightgbm.LGBMClassifier(n_estimators=400) #, device_type='gpu')
+        elif model_type == 'xgboost':
+            clf = XGBClassifier(n_estimators=100, learning_rate=.01, max_depth=3, colsample_bytree = 0.8, subsample= 0.8, reg_lambda = 1, reg_alpha= 1)
+            clf2 = XGBClassifier(n_estimators=100, learning_rate=.01, max_depth=3, colsample_bytree = 0.8, subsample= 0.8, reg_lambda = 1,  reg_alpha = 1)
         else:
             clf = sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=.05,
                 max_depth=4, random_state=1,min_samples_leaf=3)
             clf2=sklearn.ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=.05,
                 max_depth=4, random_state=1,min_samples_leaf=3)
     else:
-        if lgbm:
+        if model_type == 'lgbm':
             clf = lightgbm.LGBMRegressor(n_estimators=400) #, device_type='gpu')
             clf2 = lightgbm.LGBMRegressor(n_estimators=400) #, device_type='gpu')
+        elif model_type == 'xgboost':
+            clf = XGBRegressor(n_estimators=100, learning_rate=.05, max_depth=4)
+
+            clf2 = XGBRegressor(n_estimators=100, learning_rate=.05, max_depth=4)
         else:
             clf = sklearn.ensemble.GradientBoostingRegressor(n_estimators=100, learning_rate=.05,
                 max_depth=4, random_state=1,min_samples_leaf=3)
@@ -174,7 +182,7 @@ def extract_features_and_generate_model_predictors(predictor_set, algorithm=util
     return f, clf, cv_error_results
 
 
-def extract_features_and_generate_model(essays, algorithm=util_functions.AlgorithmTypes.regression, lgbm=False):
+def extract_features_and_generate_model(essays, algorithm=util_functions.AlgorithmTypes.regression, model_type=False):
     """
     Feed in an essay set to get feature vector and classifier
     essays must be an essay set object
@@ -185,9 +193,12 @@ def extract_features_and_generate_model(essays, algorithm=util_functions.Algorit
     f = feature_extractor.FeatureExtractor()
     f.initialize_dictionaries(essays)
 
-    if lgbm:
+    if model_type == 'lgbm':
         feats, feats_name = f.gen_feats(essays, True)
         train_feats = pd.DataFrame(feats, columns=feats_name)
+    elif model_type == 'xgboost':
+        feats, feats_name = f.gen_feats(essays, True)
+        train_feats = feats
     else:
         train_feats = f.gen_feats(essays)
 
@@ -197,7 +208,7 @@ def extract_features_and_generate_model(essays, algorithm=util_functions.Algorit
     else:
         algorithm = util_functions.AlgorithmTypes.classification
 
-    clf,clf2 = get_algorithms(algorithm, lgbm=lgbm)
+    clf,clf2 = get_algorithms(algorithm, model_type=model_type)
 
     cv_error_results=get_cv_error(clf2,train_feats,essays._score)
 
@@ -211,20 +222,73 @@ def extract_features_and_generate_model(essays, algorithm=util_functions.Algorit
 
     return f, clf, cv_error_results
 
+def extract_features_and_generate_models(essays, algorithm=util_functions.AlgorithmTypes.regression, model_type=False):
+    """
+    Feed in an essay set to get feature vector and classifier
+    essays must be an essay set object
+    additional array is an optional argument that can specify
+    a numpy array of values to add in
+    returns a trained FeatureExtractor object and a trained classifier
+    """
+    f = feature_extractor.FeatureExtractor()
+    f.initialize_dictionaries(essays)
+
+    if model_type == 'lgbm':
+        feats, feats_name = f.gen_feats(essays, True)
+        train_feats = pd.DataFrame(feats, columns=feats_name)
+    elif model_type == 'xgboost':
+        feats, feats_name = f.gen_feats(essays, True)
+        train_feats = feats
+    else:
+        train_feats = f.gen_feats(essays)
+
+    set_d_score = numpy.asarray(essays._d_score, dtype=numpy.int)
+    set_n_score = numpy.asarray(essays._n_score, dtype=numpy.int)
+    set_p_score = numpy.asarray(essays._p_score, dtype=numpy.int)
+    set_score = numpy.asarray(essays._score, dtype=numpy.int)
+    if len(util_functions.f7(list(set_d_score)))>5:
+        algorithm = util_functions.AlgorithmTypes.regression
+    else:
+        algorithm = util_functions.AlgorithmTypes.classification
+
+    d_clf, d_clf2 = get_algorithms(algorithm, model_type=model_type)
+    n_clf, n_clf2 = get_algorithms(algorithm, model_type=model_type)
+    p_clf, p_clf2 = get_algorithms(algorithm, model_type=model_type)
+    clf,clf2 = get_algorithms(algorithm, model_type=model_type)
+
+    d_cv_error_results=get_cv_error(d_clf2,train_feats,essays._d_score)
+    n_cv_error_results=get_cv_error(n_clf2,train_feats,essays._n_score)
+    p_cv_error_results=get_cv_error(p_clf2,train_feats,essays._p_score)
+    cv_error_results=get_cv_error(clf2,train_feats,essays._score)
+
+    try:
+        d_clf.fit(train_feats, set_d_score)
+        n_clf.fit(train_feats, set_n_score)
+        p_clf.fit(train_feats, set_p_score)
+        # clf.fit(train_feats, set_score)
+    except ValueError:
+        log.exception("Not enough classes (0,1,etc) in sample.")
+        set_score[0]=1
+        set_score[1]=0
+        clf.fit(train_feats, set_score)
+
+    return f, d_clf, n_clf, p_clf, d_cv_error_results, n_cv_error_results, p_cv_error_results
+
+
 def dump_model_to_file(prompt_string, feature_ext, classifier, text, score, model_path):
     """
-    Writes out a model to a file.
+    Writes out a models to a file.
     prompt string is a string containing the prompt
     feature_ext is a trained FeatureExtractor object
     classifier is a trained classifier
-    model_path is the path of write out the model file to
+    model_path is the path of write out the models file to
     """
-    model_file = {'prompt': prompt_string, 'extractor': feature_ext, 'model': classifier, 'text' : text, 'score' : score}
+    model_file = {'prompt': prompt_string, 'extractor': feature_ext, 'models': classifier, 'text' : text, 'score' : score}
     pickle.dump(model_file, file=open(model_path, "w"))
 
 def create_essay_set_and_dump_model(text,score,prompt,model_path,additional_array=None):
     """
-    Function that creates essay set, extracts features, and writes out model
+    Function that creates essay set, extracts features, and writes out models
     See above functions for argument descriptions
     """
     essay_set=create_essay_set(text,score,prompt)
