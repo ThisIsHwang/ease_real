@@ -40,6 +40,9 @@ class EssaySet(object):
 
         self._type = essaytype
         self._score = []
+        self._d_score = []
+        self._n_score = []
+        self._p_score = []
         self._text = []
         self._id = []
         self._clean_text = []
@@ -50,8 +53,8 @@ class EssaySet(object):
         self._prompt = ""
         self._spelling_errors = []
         self._markup_text = []
-        self._okt = Mecab()
-    def add_essay(self, essay_text, essay_score, essay_generated=0):
+        self._okt = Okt()
+    def add_essay(self, essay_text, essay_d_score, essay_n_score, essay_p_score, essay_generated=0):
         """
         Add new (essay_text,essay_score) pair to the essay set.
         essay_text must be a string.
@@ -75,16 +78,20 @@ class EssaySet(object):
 
         try:
             # Try conversion of types
-            essay_score = int(essay_score)
+            essay_d_score = int(essay_d_score)
+            essay_n_score = int(essay_n_score)
+            essay_p_score = int(essay_p_score)
             essay_text = essay_text.decode('utf-8')
         except:
             # Nothing needed here, will return error in any case.
-            log.exception("Invalid type for essay score : {0} or essay text : {1}".format(type(essay_score), type(essay_text)))
+            log.exception("Invalid type for essay score : {0} or essay text : {1}".format(type(essay_d_score), type(essay_text)))
 
-        if isinstance(essay_score, int) and isinstance(essay_text, str)\
+        if isinstance(essay_d_score, int) and isinstance(essay_text, str)\
                 and (essay_generated == 0 or essay_generated == 1):
             self._id.append(max_id + 1)
-            self._score.append(essay_score)
+            self._d_score.append(essay_d_score)
+            self._n_score.append(essay_n_score)
+            self._p_score.append(essay_p_score)
             # Clean text by removing non digit/work/punctuation characters
             #essay_text = re.sub("[^A-Za-z0-9가-힣.\"?!;:\'\(\{\[\<\)\}\]\>]", ' ', essay_text)
             cleaned_essay = util_functions.sub_chars(essay_text).lower()
@@ -99,8 +106,6 @@ class EssaySet(object):
             self._markup_text.append(markup_text)
             # Tokenize text
 
-
-
             self._tokens.append(self._okt.morphs(self._clean_text[len(self._clean_text) - 1]))
 
 
@@ -112,7 +117,7 @@ class EssaySet(object):
 
             self._clean_stem_text.append(" ".join(self._okt.morphs(self._clean_text[len(self._clean_text) - 1], stem=True)))
 
-            ret = "text: " + self._text[len(self._text) - 1] + " score: " + str(essay_score)
+            ret = "text: " + self._text[len(self._text) - 1] + " score: " + str(essay_d_score)
         else:
             raise util_functions.InputError(essay_text, "arguments need to be in format "
                                                         "(text,score). text needs to be string,"
@@ -131,7 +136,7 @@ class EssaySet(object):
             raise util_functions.InputError(prompt_text, "Invalid prompt. Need to enter a string value.")
         return ret
 
-    def generate_additional_essays(self, e_text, e_score, dictionary=None, max_syns=3):
+    def generate_additional_essays(self, e_text, e_d_score, e_n_score, e_p_score, dictionary=None, max_syns=3):
         """
         Substitute synonyms to generate extra essays from existing ones.
         This is done to increase the amount of training data.
@@ -141,25 +146,7 @@ class EssaySet(object):
         dictionary is a fixed dictionary (list) of words to replace.
         max_syns defines the maximum number of additional essays to generate.  Do not set too high.
         """
-        #okt = Okt()
-        #e_toks = self._okt.morphs(e_text)
-        #all_syns = []
-        # for word in e_toks:
-        #     synonyms = KorEDA.eda.get_synonyms(word)
-        #     print(synonyms)
-        #     if (len(synonyms) > max_syns):
-        #         synonyms = random.sample(synonyms, max_syns)
-        #     all_syns.append(synonyms)
-        # new_essays = []
-        # for i in range(0, max_syns):
-        #     syn_toks = e_toks
-        #     for z in range(0, len(e_toks)):
-        #         if len(all_syns[z]) > i and (dictionary == None or e_toks[z] in dictionary):
-        #             syn_toks[z] = all_syns[z][i]
-        #
-        #     string = " ".join(syn_toks)
         new_essays = []
-        #strings = KorEDA.eda.EDA(e_text)
         strings = dataAumentationByTranslation.makingAugmentationbackTranslation(e_text, num=3)
         for string in strings:
             string = string.strip()
@@ -204,4 +191,4 @@ class EssaySet(object):
             new_essays.append(newstring)
 
         for z in range(0, len(new_essays)):
-            self.add_essay(new_essays[z], e_score, 1)
+            self.add_essay(new_essays[z], e_d_score, e_n_score, e_p_score, 1)

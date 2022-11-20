@@ -1,11 +1,12 @@
 """
-Functions that create a machine learning model from training data
+Functions that create a machine learning models from training data
 """
 
 import os
 import sys
 import logging
 import numpy
+import joblib
 
 #Define base path and add to sys path
 base_path = os.path.dirname(__file__)
@@ -40,25 +41,29 @@ def dump_input_data(text, score):
         error = "Could not dump data to file."
         log.exception(error)
 
-def create(text,score,prompt_string, dump_data=False, lgbm=False, generate_additional=True):
+class FinalModel(object):
+    def __init__(self):
+        self.f_ext = None
+        self.d_clf = None
+        self.n_clf = None
+        self.p_clf = None
+
+def create(text, d_score, n_score, p_score, prompt_string, model_type=False, generate_additional=True, num=2):
     """
-    Creates a machine learning model from input text, associated scores, a prompt, and a path to the model
-    TODO: Remove model path argument, it is needed for now to support legacy code
+    Creates a machine learning models from input text, associated scores, a prompt, and a path to the models
+    TODO: Remove models path argument, it is needed for now to support legacy code
     text - A list of strings containing the text of the essays
     score - a list of integers containing score values
     prompt_string - the common prompt for the set of essays
     """
 
-    if dump_data:
-        dump_input_data(text, score)
-
-    algorithm = select_algorithm(score) #알고리즘을 선택함 3개 이하면 분류, 3개 이상이면 회귀 알고리즘을 선택
+    algorithm = select_algorithm(d_score) #알고리즘을 선택함 3개 이하면 분류, 3개 이상이면 회귀 알고리즘을 선택
     #Initialize a results dictionary to return
     results = {'errors': [],'success' : False, 'cv_kappa' : 0, 'cv_mean_absolute_error': 0,
                'feature_ext' : "", 'classifier' : "", 'algorithm' : algorithm,
-               'score' : score, 'text' : text, 'prompt' : prompt_string}
+               'd_score' : d_score, 'text' : text, 'prompt' : prompt_string}
 
-    if len(text)!=len(score): #텍스트와 점수 리스트의 길이를 확인하여 무결성 체크
+    if len(text)!=len(d_score): #텍스트와 점수 리스트의 길이를 확인하여 무결성 체크
         msg = "Target and text lists must be same length."
         results['errors'].append(msg)
         log.exception(msg)
@@ -66,23 +71,38 @@ def create(text,score,prompt_string, dump_data=False, lgbm=False, generate_addit
 
     try:
         #Create an essay set object that encapsulates all the essays and alternate representations (tokens, etc)
-        e_set = model_creator.create_essay_set(text, score, prompt_string, generate_additional=generate_additional)
+        # root_path = f'/home/ubuntu/anaconda3/envs/nonmentor/ease_real/problems/Problem_{num}'
+        # if os.path.isfile(os.path.join(root_path, 'e_set.pkl')):
+        #     e_set = joblib.load(os.path.join(root_path, 'e_set.pkl'))
+        # else:
+        e_set = model_creator.create_essay_set(text, d_score, n_score, p_score, prompt_string, generate_additional=generate_additional)
+            # joblib.dump(e_set, f'/home/ubuntu/anaconda3/envs/nonmentor/ease_real/problems/Problem_{num}/e_set.pkl')
     except Exception as e:
         print(e)
         msg = "essay set creation failed."
         results['errors'].append(msg)
         log.exception(msg)
+
     try:
         #Gets features from the essay set and computes error
-        feature_ext, classifier, cv_error_results = model_creator.extract_features_and_generate_model(e_set, algorithm = algorithm, lgbm=lgbm)
-        results['cv_kappa']=cv_error_results['kappa']
-        results['cv_mean_absolute_error']=cv_error_results['mae']
-        results['feature_ext']=feature_ext
-        results['classifier']=classifier
+        model = FinalModel()
+        model.f_ext, model.d_clf, model.n_clf, model.p_clf, d_cv_error_results, n_cv_error_results, p_cv_error_results = model_creator.extract_features_and_generate_models(e_set, algorithm = algorithm, model_type=model_type)
+
+        # feature_ext, classifier, cv_error_results = model_creator.extract_features_and_generate_model(e_set, algorithm = algorithm, model_type=model_type)
+        results['d_cv_kappa']=d_cv_error_results['kappa']
+        results['d_cv_mean_absolute_error']=d_cv_error_results['mae']
+        results['n_cv_kappa'] = n_cv_error_results['kappa']
+        results['n_cv_mean_absolute_error'] = n_cv_error_results['mae']
+        results['p_cv_kappa'] = p_cv_error_results['kappa']
+        results['p_cv_mean_absolute_error'] = p_cv_error_results['mae']
+        results['feature_ext']=model.f_ext
+        results['d_classifier']=model.d_clf
+        results['n_classifier']=model.n_clf
+        results['p_classifier']=model.p_clf
         results['algorithm'] = algorithm
         results['success']=True
     except:
-        msg = "feature extraction and model creation failed."
+        msg = "feature extraction and models creation failed."
         results['errors'].append(msg)
         log.exception(msg)
 
@@ -91,7 +111,7 @@ def create(text,score,prompt_string, dump_data=False, lgbm=False, generate_addit
 
 def create_generic(numeric_values, textual_values, target, algorithm = util_functions.AlgorithmTypes.regression):
     """
-    Creates a model from a generic list numeric values and text values
+    Creates a models from a generic list numeric values and text values
     numeric_values - A list of lists that are the predictors
     textual_values - A list of lists that are the predictors
     (each item in textual_values corresponds to the similarly indexed counterpart in numeric_values)
@@ -129,7 +149,7 @@ def create_generic(numeric_values, textual_values, target, algorithm = util_func
         results['classifier']=classifier
         results['success']=True
     except:
-        msg = "feature extraction and model creation failed."
+        msg = "feature extraction and models creation failed."
         results['errors'].append(msg)
         log.exception(msg)
 

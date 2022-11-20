@@ -7,6 +7,8 @@ import pickle
 import os
 import numpy
 import logging
+from konlpy.tag import Okt
+okt=Okt()
 
 #Append sys to base path to import the following modules
 base_path = os.path.dirname(__file__)
@@ -24,28 +26,59 @@ import sklearn.ensemble
 import math
 
 log = logging.getLogger(__name__)
+fword_path = "/home/ubuntu/anaconda3/envs/nonmentor/ease_real/ease/data/fword_list.txt"
+fwordList = []
 
-def grade(grader_data,submission):
+with open(fword_path, "r") as file:
+    fwordList = file.readlines()
+    fwordList = list(map(lambda x: x.strip(), fwordList))
+
+
+def isFword(answer):
+    #print(fwordList)
+    answer = okt.nouns(answer)
+    #
+    fwordFlag = False
+    for a in answer:
+        if a in fwordList:
+            fwordFlag = True
+            break
+    if fwordFlag:
+        return True
+    else:
+        return False
+
+
+
+def grade(grader_data, submission, PK_NUM, sbert=None):
     """
     Grades a specified submission using specified models
     grader_data - A dictionary:
     {
-        'model' : trained model,
+        'models' : trained models,
         'extractor' : trained feature extractor,
         'prompt' : prompt for the question,
         'algorithm' : algorithm for the question,
     }
     submission - The student submission (string)
     """
-
+    results = {'errors': [], 'tests': [], 'd_score': [], 'n_score': [], 'p_score': [], 'feedback': "", 'success': False,
+               'confidence': 0}
+    #print(submission)
+    if isFword(submission):
+        results["d_score"].append(0)
+        results["n_score"].append(0)
+        results["p_score"].append(0)
+        results["success"] = True
+        return results
     #Initialize result dictionary
-    results = {'errors': [],'tests': [],'score': 0, 'feedback' : "", 'success' : False, 'confidence' : 0}
+
     has_error=False
 
     grader_set=EssaySet(essaytype="test")
     feedback = {}
 
-    model, extractor = get_classifier_and_ext(grader_data)
+    d_model, n_model, p_model, extractor = get_classifier_and_ext(grader_data)
 
     #This is to preserve legacy functionality
     if 'algorithm' not in grader_data:
@@ -53,70 +86,48 @@ def grade(grader_data,submission):
 
     try:
         #Try to add essay to essay set object
-        grader_set.add_essay(str(submission),0)
-        grader_set.update_prompt(str(grader_data['prompt']))
+        if isinstance(submission, str):
+            grader_set.add_essay(str(submission), 0, 0, 0)
+            grader_set.update_prompt(str(grader_data['prompt']))
+            submission = [submission]
+        else:
+            for essay in submission:
+                grader_set.add_essay(str(essay), 0, 0, 0)
+            grader_set.update_prompt(str(grader_data['prompt']))
     except Exception:
         error_message = "Essay could not be added to essay set:{0}".format(submission)
         log.exception(error_message)
         results['errors'].append(error_message)
         has_error=True
 
-    #Try to extract features from submission and assign score via the model
+    #Try to extract features from submission and assign score via the models
     try:
-        grader_feats=extractor.gen_feats(grader_set)
-        feedback=extractor.gen_feedback(grader_set,grader_feats)[0]
-        results['score']=int(model.predict(grader_feats)[0])
+        grader_feats, sim_matrix = extractor.gen_feats(grader_set, PK_NUM, sbert=sbert, grade=True)
+        # feedback=extractor.gen_feedback(grader_set,grader_feats)[0]
+        for i in range(len(submission)):
+            results['d_score'].append(int(d_model.predict(grader_feats)[i]))
+            results['n_score'].append(int(n_model.predict(grader_feats)[i]))
+            results['p_score'].append(int(p_model.predict(grader_feats)[i]))
     except Exception:
         error_message = "Could not extract features and score essay."
         log.exception(error_message)
         results['errors'].append(error_message)
-        has_error=True
 
-    #Try to determine confidence level
-    try:
+    total_similarity = int(sim_matrix.max(axis=1).mean(axis=0) * 100)
+    if total_similarity <= 0:
+        total_similarity = 0
 
-        print
-        results['confidence'] = get_confidence_value(grader_data['algorithm'], model, grader_feats, results['score'], grader_data['score'])
-    except Exception:
-        #If there is an error getting confidence, it is not a show-stopper, so just log
-        log.exception("Problem generating confidence value")
-
-    if not has_error:
-
-        #If the essay is just a copy of the prompt, return a 0 as the score
-        # if( 'too_similar_to_prompt' in feedback and feedback['too_similar_to_prompt']):
-        #     results['score']=0
-        #     results['correct']=False
-
-        results['success']=True
-
-        #Generate short form output--number of problem areas identified in feedback
-
-        #Add feedback to results if available
-        results['feedback'] = {}
-        if 'topicality' in feedback and 'prompt_overlap' in feedback:
-            results['feedback'].update({
-                'topicality' : feedback['topicality'],
-                'prompt-overlap' : feedback['prompt_overlap'],
-                })
-
-        results['feedback'].update(
-            {
-                'spelling' : feedback['spelling'],
-                'grammar' : feedback['grammar'],
-                'markup-text' : feedback['markup_text'],
-                }
-        )
-
-    else:
-        #If error, success is False.
-        results['success']=False
+    if total_similarity <= 45:
+        results['d_score'] = [0]
+        results['n_score'] = [0]
+        results['p_score'] = [0]
+    results['similarity'] = total_similarity
 
     return results
 
 def grade_generic(grader_data, numeric_features, textual_features):
     """
-    Grades a set of numeric and textual features using a generic model
+    Grades a set of numeric and textual features using a generic models
     grader_data -- dictionary containing:
     {
         'algorithm' - Type of algorithm to use to score
@@ -129,7 +140,7 @@ def grade_generic(grader_data, numeric_features, textual_features):
 
     has_error=False
 
-    #Try to find and load the model file
+    #Try to find and load the models file
 
     grader_set=predictor_set.PredictorSet(essaytype="test")
 
@@ -144,7 +155,7 @@ def grade_generic(grader_data, numeric_features, textual_features):
         results['errors'].append(error_msg)
         has_error=True
 
-    #Try to extract features from submission and assign score via the model
+    #Try to extract features from submission and assign score via the models
     try:
         grader_feats=extractor.gen_feats(grader_set)
         results['score']=model.predict(grader_feats)[0]
@@ -170,9 +181,9 @@ def get_confidence_value(algorithm,model,grader_feats,score, scores):
     """
     Determines a confidence in a certain score, given proper input parameters
     algorithm- from util_functions.AlgorithmTypes
-    model - a trained model
-    grader_feats - a row of features used by the model for classification/regression
-    score - The score assigned to the submission by a prior model
+    models - a trained models
+    grader_feats - a row of features used by the models for classification/regression
+    score - The score assigned to the submission by a prior models
     """
     min_score=min(numpy.asarray(scores))
     max_score=max(numpy.asarray(scores))
@@ -191,11 +202,15 @@ def get_confidence_value(algorithm,model,grader_feats,score, scores):
 
 def get_classifier_and_ext(grader_data):
     if 'classifier' in grader_data:
-        model = grader_data['classifier']
-    elif 'model' in grader_data:
-        model = grader_data['model']
+        d_model = grader_data['d_classifier']
+        n_model = grader_data['n_classifier']
+        p_model = grader_data['p_classifier']
+    elif 'models' in grader_data:
+        d_model = grader_data['d_models']
+        n_model = grader_data['n_models']
+        p_model = grader_data['p_models']
     else:
-        raise Exception("Cannot find a valid model.")
+        raise Exception("Cannot find a valid models.")
 
     if 'feature_ext' in grader_data:
         extractor = grader_data['feature_ext']
@@ -204,6 +219,6 @@ def get_classifier_and_ext(grader_data):
     else:
         raise Exception("Cannot find the extractor")
 
-    return model, extractor
+    return d_model, n_model, p_model, extractor
 
 

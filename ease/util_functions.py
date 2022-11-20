@@ -48,7 +48,7 @@ class AlgorithmTypes(object):
 
 def create_model_path(model_path):
     """
-    Creates a path to model files
+    Creates a path to models files
     model_path - string
     """
     if not model_path.startswith("/") and not model_path.startswith("models/"):
@@ -70,7 +70,7 @@ def sub_chars(string):
     #Define replacement patterns
     open_par_pat = r"(\(|\[|\{\<)"
     close_par_pat = r"(\)|\]|\}\>)"
-    sub_pat = r"[^㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻A-Za-z가-힣\.\ ?!,;:\(\)]"
+    sub_pat = r"[^㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻A-Za-z가-힣\.\ ?!,;:\(\)0-9]"
     char_pat = r"\."
     com_pat = r","
     ques_pat = r"\?"
@@ -93,7 +93,7 @@ def sub_chars(string):
     nstring = re.sub(whitespace_pat, " ", nstring)
     for s, c in zip(separatedCharList, circleCharList):
         nstring = re.sub(s, c,nstring)
-    return nstring
+    return nstring.strip()
 
 def safe_list_get (l, idx, default):
   try:
@@ -546,3 +546,12 @@ def getMedian(numericValues):
         upper = theValues[len(theValues) / 2]
 
         return (float(lower + upper)) / 2
+
+
+def sentence_split(text):
+    s_list = text.split('.')
+    result = []
+    for i in s_list:
+        if i != '':
+            result.append(i+'.')
+    return result
